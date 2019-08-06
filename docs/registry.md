@@ -6,11 +6,11 @@ The registry contract is responsible for the creation of entities and expression
 
 ### Phrase
 
-| value       | type                 |
-|:------------|:---------------------|
-| content     | `string`             |
-| creator     | `address`            |
-| beneficiary | `address` *optional* |
+| value       | type                         |
+|:------------|:-----------------------------|
+| content     | `string`                     |
+| creator     | `address payable`            |
+| beneficiary | `address payable` *optional* |
 
 ### Sentiment
 
@@ -47,10 +47,11 @@ The registry contract is responsible for the creation of entities and expression
 ## Public Methods
 
 - `createProfile(content)`
+- `updateProfile(content)`
 - `createPhrase(content, beneficiary)`
 - `createSentiment(content, token, value)`
 - `expressSentiment(phrase, sentiment)`
 
-## Hashing Entities
+## Hashing
 
-Each of the structs discussed above, with exception to `Profile`, has a hashing function. In each one, we compute the `sha256` of the concatenation of each element's `sha256` in the struct. This produces a `bytes32` value which is then used to reference the entity.
+Each of the structs discussed above, with exception to `Profile`, has a hashing function. In each one, we join the elements together with a dash and compute the `sha256` of the concatenation.
