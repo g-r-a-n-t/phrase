@@ -1,8 +1,8 @@
 const Registry = artifacts.require("./test/InternalRegistry.sol");
 
-contract('registry', function(accounts) {
-  const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
+const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
 
+contract('registry', function(accounts) {
   let registry;
 
   beforeEach(async function() {

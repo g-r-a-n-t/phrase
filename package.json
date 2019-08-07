@@ -1,0 +1,35 @@
+{
+  "name": "phrase",
+  "version": "0.0.0",
+  "description": "Value-backed sentiment expression for Ethereum.",
+  "main": "truffle-config.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "watch": {
+    "test": "truffle test"
+  },
+  "scripts": {
+    "test": "truffle test",
+    "watch": "npm-watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/g-r-a-n-t/phrase.git"
+  },
+  "keywords": [
+    "sentiment",
+    "ethereum"
+  ],
+  "author": "Grant Wuerker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/g-r-a-n-t/phrase/issues"
+  },
+  "homepage": "https://github.com/g-r-a-n-t/phrase#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "npm-watch": "^0.6.0"
+  }
+}

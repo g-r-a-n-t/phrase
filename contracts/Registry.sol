@@ -1,6 +1,11 @@
 pragma solidity >=0.5.0;
 
 contract Registry {
+  event PhraseCreated(address creator, bytes32 phrase);
+  event SentimentCreated(bytes32 sentiment);
+  event SentimentExpressed(address expresser, bytes32 expressSentiment);
+  event ProfileCreated(address creator);
+
   struct Phrase {
     string content;
     address payable creator;
@@ -46,6 +51,8 @@ contract Registry {
       new bytes32[](0),
       new bytes32[](0)
     );
+
+    emit ProfileCreated(msg.sender);
   }
 
   function createPhrase(
@@ -53,7 +60,6 @@ contract Registry {
     address payable beneficiary
   )
     public
-    returns (bytes32)
   {
     // Verify that the profile creating the phrase exists.
     require(
@@ -73,7 +79,7 @@ contract Registry {
     phrases[key] = phrase;
     profiles[msg.sender].phrases.push(key);
 
-    return key;
+    emit PhraseCreated(msg.sender, key);
   }
 
   function createSentiment(
@@ -82,7 +88,6 @@ contract Registry {
     uint256 value
   )
     public
-    returns (bytes32)
   {
     // Create a new sentiment.
     Sentiment memory sentiment = Sentiment(
@@ -95,7 +100,7 @@ contract Registry {
     bytes32 key = hashSentiment(sentiment);
     sentiments[key] = sentiment;
 
-    return key;
+    emit SentimentCreated(key);
   }
 
   function expressSentiment(
@@ -104,7 +109,6 @@ contract Registry {
   )
     public
     payable
-    returns (bytes32)
   {
     // Verify that the profile, phrase, and sentiment exist.
     require(
@@ -144,7 +148,7 @@ contract Registry {
     // Associate the expressed sentiment with the profile.
     profiles[msg.sender].expressedSentiments.push(expressedSentimentKey);
 
-    return expressedSentimentKey;
+    emit SentimentExpressed(msg.sender, expressedSentimentKey);
   }
 
   function transfer(
