@@ -1,5 +1,7 @@
 pragma solidity >=0.5.0;
 
+import "./ERC20Interface.sol";
+
 contract Registry {
   event PhraseCreated(address creator, bytes32 phrase);
   event SentimentCreated(bytes32 sentiment);
@@ -153,15 +155,17 @@ contract Registry {
 
   function transfer(
     address payable receiver,
-    address token,
+    address tokenAddress,
     uint256 amount
   )
     internal
   {
-    if (token == address(0)) {
+    emit ProfileCreated(msg.sender);
+    if (tokenAddress == address(0)) {
       receiver.transfer(amount);
+    } else {
+      ERC20Interface(tokenAddress).transferFrom(msg.sender, receiver, amount);
     }
-    // TODO: Handle token addresses.
   }
 
   function hashPhrase(
@@ -171,7 +175,6 @@ contract Registry {
     pure
     returns (bytes32)
   {
-    // TODO: Check what encodedPacked does
     return sha256(
       abi.encodePacked(
         phrase.content, "-", phrase.creator, "-", phrase.beneficiary
@@ -186,7 +189,6 @@ contract Registry {
     pure
     returns (bytes32)
   {
-    // TODO: Check what encodedPacked does
     return sha256(
       abi.encodePacked(
         sentiment.content, "-", sentiment.token, "-", sentiment.value
