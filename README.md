@@ -19,9 +19,9 @@ Each of the three entities discussed above has content associated with them: e.g
 
 ```json
 {
-  name: "Freedom Newman 2028",
-  description: "Help raise money for the presidential campaign of Freedom Newman.",
-  image: "<replace this with a fake multiaddr>"
+  "name": "Freedom Newman 2028",
+  "description": "Help raise money for the presidential campaign of Freedom Newman.",
+  "image": "<replace this with a fake multiaddr>"
 }
 ```
 
@@ -29,8 +29,8 @@ Furthermore, here is an example of a sentiment:
 
 ```json
 {
-  name: "This guy should be president.",
-  image: "<replace this with a fake multiaddr>"
+  "name": "This guy should be president.",
+  "image": "<replace this with a fake multiaddr>"
 }
 ```
 

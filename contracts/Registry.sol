@@ -203,7 +203,6 @@ contract Registry {
     pure
     returns (bytes32)
   {
-    // TODO: Check what encodedPacked does
     return sha256(
       abi.encodePacked(
         expressedSentiment.phrase, "-", expressedSentiment.sentiment
