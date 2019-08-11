@@ -3,15 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 
 import Web3Provider, { useWeb3Context, Web3Consumer } from "web3-react";
-import connectors from "./connectors";
+import connectors from './connectors.js';
 import MyComponent from "./component";
 
-const App: React.FC = () => {
-  const context = useWeb3Context()
+function App() {
   return (
     <Web3Provider
-      connectors={connectors}
-      libraryName={'ethers.js'}
+    connectors={connectors}
+    libraryName={'ethers.js'}
     >
       <div className="App">
         <MyComponent />

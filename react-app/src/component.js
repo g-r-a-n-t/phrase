@@ -9,18 +9,6 @@ export default function MyComponent () {
     context.setFirstValidConnector(['MetaMask'])
   }, [])
 
-  /*
-  if (!context.active && !context.error) {
-    // loading
-    return ("loading");
-  } else if (context.error) {
-    //error
-    return ("fuck!");
-  } else {
-    // success
-    return ("hell yea...");
-  }
-  */
   return (
     <React.Fragment>
       {context.account}
