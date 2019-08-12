@@ -13,9 +13,9 @@ The contract which handles the operations described above is quite simple. In sh
 - Creation of phrases, sentiments, and profiles.
 - Expression of sentiment from a profile to a phrase.
 
-For more information about the contract design, read [this](./docs/registry.md).
+For more information about the contract design, read [this](./docs/registry-contract-design.md).
 
-Each of the three entities discussed above has content associated with them: e.g. an image with a name. Short strings, like the name of an entity, could be stored in the contract, however, media files like images, must be stored on a content addressable network, in this case, IPFS. The interpretation of content is left up to user interfaces with some basic standards to follow. The following is an example of what a phrase's content could look like:
+Each of the three entities discussed above has content associated with them: e.g. an image with a name. Short strings, like the name of an entity, could be stored in the contract, however, media files like images, must be stored on a content addressable network, in this case, IPFS. The interpretation of content is left up to user interfaces with some [basic standards](./docs/content-formats.md) to follow. The following is an example of what a phrase's content could look like:
 
 ```json
 {
