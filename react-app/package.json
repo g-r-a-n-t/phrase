@@ -5,10 +5,14 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "ethers": "^4.0.33",
+    "holderjs": "^2.9.6",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.0",
     "reactstrap": "^8.0.1",
+    "styled-components": "^4.3.2",
     "web3-react": "^5.0.4"
   },
   "scripts": {
