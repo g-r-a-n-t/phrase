@@ -1,11 +1,13 @@
 # Web App Pages
 
 ## Profiles
-- View Profile `/<address>` Should display profile content along with recently created phrases and expressed sentiments.
-- Create Profile `/create/profile`
+- View Profile `/profile/<address>` Should display profile content along with recently created phrases and expressed sentiments.
+- Create Profile `/profile`
 
 ## Phrases
-- Create Phrase `/create/phrase`
+- Create Phrase `/phrase`
+- View Phrase `/phrase/<key>`
 
 ## Sentiments
-- Create Sentiment `/create/sentiment`
+- Create Sentiment `/sentiment`
+- View Sentiment `/sentiment/<key>`
