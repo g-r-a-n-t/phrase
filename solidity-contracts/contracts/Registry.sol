@@ -160,7 +160,6 @@ contract Registry {
   )
     internal
   {
-    emit ProfileCreated(msg.sender);
     if (tokenAddress == address(0)) {
       receiver.transfer(amount);
     } else {
