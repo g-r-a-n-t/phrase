@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './pages/App';
 import connectors from './connectors.js';
 import Web3Provider from "web3-react";
 import * as serviceWorker from './serviceWorker';

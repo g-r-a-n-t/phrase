@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import Header from "./components/Header"
-import Profile from "./pages/Profile";
+import Header from "../components/Header"
+import Profile from "./Profile";
 
 const BodyWrapper = styled.div`
   display: flex;
