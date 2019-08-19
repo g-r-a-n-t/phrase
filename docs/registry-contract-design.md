@@ -8,6 +8,7 @@ The registry contract is responsible for the creation of entities and expression
 
 | value       | type                         |
 |:------------|:-----------------------------|
+| format      | `string`                     |
 | content     | `string`                     |
 | creator     | `address payable`            |
 | beneficiary | `address payable` *optional* |
@@ -16,6 +17,7 @@ The registry contract is responsible for the creation of entities and expression
 
 | value   | type      |
 |:--------|:----------|
+| format  | `string`  |
 | content | `string`  |
 | token   | `address` |
 | value   | `uint256` |
@@ -31,6 +33,7 @@ The registry contract is responsible for the creation of entities and expression
 
 | value               | type        |
 |:--------------------|:------------|
+| format              | `string`    |
 | content             | `string`    |
 | phrases             | `bytes32[]` |
 | expressedSentiments | `bytes32[]` |

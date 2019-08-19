@@ -1,38 +1,38 @@
 # Content Formats
 
 ## Profiles
-```json
-{
-  "format": "standard-0.0",
-  "name": <string>,
-  "image180x180": <string>
-}
+
 ```
+/name.txt
+/bio.txt
+/image180x180.jpg
+```
+_standard_
 
 ## Phrases
 
-```json
-{
-  "format": "standard-0.0",
-  "name": <string>,
-  "description": <string>,
-  "image600x400": <string>
-}
 ```
+/name.txt
+/description.txt
+/image600x400.jpg
+```
+_standard_
+
+```
+/name.txt
+/description.txt
+/credits.txt
+/image1600x1600.jpg
+/tracks/Song_Title1.mp4
+...
+/tracks/Song_Title10.mp4
+```
+_album_
 
 ## Sentiments
-```json
-{
-  "format": "standard-0.0",
-  "name": <string>,
-  "image120x120": <string>
-}
-```
 
-```json
-{
-  "format": "stamp-0.0",
-  "name": <string>,
-  "image120x135": <string>
-}
 ```
+/name.txt
+/image120x120.txt
+```
+_standard_
