@@ -2,15 +2,16 @@ import { useWeb3Context } from 'web3-react'
 import { useMemo } from 'react'
 import { ethers } from 'ethers'
 
-import { localAddresses } from '../constants'
-import REGISTRY_ABI from '../constants/abis/Registry'
+import config from '../config'
+import REGISTRY_ABI from '../abis/Registry'
 
 export function useRegistryContract() {
-  const { library } = useWeb3Context()
-  return useContract(localAddresses.REGISTRY_ADDRESS, REGISTRY_ABI, library)
+  return useContract(config.registry.address, REGISTRY_ABI)
 }
 
-export function useContract(address, ABI, library) {
+export function useContract(address, ABI) {
+  const { library } = useWeb3Context()
+
   if (!isAddress(address) || address === ethers.constants.AddressZero) {
     throw Error(`Invalid 'address' parameter '${address}'.`)
   }

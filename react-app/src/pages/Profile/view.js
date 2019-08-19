@@ -4,7 +4,7 @@ import { useWeb3Context } from 'web3-react'
 import { Media, ListGroup, ListGroupItem } from 'reactstrap'
 
 import IpfsMedia from "../../components/IpfsMedia"
-//import { useRegistryContract } from "../../hooks/useContract"
+import { useRegistryContract } from "../../hooks/useContract"
 
 function PhraseList(phrases) {
   let items = []
@@ -21,7 +21,7 @@ function PhraseList(phrases) {
 
 export default function ProfileView () {
   const context = useWeb3Context()
-  //const registry = useRegistryContract()
+  const registry = useRegistryContract()
 
   useEffect(() => {
     context.setFirstValidConnector(['MetaMask'])
