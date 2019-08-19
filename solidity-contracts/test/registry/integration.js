@@ -12,14 +12,14 @@ contract('registry', function(accounts) {
   it('can express sentiment in ether.', async () => {
     const sentimentValue = web3.utils.toWei('1', 'ether');
     const billyJoel = accounts[0];
-    await registry.createProfile("Billy Joel", {from: billyJoel});
+    await registry.createProfile("na", "Billy Joel", {from: billyJoel});
     const philCollins = accounts[1];
-    await registry.createProfile("Phil Collins", {from: philCollins});
+    await registry.createProfile("na", "Phil Collins", {from: philCollins});
     const riverOfDreams = phraseKey(
-      await registry.createPhrase("River of Dreams", ZERO_ADDRESS, {from: billyJoel})
+      await registry.createPhrase("na", "River of Dreams", ZERO_ADDRESS, {from: billyJoel})
     );
     const myFavoriteAlbum = sentimentKey(
-      await registry.createSentiment("My Favorite Album", ZERO_ADDRESS, sentimentValue)
+      await registry.createSentiment("na", "My Favorite Album", ZERO_ADDRESS, sentimentValue)
     );
 
     const balanceBefore = await web3.eth.getBalance(billyJoel);

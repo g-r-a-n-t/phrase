@@ -9,12 +9,14 @@ contract Registry {
   event ProfileCreated(address creator);
 
   struct Phrase {
+    string format;
     string content;
     address payable creator;
     address payable beneficiary;
   }
 
   struct Sentiment {
+    string format;
     string content;
     address token;
     uint256 value;
@@ -26,6 +28,7 @@ contract Registry {
   }
 
   struct Profile {
+    string format;
     string content;
     bytes32[] phrases;
     bytes32[] expressedSentiments;
@@ -37,6 +40,7 @@ contract Registry {
   mapping(bytes32 => ExpressedSentiment) public expressedSentiments;
 
   function createProfile(
+    string memory format,
     string memory content
   )
     public
@@ -49,6 +53,7 @@ contract Registry {
 
     // Create a new profile for the given address.
     profiles[msg.sender] = Profile(
+      format,
       content,
       new bytes32[](0),
       new bytes32[](0)
@@ -58,6 +63,7 @@ contract Registry {
   }
 
   function createPhrase(
+    string memory format,
     string memory content,
     address payable beneficiary
   )
@@ -71,6 +77,7 @@ contract Registry {
 
     // Create a new phrase.
     Phrase memory phrase = Phrase(
+      format,
       content,
       msg.sender,
       beneficiary
@@ -85,6 +92,7 @@ contract Registry {
   }
 
   function createSentiment(
+    string memory format,
     string memory content,
     address token,
     uint256 value
@@ -93,6 +101,7 @@ contract Registry {
   {
     // Create a new sentiment.
     Sentiment memory sentiment = Sentiment(
+      format,
       content,
       token,
       value
@@ -176,7 +185,10 @@ contract Registry {
   {
     return sha256(
       abi.encodePacked(
-        phrase.content, "-", phrase.creator, "-", phrase.beneficiary
+        phrase.format, "-",
+        phrase.content, "-",
+        phrase.creator, "-",
+        phrase.beneficiary
       )
     );
   }
@@ -190,7 +202,10 @@ contract Registry {
   {
     return sha256(
       abi.encodePacked(
-        sentiment.content, "-", sentiment.token, "-", sentiment.value
+        sentiment.format, "-",
+        sentiment.content, "-",
+        sentiment.token, "-",
+        sentiment.value
       )
     );
   }
@@ -204,7 +219,8 @@ contract Registry {
   {
     return sha256(
       abi.encodePacked(
-        expressedSentiment.phrase, "-", expressedSentiment.sentiment
+        expressedSentiment.phrase, "-",
+        expressedSentiment.sentiment
       )
     );
   }
