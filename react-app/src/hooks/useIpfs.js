@@ -20,6 +20,7 @@ async function callIpfs (ipfs, cmd, opts, setRes) {
   if (!ipfs) return null
   console.log(`Call ipfs.${cmd}`)
   const ipfsCmd = dotProp.get(ipfs, cmd)
+  console.log("ipfs: ", ipfs)
   const res = await ipfsCmd(opts)
   console.log(`Result ipfs.${cmd}`, res)
   setRes(res)

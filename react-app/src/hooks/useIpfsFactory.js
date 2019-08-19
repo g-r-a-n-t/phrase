@@ -1,5 +1,6 @@
 import Ipfs from 'ipfs'
 import { useEffect, useState } from 'react'
+import config from '../config'
 
 let ipfs = null
 
@@ -40,7 +41,9 @@ export default function useIpfsFactory ({ commands }) {
     } else {
       try {
         console.time('IPFS Started')
-        ipfs = await Ipfs.create()
+        // all other config values are overwritten here
+        // TODO: Merge config instead of overwriting
+        ipfs = await Ipfs.create({config: config.ipfs})
         console.timeEnd('IPFS Started')
       } catch (error) {
         console.error('IPFS init error:', error)
