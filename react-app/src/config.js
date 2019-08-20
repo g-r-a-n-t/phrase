@@ -1,4 +1,4 @@
-
+import REGISTRY from './deployedContracts/Registry'
 
 export default {
   ipfs: {
@@ -7,6 +7,7 @@ export default {
     ]
   },
   registry: {
-    address: '0xf74a6ee821383601407B65e7F0A9366Da37Fb298'
+    abi: REGISTRY.abi,
+    address: REGISTRY.networks['5777'].address
   }
 }

@@ -1,10 +1,24 @@
 import React, { useEffect } from 'react'
 import 'holderjs';
-import { useWeb3Context } from 'web3-react'
 import { Media, ListGroup, ListGroupItem } from 'reactstrap'
+import usePromise from 'react-promise';
 
 import IpfsMedia from "../../components/IpfsMedia"
-import { useRegistryContract } from "../../hooks/useContract"
+import { useProfileContent } from "../../hooks/useContent"
+import config from '../../config'
+
+function ProfileInfo({ address }) {
+  const content = useProfileContent(address)
+  console.log('content: ', content)
+
+  return (
+    <div>
+      { content &&
+      <IpfsMedia path={content.content + "/image180x180.jpg"} type="image/jpeg" />
+      }
+    </div>
+  )
+}
 
 function PhraseList(phrases) {
   let items = []
@@ -20,19 +34,11 @@ function PhraseList(phrases) {
 }
 
 export default function ProfileView () {
-  const context = useWeb3Context()
-  const registry = useRegistryContract()
-
-  useEffect(() => {
-    context.setFirstValidConnector(['MetaMask'])
-  })
-
   return (
     <div>
       <div>
-        <IpfsMedia path="QmX4STxqTVP1ro9Xsksj3bh2saNBq7nSqGZtVnvGMyEvbj" type="image/jpeg" />
         <br/><br/>
-        <h5>{context.account}</h5>
+        <ProfileInfo address="0xca9Af5520FB2039514d680E7d500647F5E0A3Cb9" />
         <br/>
         <PhraseList/>
       </div>

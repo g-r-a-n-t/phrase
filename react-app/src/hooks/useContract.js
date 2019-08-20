@@ -1,28 +1,34 @@
+import { useMemo, useEffect } from 'react'
 import { useWeb3Context } from 'web3-react'
-import { useMemo } from 'react'
 import { ethers } from 'ethers'
 
 import config from '../config'
-import REGISTRY_ABI from '../abis/Registry'
+
 
 export function useRegistryContract() {
-  return useContract(config.registry.address, REGISTRY_ABI)
+  return useContract(config.registry.address, config.registry.abi)
 }
 
 export function useContract(address, ABI) {
-  const { library } = useWeb3Context()
+  const context = useWeb3Context()
+
+  useEffect(() => {
+    context.setFirstValidConnector(['MetaMask'])
+  }, [])
 
   if (!isAddress(address) || address === ethers.constants.AddressZero) {
     throw Error(`Invalid 'address' parameter '${address}'.`)
   }
 
   return useMemo(() => {
+    if(context.library===undefined) return null
     try {
-      return new ethers.Contract(address, ABI, library)
-    } catch {
+      return new ethers.Contract(address, ABI, context.library)
+    } catch(e) {
+      console.log('failed to get registry: ', e)
       return null
     }
-  }, [address, ABI, library])
+  }, [address, ABI, context.library])
 }
 
 function isAddress(value) {
