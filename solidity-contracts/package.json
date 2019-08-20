@@ -30,6 +30,9 @@
   "homepage": "https://github.com/g-r-a-n-t/phrase#readme",
   "dependencies": {},
   "devDependencies": {
-    "npm-watch": "^0.6.0"
+    "fs": "0.0.1-security",
+    "npm-watch": "^0.6.0",
+    "path": "^0.12.7",
+    "shelljs": "^0.8.3"
   }
 }
