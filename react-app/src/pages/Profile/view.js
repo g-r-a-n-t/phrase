@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import 'holderjs';
 import { Media, ListGroup, ListGroupItem } from 'reactstrap'
 import usePromise from 'react-promise';
+import { useWeb3Context } from 'web3-react'
 
 import IpfsMedia from "../../components/IpfsMedia"
 import { useProfileContent } from "../../hooks/useContent"
@@ -33,12 +34,11 @@ function PhraseList(phrases) {
   return <ListGroup>{items}</ListGroup>
 }
 
-export default function ProfileView () {
+export default function ProfileView ({ match }) {
   return (
     <div>
       <div>
-        <br/><br/>
-        <ProfileInfo address="0xca9Af5520FB2039514d680E7d500647F5E0A3Cb9" />
+        <ProfileInfo address={match.params.account} />
         <br/>
         <PhraseList/>
       </div>

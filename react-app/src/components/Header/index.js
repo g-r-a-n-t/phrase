@@ -11,7 +11,10 @@ export default class Header extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">phrase</NavbarBrand>
+          <NavbarBrand href="/">
+            <img width="32px" height="32px" src="./logo.png"/>
+            <span>phrase</span>
+          </NavbarBrand>
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink href="/components/">About</NavLink>

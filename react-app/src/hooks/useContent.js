@@ -9,6 +9,8 @@ export function useProfileContent(address) {
   async function fetchContent() {
     if (registry != null) {
       const response = await registry.profiles(address)
+      console.log(response)
+
       setContent({
         format: response.format,
         content: response.content

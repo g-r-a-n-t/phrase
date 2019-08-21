@@ -26,8 +26,8 @@ function App() {
         <BodyWrapper>
           <Body>
             <Switch>
-              <Route exact path={[
-                "/profile"
+              <Route path={[
+                "/"
               ]} component={Profile} />
             </Switch>
           </Body>
