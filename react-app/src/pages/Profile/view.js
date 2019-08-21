@@ -6,8 +6,9 @@ import IpfsMedia from "../../components/IpfsMedia"
 import { useProfile } from "../../hooks/useEntity"
 
 function ProfileInfo({ format, content }) {
-  console.log('content: ', content)
+  console.log('Rendering ProfileInfo (format content): ', format, content)
 
+  // standard format
   return (
     <div>
       <IpfsMedia path={content + "/image180x180.jpg"} type="image/jpeg" />
@@ -16,6 +17,8 @@ function ProfileInfo({ format, content }) {
 }
 
 function PhraseList({ phrases }) {
+  console.log('Rendering PhraseList (phrases): ', phrases)
+
   let items = []
   for (let i = 0; i < 10; i++) {
     items.push(
@@ -33,7 +36,7 @@ export default function ProfileView ({ match }) {
   const profile = useProfile(address)
 
   if (profile == null) {
-    return <p>loading...</p>
+    return <p>loading profile...</p>
   }
 
   return (
