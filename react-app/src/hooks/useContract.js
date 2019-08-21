@@ -14,7 +14,7 @@ export function useContract(address, ABI) {
 
   useEffect(() => {
     context.setFirstValidConnector(['MetaMask'])
-  }, [context])
+  }, [])
 
   if (!isAddress(address) || address === ethers.constants.AddressZero) {
     throw Error(`Invalid 'address' parameter '${address}'.`)
