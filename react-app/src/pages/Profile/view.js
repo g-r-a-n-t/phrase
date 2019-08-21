@@ -1,27 +1,21 @@
-import React, { useEffect } from 'react'
-import 'holderjs';
+import React from 'react'
 import { Media, ListGroup, ListGroupItem } from 'reactstrap'
-import usePromise from 'react-promise';
-import { useWeb3Context } from 'web3-react'
+import 'holderjs';
 
 import IpfsMedia from "../../components/IpfsMedia"
 import { useProfile } from "../../hooks/useEntity"
-import config from '../../config'
 
-function ProfileInfo({ address }) {
-  const content = useProfile(address)
+function ProfileInfo({ format, content }) {
   console.log('content: ', content)
 
   return (
     <div>
-      { content &&
-      <IpfsMedia path={content.content + "/image180x180.jpg"} type="image/jpeg" />
-      }
+      <IpfsMedia path={content + "/image180x180.jpg"} type="image/jpeg" />
     </div>
   )
 }
 
-function PhraseList(phrases) {
+function PhraseList({ phrases }) {
   let items = []
   for (let i = 0; i < 10; i++) {
     items.push(
@@ -35,12 +29,19 @@ function PhraseList(phrases) {
 }
 
 export default function ProfileView ({ match }) {
+  const address = match.params.account // TODO: handle ENS and 'me'
+  const profile = useProfile(address)
+
+  if (profile == null) {
+    return <p>loading...</p>
+  }
+
   return (
     <div>
       <div>
-        <ProfileInfo address={match.params.account} />
+        <ProfileInfo format={profile.format} content={profile.content} />
         <br/>
-        <PhraseList/>
+        <PhraseList phrases={profile.phrases} />
       </div>
       <div>
       </div>

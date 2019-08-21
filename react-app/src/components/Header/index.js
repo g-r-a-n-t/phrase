@@ -12,7 +12,7 @@ export default class Header extends React.Component {
       <div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">
-            <img width="32px" height="32px" src="./logo.png"/>
+            <img width="32px" height="32px" src="./logo.png" alt="logo"/>
             <span>phrase</span>
           </NavbarBrand>
           <Nav className="ml-auto" navbar>
