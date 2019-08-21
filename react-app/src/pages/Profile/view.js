@@ -5,11 +5,11 @@ import usePromise from 'react-promise';
 import { useWeb3Context } from 'web3-react'
 
 import IpfsMedia from "../../components/IpfsMedia"
-import { useProfileContent } from "../../hooks/useContent"
+import { useProfile } from "../../hooks/useEntity"
 import config from '../../config'
 
 function ProfileInfo({ address }) {
-  const content = useProfileContent(address)
+  const content = useProfile(address)
   console.log('content: ', content)
 
   return (

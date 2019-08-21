@@ -34,7 +34,7 @@ contract Registry {
     bytes32[] expressedSentiments;
   }
 
-  mapping(address => Profile) public profiles;
+  mapping(address => Profile) profiles; // Accessed by a getted due to limitations with returing lists.
   mapping(bytes32 => Phrase) public phrases;
   mapping(bytes32 => Sentiment) public sentiments;
   mapping(bytes32 => ExpressedSentiment) public expressedSentiments;
@@ -52,12 +52,8 @@ contract Registry {
     );
 
     // Create a new profile for the given address.
-    profiles[msg.sender] = Profile(
-      format,
-      content,
-      new bytes32[](0),
-      new bytes32[](0)
-    );
+    profiles[msg.sender].format = format;
+    profiles[msg.sender].content = content;
 
     emit ProfileCreated(msg.sender);
   }
@@ -174,6 +170,26 @@ contract Registry {
     } else {
       ERC20Interface(tokenAddress).transferFrom(msg.sender, receiver, amount);
     }
+  }
+
+  function getProfile(
+    address owner
+  )
+    public
+    view
+    returns (
+      string memory,
+      string memory,
+      bytes32[] memory,
+      bytes32[] memory
+    )
+  {
+    return (
+      profiles[owner].format,
+      profiles[owner].content,
+      profiles[owner].phrases,
+      profiles[owner].expressedSentiments
+    );
   }
 
   function hashPhrase(
