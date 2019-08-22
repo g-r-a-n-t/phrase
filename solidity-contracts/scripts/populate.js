@@ -13,11 +13,13 @@ module.exports = async function(callback) {
   const profiles = await fs.readdir(profilesPath)
   if(profiles.length <= 10) {
     for (let i = 0; i < profiles.length; i++) {
-      console.log('adding ' + profiles[i] + ' to IPFS')
-      const cid = shell.exec('jsipfs add -r -Q ' + path.join(profilesPath, profiles[i]) + ' | tr -d "\n"').stdout
-      console.log('\nadding ' + profiles[i] + ' to registry as ' + accounts[i])
-      await registry.createProfile('standard', cid, { from: accounts[i] })
-      console.log('added ' + profiles[i] + ' to registry')
+      const profilePath = path.join(profilesPath, profiles[i])
+      shell.exec(`date > ${profilePath}/time`)
+      console.log(`adding ${profiles[i]} to IPFS`)
+      const cid = shell.exec(`jsipfs add -r -Q ${profilePath} | tr -d "\n"`).stdout
+      console.log(`\nadding ${profiles[i]} to registry as ${accounts[i]}`)
+      await registry.createProfile('standard', `/ipfs/${cid}`, { from: accounts[i] })
+      console.log(`added ${profiles[i]} to registry`)
     }
   }
 
