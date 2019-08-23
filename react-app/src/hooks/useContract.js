@@ -9,6 +9,7 @@ export function useRegistryContract() {
   return useContract(config.registry.address, config.registry.abi)
 }
 
+// TODO: Should be able to remove the useEffect
 export function useContract(address, ABI) {
   const context = useWeb3Context()
 

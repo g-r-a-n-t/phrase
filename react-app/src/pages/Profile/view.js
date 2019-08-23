@@ -2,7 +2,7 @@ import React from 'react'
 import { Media, ListGroup, ListGroupItem } from 'reactstrap'
 import 'holderjs';
 
-import IpfsMedia from "../../components/IpfsMedia"
+import { IpfsImage, IpfsText } from "../../components/IpfsMedia"
 import { useProfile } from "../../hooks/useEntity"
 
 function ProfileInfo({ format, content }) {
@@ -11,7 +11,9 @@ function ProfileInfo({ format, content }) {
   // standard format
   return (
     <div>
-      <IpfsMedia path={content + "/image180x180.jpg"} type="image/jpeg" />
+      <IpfsImage path={`${content}/image180x180.jpg`} type="image/jpeg" /><br/><br/>
+      <h5><IpfsText path={`${content}/name.txt`} /></h5>
+      <IpfsText path={`${content}/bio.txt`} />
     </div>
   )
 }

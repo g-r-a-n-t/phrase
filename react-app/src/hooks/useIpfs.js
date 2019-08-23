@@ -1,27 +1,40 @@
-import { useState, useEffect } from 'react'
-import dotProp from 'dot-prop'
+import React, { useState, useEffect, useContext } from 'react'
+import Ipfs from 'ipfs'
 
-/*
- * Pass the command you'd like to call on an ipfs instance.
- *
- * Uses setState to capture the response, so your component
- * will re-render when the result turns up.
- *
- */
-export default function useIpfs (ipfs, cmd, opts) {
-  const [res, setRes] = useState(null)
+import config from '../config'
+import { IpfsContext } from '../contexts/ipfs'
+
+export function useIpfsFileBuffer(path) {
+  const [buf, setBuf] = useState(null)
+  const ipfs = useContext(IpfsContext)
+
+  async function fetchFile () {
+    if (ipfs == null) return null
+    console.log(`Reading IPFS file buffer for ${path}`)
+    setBuf(await ipfs.files.read(path))
+    console.log(`IPFS file buffer for ${path}: ${buf}`)
+  }
+
   useEffect(() => {
-    callIpfs(ipfs, cmd, opts, setRes)
-  }, [ipfs, cmd, opts])
-  return res
+    fetchFile()
+  }, [ipfs])
+
+  return buf
 }
 
-async function callIpfs (ipfs, cmd, opts, setRes) {
-  if (!ipfs) return null
-  console.log(`Call ipfs.${cmd}`)
-  const ipfsCmd = dotProp.get(ipfs, cmd)
-  console.log("ipfs: ", ipfs)
-  const res = await ipfsCmd(opts)
-  console.log(`Result ipfs.${cmd}`, res)
-  setRes(res)
+export function useIpfs() {
+  const [ipfs, setIpfs] = useState(null)
+
+  async function startIpfs() {
+    console.log('Starting IPFS')
+    const _ipfs = await Ipfs.create({config: config.ipfs})
+    console.log(`Started IPFS: `, _ipfs)
+    setIpfs(_ipfs)
+  }
+
+  useEffect(() => {
+    startIpfs()
+  }, [])
+
+  return ipfs
 }

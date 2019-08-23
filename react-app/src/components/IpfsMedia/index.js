@@ -1,23 +1,43 @@
 import React from 'react'
 import { Media } from 'reactstrap'
 
-import useIpfsFactory from '../../hooks/useIpfsFactory'
-import useIpfs from '../../hooks/useIpfs'
+import { useIpfsFileBuffer } from '../../hooks/useIpfs'
+
+export function IpfsImage({ path, type }) {
+  console.log('Rendering IpfsImage: (path type) ', path, type)
+
+  const buf = useIpfsFileBuffer(path)
+
+  let url = 'temp' // TODO: do a better job of loading this
+  if(buf != null) {
+    url = bufToUrl(buf, type)
+  }
+
+  return <Media object src={url} alt="IPFS Image" />
+}
+
+export function IpfsText({ path }) {
+  console.log('Rendering IpfsText: (path) ', path)
+
+  const buf = useIpfsFileBuffer(path)
+  const text = bufToString(buf)
+
+  return <span>{text}</span>
+}
+
+function bufToString(buffer) {
+  if (buffer == null) return null
+
+  let s = ''
+  buffer.forEach((u) => {
+    s += String.fromCharCode(u)
+  })
+
+  return s
+}
 
 function bufToUrl(buffer, type) {
   const blob = new Blob([buffer], {type: type});
   const urlCreator = window.URL || window.webkitURL;
   return urlCreator.createObjectURL(blob);
-}
-
-export default function IpfsMedia({ path, type }) {
-  const { ipfs } = useIpfsFactory({ commands: []})
-  const files = useIpfs(ipfs, 'get', path)
-
-  let url = 'temp'
-  if(files != null && files.length === 1) {
-    url = bufToUrl(files[0].content, type)
-  }
-
-  return <Media object src={url} alt="Generic placeholder image" />
 }
