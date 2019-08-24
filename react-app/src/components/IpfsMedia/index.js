@@ -1,9 +1,8 @@
 import React from 'react'
-import { Media } from 'reactstrap'
 
 import { useIpfsFileBuffer } from '../../hooks/useIpfs'
 
-export function IpfsImage({ path, type }) {
+export function IpfsImage({ width, path, type }) {
   console.log('Rendering IpfsImage: (path type) ', path, type)
 
   const buf = useIpfsFileBuffer(path)
@@ -13,7 +12,7 @@ export function IpfsImage({ path, type }) {
     url = bufToUrl(buf, type)
   }
 
-  return <Media object src={url} alt="IPFS Image" />
+  return <img width={width} src={url} alt="IPFS Image" />
 }
 
 export function IpfsText({ path }) {

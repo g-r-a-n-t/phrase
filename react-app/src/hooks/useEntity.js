@@ -31,17 +31,15 @@ export function usePhrase(key) {
 
   async function fetchContent() {
     if (registry == null) return null
-    const response = await registry.phrases.call(key)
+    const response = await registry.phrases(key)
 
-    console.log(response)
-    /*
+    console.log('phrase response', response)
     setContent({
-      format: response['0'],
-      content: response['1'],
-      phrases: response['2'],
-      expressedSentiments: response['3']
+      format: response.format,
+      content: response.content,
+      creator: response.creator,
+      beneficiary: response.beneficiary
     })
-    */
   }
 
   useEffect(() => {

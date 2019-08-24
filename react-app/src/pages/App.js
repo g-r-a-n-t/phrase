@@ -13,8 +13,9 @@ const BodyWrapper = styled.div`
 `
 
 const Body = styled.div`
-  width: 1000px;
+  width: 1200px;
   margin-top: 20px;
+  margin-bottom: 20px;
 `
 
 
