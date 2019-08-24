@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 
 import { useRegistryContract } from './useContract'
 
-// TODO: fix missing dependency warning
 export function useProfile (address) {
   const [content, setContent] = useState(null)
   const registry = useRegistryContract()
@@ -14,8 +13,6 @@ export function useProfile (address) {
   return content
 }
 
-
-// TODO: fix missing dependency warning
 export function usePhrase (key) {
   const [content, setContent] = useState(null)
   const registry = useRegistryContract()
@@ -42,7 +39,7 @@ async function fetchProfile (registry, address, setContent) {
 
 async function fetchPhrase (registry, key, setContent) {
   if (registry == null) return null
-  
+
   const response = await registry.phrases(key)
 
   setContent({

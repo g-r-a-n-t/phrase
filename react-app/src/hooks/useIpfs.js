@@ -4,7 +4,6 @@ import Ipfs from 'ipfs'
 import config from '../config'
 import { IpfsContext } from '../contexts/ipfs'
 
-// TODO: fix missing dependency warning
 export function useIpfsFileBuffer (path) {
   const [buf, setBuf] = useState(null)
   const ipfs = useContext(IpfsContext)

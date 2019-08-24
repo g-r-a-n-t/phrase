@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import classnames from 'classnames'
+import PropTypes from 'prop-types'
 import {
   ListGroup, ListGroupItem,
   Row, Col,
@@ -9,8 +10,9 @@ import {
   Spinner
 } from 'reactstrap'
 
-import { IpfsImage, IpfsText } from "../../components/IpfsMedia"
-import { useProfile, usePhrase } from "../../hooks/useEntity"
+import { IpfsImage, IpfsText } from '../../components/IpfsMedia'
+import { useProfile, usePhrase } from '../../hooks/useEntity'
+import { Clickable } from '../../styles'
 
 const ProfileName = styled.h5`
   width: 180px;
@@ -27,7 +29,7 @@ const EmptyList = styled.h5`
   color: grey;
 `
 
-function ProfileInfo({ format, content }) {
+function ProfileInfo ({ format, content }) {
   console.log('Rendering ProfileInfo (format content): ', format, content)
 
   // standard format
@@ -44,7 +46,12 @@ function ProfileInfo({ format, content }) {
   )
 }
 
-function Phrase({ _key }) {
+ProfileInfo.propTypes = {
+  format: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired
+}
+
+function Phrase ({ _key }) {
   console.log('Rendering Phrase (key): ', _key)
 
   const phrase = usePhrase(_key)
@@ -67,12 +74,16 @@ function Phrase({ _key }) {
   )
 }
 
-function PhraseList({ keys }) {
+Phrase.propTypes = {
+  _key: PropTypes.string.isRequired
+}
+
+function PhraseList ({ keys }) {
   console.log('Rendering PhraseList (keys): ', keys)
 
   if (keys.length === 0) return <EmptyList>Nothing to show</EmptyList>
 
-  let items = []
+  const items = []
   keys.forEach((key) => {
     items.push(
       <ListGroupItem key={key}>
@@ -82,6 +93,10 @@ function PhraseList({ keys }) {
   })
 
   return <ListGroup>{items}</ListGroup>
+}
+
+PhraseList.propTypes = {
+  keys: PropTypes.array
 }
 
 export default function ProfileView ({ match }) {
@@ -102,20 +117,24 @@ export default function ProfileView ({ match }) {
       <Col>
         <Nav tabs>
           <NavItem>
-            <NavLink
-              className={classnames({ active: activeTab === '1' })}
-              onClick={() => { setActiveTab('1'); }}
-            >
-              phrases
-            </NavLink>
+            <Clickable>
+              <NavLink
+                className={classnames({ active: activeTab === '1' })}
+                onClick={() => { setActiveTab('1') }}
+              >
+                phrases
+              </NavLink>
+            </Clickable>
           </NavItem>
           <NavItem>
-            <NavLink
-              className={classnames({ active: activeTab === '2' })}
-              onClick={() => { setActiveTab('2'); }}
-            >
-              sentiments
-            </NavLink>
+            <Clickable>
+              <NavLink
+                className={classnames({ active: activeTab === '2' })}
+                onClick={() => { setActiveTab('2') }}
+              >
+                sentiments
+              </NavLink>
+            </Clickable>
           </NavItem>
         </Nav>
         <TabContent activeTab={activeTab}>
@@ -129,4 +148,8 @@ export default function ProfileView ({ match }) {
       </Col>
     </Row>
   )
+}
+
+ProfileView.propTypes = {
+  match: PropTypes.object.isRequired
 }

@@ -27,6 +27,9 @@ export default function App () {
         <BodyWrapper>
           <Body>
             <Switch>
+              <Route exact path={[
+                '/'
+              ]} component={About} />
               <Route path={[
                 '/about'
               ]} component={About} />
