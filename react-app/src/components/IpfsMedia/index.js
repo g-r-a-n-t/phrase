@@ -1,4 +1,5 @@
 import React from 'react'
+import { Spinner } from 'reactstrap'
 
 import { useIpfsFileBuffer } from '../../hooks/useIpfs'
 
@@ -7,10 +8,9 @@ export function IpfsImage({ width, path, type }) {
 
   const buf = useIpfsFileBuffer(path)
 
-  let url = 'temp' // TODO: do a better job of loading this
-  if(buf != null) {
-    url = bufToUrl(buf, type)
-  }
+  if (buf == null) return <Spinner type="grow" color="secondary" />
+
+  const url = bufToUrl(buf, type)
 
   return <img width={width} src={url} alt="profile icon"/>
 }
@@ -19,14 +19,15 @@ export function IpfsText({ path }) {
   console.log('Rendering IpfsText: (path) ', path)
 
   const buf = useIpfsFileBuffer(path)
+
+  if (buf == null) return <Spinner type="grow" color="secondary" />
+
   const text = bufToString(buf)
 
   return <span>{text}</span>
 }
 
 function bufToString(buffer) {
-  if (buffer == null) return null
-
   let s = ''
   buffer.forEach((u) => {
     s += String.fromCharCode(u)
@@ -35,8 +36,9 @@ function bufToString(buffer) {
   return s
 }
 
-function bufToUrl(buffer, type) {
-  const blob = new Blob([buffer], {type: type});
+function bufToUrl(buf, type) {
+  const blob = new Blob([buf], {type: type});
   const urlCreator = window.URL || window.webkitURL;
+
   return urlCreator.createObjectURL(blob);
 }

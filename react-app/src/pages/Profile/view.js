@@ -5,7 +5,8 @@ import {
   ListGroup, ListGroupItem,
   Row, Col,
   Nav, NavLink, NavItem,
-  TabPane, TabContent
+  TabPane, TabContent,
+  Spinner
 } from 'reactstrap'
 
 import { IpfsImage, IpfsText } from "../../components/IpfsMedia"
@@ -17,6 +18,13 @@ const ProfileName = styled.h5`
 
 const ProfileDescription = styled.div`
   width: 180px;
+`
+
+const EmptyList = styled.h5`
+  width: 100%;
+  text-align: center;
+  margin: 10px;
+  color: grey;
 `
 
 function ProfileInfo({ format, content }) {
@@ -41,7 +49,7 @@ function Phrase({ _key }) {
 
   const phrase = usePhrase(_key)
 
-  if (phrase == null) return <p>loading phrase...</p>
+  if (phrase == null) return <Spinner type="grow" color="secondary" />
 
   // standard format
   return (
@@ -62,7 +70,7 @@ function Phrase({ _key }) {
 function PhraseList({ keys }) {
   console.log('Rendering PhraseList (keys): ', keys)
 
-  if (keys.length === 0) return <h4>Nothing to show</h4>
+  if (keys.length === 0) return <EmptyList>Nothing to show</EmptyList>
 
   let items = []
   keys.forEach((key) => {
@@ -84,7 +92,7 @@ export default function ProfileView ({ match }) {
   const address = match.params.account // TODO: handle ENS and 'me'
   const profile = useProfile(address)
 
-  if (profile == null) return <p>loading profile...</p>
+  if (profile == null) return <Spinner type="grow" color="secondary" />
 
   return (
     <Row>
@@ -115,7 +123,7 @@ export default function ProfileView ({ match }) {
             <PhraseList keys={profile.phrases} />
           </TabPane>
           <TabPane tabId="2">
-            <h4>Nothing to show</h4>
+            <EmptyList>Nothing to show</EmptyList>
           </TabPane>
         </TabContent>
       </Col>

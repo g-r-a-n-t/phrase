@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import Header from '../components/Header'
 import Profile from './Profile'
+import About from './About'
 
 const BodyWrapper = styled.div`
   display: flex;
@@ -18,7 +19,7 @@ const Body = styled.div`
   margin-bottom: 20px;
 `
 
-function App () {
+export default function App () {
   return (
     <div className="App">
       <BrowserRouter>
@@ -26,6 +27,9 @@ function App () {
         <BodyWrapper>
           <Body>
             <Switch>
+              <Route path={[
+                '/about'
+              ]} component={About} />
               <Route path={[
                 '/'
               ]} component={Profile} />
@@ -36,5 +40,3 @@ function App () {
     </div>
   )
 }
-
-export default App
