@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import Header from "../components/Header"
-import Profile from "./Profile";
+import Header from '../components/Header'
+import Profile from './Profile'
 
 const BodyWrapper = styled.div`
   display: flex;
@@ -18,8 +18,7 @@ const Body = styled.div`
   margin-bottom: 20px;
 `
 
-
-function App() {
+function App () {
   return (
     <div className="App">
       <BrowserRouter>
@@ -28,14 +27,14 @@ function App() {
           <Body>
             <Switch>
               <Route path={[
-                "/"
+                '/'
               ]} component={Profile} />
             </Switch>
           </Body>
         </BodyWrapper>
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

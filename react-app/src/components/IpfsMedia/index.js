@@ -12,7 +12,7 @@ export function IpfsImage({ width, path, type }) {
     url = bufToUrl(buf, type)
   }
 
-  return <img width={width} src={url} alt="IPFS Image" />
+  return <img width={width} src={url} alt="profile icon"/>
 }
 
 export function IpfsText({ path }) {

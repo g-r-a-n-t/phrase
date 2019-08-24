@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { ListGroup, ListGroupItem, Row, Col } from 'reactstrap'
+import classnames from 'classnames'
+import {
+  ListGroup, ListGroupItem,
+  Row, Col,
+  Nav, NavLink, NavItem,
+  TabPane, TabContent
+} from 'reactstrap'
 
 import { IpfsImage, IpfsText } from "../../components/IpfsMedia"
 import { useProfile, usePhrase } from "../../hooks/useEntity"
@@ -41,7 +47,7 @@ function Phrase({ _key }) {
   return (
     <div>
       <Row>
-        <Col>
+        <Col xs="auto">
           <IpfsImage width="400px" path={`${phrase.content}/image500x500.jpg`} type="image/jpeg" /><br/><br/>
         </Col>
         <Col>
@@ -56,9 +62,7 @@ function Phrase({ _key }) {
 function PhraseList({ keys }) {
   console.log('Rendering PhraseList (keys): ', keys)
 
-  if (keys.length === 0) {
-    return <h2>Nothing to show</h2>
-  }
+  if (keys.length === 0) return <h4>Nothing to show</h4>
 
   let items = []
   keys.forEach((key) => {
@@ -75,27 +79,46 @@ function PhraseList({ keys }) {
 export default function ProfileView ({ match }) {
   console.log('Rendering ProfileView (account): ', match.params.account)
 
+  const [activeTab, setActiveTab] = useState('1')
+
   const address = match.params.account // TODO: handle ENS and 'me'
   const profile = useProfile(address)
 
-  if (profile == null) {
-    return <p>loading profile...</p>
-  }
+  if (profile == null) return <p>loading profile...</p>
 
   return (
-    <div>
-      <div>
-        <Row>
-          <Col xs="auto">
-            <ProfileInfo format={profile.format} content={profile.content} />
-          </Col>
-          <Col>
+    <Row>
+      <Col xs="auto">
+        <ProfileInfo format={profile.format} content={profile.content} />
+      </Col>
+      <Col>
+        <Nav tabs>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: activeTab === '1' })}
+              onClick={() => { setActiveTab('1'); }}
+            >
+              phrases
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: activeTab === '2' })}
+              onClick={() => { setActiveTab('2'); }}
+            >
+              sentiments
+            </NavLink>
+          </NavItem>
+        </Nav>
+        <TabContent activeTab={activeTab}>
+          <TabPane tabId="1">
             <PhraseList keys={profile.phrases} />
-          </Col>
-        </Row>
-      </div>
-      <div>
-      </div>
-    </div>
+          </TabPane>
+          <TabPane tabId="2">
+            <h4>Nothing to show</h4>
+          </TabPane>
+        </TabContent>
+      </Col>
+    </Row>
   )
 }
