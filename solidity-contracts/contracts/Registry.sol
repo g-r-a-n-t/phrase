@@ -39,6 +39,7 @@ contract Registry {
   mapping(bytes32 => Sentiment) public sentiments;
   mapping(bytes32 => ExpressedSentiment) public expressedSentiments;
 
+  // TODO: change to update profile
   function createProfile(
     string memory format,
     string memory content
@@ -65,12 +66,6 @@ contract Registry {
   )
     public
   {
-    // Verify that the profile creating the phrase exists.
-    require(
-      profileExists(msg.sender),
-      "Profile should exist for the message sender."
-    );
-
     // Create a new phrase.
     Phrase memory phrase = Phrase(
       format,
@@ -117,11 +112,7 @@ contract Registry {
     public
     payable
   {
-    // Verify that the profile, phrase, and sentiment exist.
-    require(
-      profileExists(msg.sender),
-      "Profile should exist for the message sender."
-    );
+    // Verify that the phrase, and sentiment exist.
     require(
       phraseExists(phraseKey),
       "Phrase should exist for the given key."
