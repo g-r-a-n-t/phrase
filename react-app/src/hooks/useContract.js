@@ -21,7 +21,7 @@ export function useContract (address, ABI) {
     if (context.library === undefined) return null
 
     return getContract(address, ABI, context.library, context.account)
-  }, [address, ABI, context.library])
+  }, [address, ABI, context.library, context.account])
 }
 
 function getContract (address, ABI, library, account) {
@@ -32,7 +32,7 @@ function getContract (address, ABI, library, account) {
   return new ethers.Contract(address, ABI, getProviderOrSigner(library, account))
 }
 
-function getProviderOrSigner(library, account) {
+function getProviderOrSigner (library, account) {
   return account ? new UncheckedJsonRpcSigner(library.getSigner(account)) : library
 }
 
@@ -46,17 +46,17 @@ function isAddress (value) {
 }
 
 class UncheckedJsonRpcSigner extends ethers.Signer {
-  constructor(signer) {
+  constructor (signer) {
     super()
     ethers.utils.defineReadOnly(this, 'signer', signer)
     ethers.utils.defineReadOnly(this, 'provider', signer.provider)
   }
 
-  getAddress() {
+  getAddress () {
     return this.signer.getAddress()
   }
 
-  sendTransaction(transaction) {
+  sendTransaction (transaction) {
     return this.signer.sendUncheckedTransaction(transaction).then(hash => {
       return {
         hash: hash,
@@ -75,7 +75,7 @@ class UncheckedJsonRpcSigner extends ethers.Signer {
     })
   }
 
-  signMessage(message) {
+  signMessage (message) {
     return this.signer.signMessage(message)
   }
 }
