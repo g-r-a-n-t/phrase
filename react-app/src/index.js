@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './pages/App'
 import connectors from './connectors.js'
-import Web3Provider from 'web3-react'
+import Web3Provider, { useWeb3Context } from 'web3-react'
 import PropTypes from 'prop-types'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -11,6 +11,7 @@ import { IpfsContext } from './contexts/ipfs'
 
 function ContextProviders ({ children }) {
   const ipfs = useIpfs()
+
   if (ipfs == null) return <p>loading ipfs...</p>
 
   return (

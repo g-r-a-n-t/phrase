@@ -4,19 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import Header from '../components/Header'
 import { ProfileView, About } from './View'
-
-const BodyWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-`
-
-const Body = styled.div`
-  width: 1200px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-`
+import { BodyWrapper, Body } from '../styles'
 
 export default function App () {
   return (

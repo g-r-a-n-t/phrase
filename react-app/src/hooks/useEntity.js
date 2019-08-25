@@ -1,16 +1,27 @@
 import { useEffect, useState } from 'react'
+import { useWeb3Context } from 'web3-react'
 
 import { useRegistryContract } from './useContract'
 
-export function useProfile (address) {
+export function useProfile (account) {
   const [content, setContent] = useState(null)
   const registry = useRegistryContract()
+  const web3 = useWeb3Context()
+
+  let address = account
+  if (account === 'me') {
+    address = web3.account
+  }
 
   useEffect(() => {
     fetchProfile(registry, address, setContent)
   }, [registry, address])
 
   return content
+}
+
+export function useCurrentProfile () {
+  return useProfile('me')
 }
 
 export function usePhrase (key) {

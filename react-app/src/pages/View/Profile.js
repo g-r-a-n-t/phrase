@@ -56,8 +56,7 @@ export default function ProfileView ({ match }) {
 
   const [activeTab, setActiveTab] = useState('1')
 
-  const address = match.params.account // TODO: handle ENS and 'me'
-  const profile = useProfile(address)
+  const profile = useProfile(match.params.account) // TODO: Handle aliases
 
   if (profile == null) return <Spinner type="grow" color="secondary" />
 
