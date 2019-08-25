@@ -12,6 +12,7 @@ import {
 
 import { IpfsImage, IpfsText } from '../../components/IpfsMedia'
 import { useProfile, usePhrase } from '../../hooks/useEntity'
+import { useRegistryContract } from '../../hooks/useContract'
 import { Clickable } from '../../styles'
 
 const ProfileName = styled.h5`
@@ -29,13 +30,20 @@ const EmptyList = styled.h5`
   color: grey;
 `
 
+const ExpressSentiment = styled.div`
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+`
+
 function ProfileInfo ({ format, content }) {
   console.log('Rendering ProfileInfo (format content): ', format, content)
 
   // standard format
   return (
     <div>
-      <IpfsImage path={`${content}/image180x180.jpg`} type="image/jpeg" /><br/><br/>
+      <IpfsImage width="180px" height="180px" path={`${content}/image180x180.jpg`} type="image/jpeg" /><br/><br/>
       <ProfileName>
         <IpfsText path={`${content}/name.txt`} />
       </ProfileName>
@@ -55,6 +63,7 @@ function Phrase ({ _key }) {
   console.log('Rendering Phrase (key): ', _key)
 
   const phrase = usePhrase(_key)
+  const registry = useRegistryContract()
 
   if (phrase == null) return <Spinner type="grow" color="secondary" />
 
@@ -63,13 +72,21 @@ function Phrase ({ _key }) {
     <div>
       <Row>
         <Col xs="auto">
-          <IpfsImage width="400px" path={`${phrase.content}/image500x500.jpg`} type="image/jpeg" /><br/><br/>
+          <IpfsImage width="400px" height="400px" path={`${phrase.content}/image500x500.jpg`} type="image/jpeg" /><br/><br/>
         </Col>
         <Col>
           <h3><IpfsText path={`${phrase.content}/name.txt`} /></h3>
           <IpfsText path={`${phrase.content}/description.txt`} />
         </Col>
       </Row>
+      <ExpressSentiment>
+        <img src="heart.svg" alt="heart" width="30px" onClick={() => {
+          registry.expressSentiment(
+            _key, "0x5ed586189eab1d4320c38bf1ff35b1dd3985f2aee2864d51a7e8e2a504d68299",
+            { value: '0xde0b6b3a7640000' }
+          )
+        }}/>
+      </ExpressSentiment>
     </div>
   )
 }

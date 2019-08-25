@@ -5,7 +5,7 @@ import "./ERC20Interface.sol";
 contract Registry {
   event PhraseCreated(address creator, bytes32 phrase);
   event SentimentCreated(bytes32 sentiment);
-  event SentimentExpressed(address expresser, bytes32 expressSentiment);
+  event SentimentExpressed(address expresser, bytes32 expressedSentiment);
   event ProfileCreated(address creator);
 
   struct Phrase {

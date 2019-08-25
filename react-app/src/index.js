@@ -25,10 +25,10 @@ ContextProviders.propTypes = {
 }
 
 ReactDOM.render(
-  <ContextProviders>
-    <Web3Provider connectors={connectors} libraryName="ethers.js">
+  <Web3Provider connectors={connectors} libraryName="ethers.js">
+    <ContextProviders>
       <App />
-    </Web3Provider>
-  </ContextProviders>,
+    </ContextProviders>
+  </Web3Provider>,
   document.getElementById('root')
 )

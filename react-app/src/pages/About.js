@@ -7,8 +7,9 @@ export default function About () {
       <br/>
       <p>
         Phrase is a value-backed sentiment expression platform built on top of
-        the Ethereum network. Its purpose is to create an environment where public
-        initiatives can source subsidy from many people based on their sentiment.
+        the <a href="https://en.wikipedia.org/wiki/Ethereum">Ethereum</a> network.
+        Its purpose is to create an environment where public initiatives can
+        source subsidy from many people based on their sentiment.
       </p>
       <p>
         In the context of Phrase, <i>phrases</i> represent things that a person
