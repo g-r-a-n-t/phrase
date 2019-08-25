@@ -7,27 +7,35 @@
 /bio.txt
 /image180x180.jpg
 ```
-_standard_
+_standard-2019_
 
 ## Phrases
 
 ```
 /name.txt
 /description.txt
-/image600x400.jpg
+/image400x400.jpg
 ```
-_standard_
+_plaque-2019_
 
 ```
 /name.txt
 /description.txt
-/credits.txt
-/image1600x1600.jpg
-/tracks/Song_Title1.mp4
-...
-/tracks/Song_Title10.mp4
+/image.jpg
 ```
-_album_
+_photo-2019_
+
+```
+/name.txt
+/description.txt
+/track-names.txt
+/credits.txt
+/image800x800.jpg
+/tracks/track1.mp4
+...
+/tracks/track10.mp4
+```
+_album-2019_
 
 ## Sentiments
 
@@ -35,4 +43,4 @@ _album_
 /name.txt
 /image120x120.txt
 ```
-_standard_
+_standard-2019_
