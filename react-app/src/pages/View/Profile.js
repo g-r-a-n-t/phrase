@@ -14,6 +14,9 @@ import { IpfsImage, IpfsText } from '../../components/IpfsMedia'
 import { PhraseList } from '../../components/Phrase'
 import { Clickable } from '../../styles'
 
+
+import { Sentiment } from '../../components/Sentiment'
+
 const ProfileName = styled.h5`
   width: 180px;
 `
@@ -94,6 +97,7 @@ export default function ViewProfile ({ match }) {
             <PhraseList keys={profile.phrases} />
           </TabPane>
           <TabPane tabId="2">
+            <Sentiment _key="0x90f37e23f84419d053adad4a22bac7b4d10a2d8ced43025eccbf147035b7064c"/>
             <EmptyList>Nothing to show</EmptyList>
           </TabPane>
         </TabContent>

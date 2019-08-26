@@ -74,6 +74,7 @@ module.exports = async function(done) {
         if (fs.existsSync(profilePhrasesPath)) {
           const phrases = await fsProm.readdir(profilePhrasesPath)
           for (let j = 0; j < phrases.length; j++) {
+            console.log(`-- ${phrases[j]} --`)
             await createPhrase(accounts[i], profiles[i], phrases[j])
           }
         }

@@ -35,6 +35,17 @@ export function usePhrase (key) {
   return content
 }
 
+export function useSentiment (key) {
+  const [content, setContent] = useState(null)
+  const registry = useRegistryContract()
+
+  useEffect(() => {
+    fetchSentiment(registry, key, setContent)
+  }, [key, registry])
+
+  return content
+}
+
 export function usePhrasePublisher (format, content, beneficiary) {
   const [receipt, setReceipt] = useState(null)
   const registry = useRegistryContract()
@@ -69,6 +80,19 @@ async function fetchPhrase (registry, key, setContent) {
     content: response.content,
     creator: response.creator,
     beneficiary: response.beneficiary
+  })
+}
+
+async function fetchSentiment (registry, key, setContent) {
+  if (registry == null) return null
+
+  const response = await registry.sentiments(key)
+
+  setContent({
+    format: response.format,
+    content: response.content,
+    token: response.token,
+    value: response.value
   })
 }
 
