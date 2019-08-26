@@ -33,29 +33,29 @@ export default function Header () {
   return (
       <Navbar color="light" light expand="md">
         <NavbarBrand tag={Link} to="/">
-          <img width="25px" height="25px" src="./logo.png" alt="logo"/>
+          <img width="25px" height="25px" src="/logo.png" alt="logo"/>
           <span>&nbsp;phrase</span>
         </NavbarBrand>
         <Nav className="ml-auto" navbar>
           <NavItem>
             <NavLink tag={Link} to="/about">About</NavLink>
           </NavItem>
-          { profile != null &&
-            <CreateDropdown />
-          }
-          <NavItem>
             { profile == null ? (
-              <NavLink tag={Link} to="/create/profile">Join</NavLink>
+              <NavItem>
+                <NavLink tag={Link} to="/create/profile">Join</NavLink>
+              </NavItem>
             ) : (
-              <span>
-                <NavLink tag={Link} to="/me">
-                  <Rounded>
-                    <IpfsImage path={`${profile.content}/image180x180.jpg`} width="25px" height="25px"/>
-                  </Rounded>
-                </NavLink>
-              </span>
+              <>
+                <CreateDropdown />
+                <NavItem>
+                  <NavLink tag={Link} to="/me">
+                    <Rounded>
+                      <IpfsImage type="image/jpeg" path={`${profile.content}/image180x180.jpg`} width="25px" height="25px"/>
+                    </Rounded>
+                  </NavLink>
+                </NavItem>
+              </>
             )}
-          </NavItem>
         </Nav>
       </Navbar>
   )

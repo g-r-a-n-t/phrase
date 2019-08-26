@@ -4,6 +4,16 @@ import Ipfs from 'ipfs'
 import config from '../config'
 import { IpfsContext } from '../contexts/ipfs'
 
+export function useIpfs () {
+  const [ipfs, setIpfs] = useState(null)
+
+  useEffect(() => {
+    startIpfs(setIpfs)
+  }, [])
+
+  return ipfs
+}
+
 export function useIpfsFileBuffer (path) {
   const [buf, setBuf] = useState(null)
   const ipfs = useContext(IpfsContext)
@@ -15,14 +25,15 @@ export function useIpfsFileBuffer (path) {
   return buf
 }
 
-export function useIpfs () {
-  const [ipfs, setIpfs] = useState(null)
+export function useIpfsFilesUpload (file) {
+  const [path, setPath] = useState(null)
+  const ipfs = useContext(IpfsContext)
 
   useEffect(() => {
-    startIpfs(setIpfs)
-  }, [])
+    uploadFilesAsFolder(ipfs, file, setPath)
+  }, [ipfs, file])
 
-  return ipfs
+  return path
 }
 
 async function startIpfs (setIpfs) {
@@ -36,6 +47,17 @@ async function fetchFile (ipfs, path, setBuf) {
   if (ipfs == null) return null
 
   console.log(`Reading IPFS file buffer for ${path}`)
-  setBuf(await ipfs.files.read(path))
+  setBuf(await ipfs.cat(path))
   console.log('IPFS file buffer has been read')
+}
+
+async function uploadFilesAsFolder (ipfs, files, setPath) {
+  if (ipfs == null) return null
+
+  console.log('Uploading file to IPFS', files)
+  const result = await ipfs.add(files, { wrapWithDirectory: true })
+  const path = result[result.length - 1].hash
+  console.log(`File has been uploaded to IPFS with path `, path)
+
+  setPath(path)
 }

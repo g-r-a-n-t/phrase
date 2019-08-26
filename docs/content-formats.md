@@ -5,7 +5,9 @@
 ```
 /name.txt
 /bio.txt
-/image180x180.jpg
+/icon25x25.jpg
+/icon50x50.jpg
+/icon180x180.jpg
 ```
 _standard-2019_
 

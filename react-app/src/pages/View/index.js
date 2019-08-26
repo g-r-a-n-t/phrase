@@ -1,7 +1,7 @@
 import About from './About'
-import ProfileView from './Profile'
+import ViewProfile from './Profile'
 
 export {
   About,
-  ProfileView
+  ViewProfile
 }

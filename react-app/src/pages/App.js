@@ -1,9 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import Header from '../components/Header'
-import { ProfileView, About } from './View'
+import { ViewProfile, About } from './View'
+import { CreatePhrase } from './Create'
 import { BodyWrapper, Body } from '../styles'
 
 export default function App () {
@@ -16,7 +16,8 @@ export default function App () {
             <Switch>
               <Route exact path="/" component={About} />
               <Route exact path="/about" component={About} />
-              <Route exact strict path="/:account" component={ProfileView} />
+              <Route exact path="/create/phrase" component={CreatePhrase} />
+              <Route exact strict path="/:account" component={ViewProfile} />
             </Switch>
           </Body>
         </BodyWrapper>

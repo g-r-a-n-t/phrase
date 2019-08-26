@@ -1,4 +1,4 @@
-import { useMemo, useEffect } from 'react'
+import { useMemo } from 'react'
 import { useWeb3Context } from 'web3-react'
 import { ethers } from 'ethers'
 
@@ -9,18 +9,13 @@ export function useRegistryContract () {
 }
 
 export function useContract (address, ABI) {
-  const context = useWeb3Context()
-
-  // TODO: remove to fix no-op warning
-  useEffect(() => {
-    context.setFirstValidConnector(['MetaMask'])
-  })
+  const web3 = useWeb3Context()
 
   return useMemo(() => {
-    if (context.library === undefined) return null
+    if (web3.library === undefined) return null
 
-    return getContract(address, ABI, context.library, context.account)
-  }, [address, ABI, context.library, context.account])
+    return getContract(address, ABI, web3.library, web3.account)
+  }, [address, ABI, web3.library, web3.account])
 }
 
 function getContract (address, ABI, library, account) {

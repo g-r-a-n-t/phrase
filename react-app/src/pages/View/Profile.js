@@ -51,7 +51,7 @@ ProfileInfo.propTypes = {
   content: PropTypes.string.isRequired
 }
 
-export default function ProfileView ({ match }) {
+export default function ViewProfile ({ match }) {
   console.log('Rendering ProfileView (account): ', match.params.account)
 
   const [activeTab, setActiveTab] = useState('1')
@@ -101,6 +101,6 @@ export default function ProfileView ({ match }) {
   )
 }
 
-ProfileView.propTypes = {
+ViewProfile.propTypes = {
   match: PropTypes.object.isRequired
 }

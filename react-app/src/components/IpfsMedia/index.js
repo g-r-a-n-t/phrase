@@ -5,6 +5,7 @@ import { Spinner } from 'reactstrap'
 import { useIpfsFileBuffer } from '../../hooks/useIpfs'
 
 export function IpfsImage ({ width, height, path, type }) {
+  // TODO: memoize this
   console.log('Rendering IpfsImage: (path type) ', path, type)
 
   const buf = useIpfsFileBuffer(path)
@@ -13,7 +14,7 @@ export function IpfsImage ({ width, height, path, type }) {
 
   const url = bufToUrl(buf, type)
 
-  return <img width={width} src={url} alt="profile icon"/>
+  return <img width={width} height={height} src={url} alt="profile icon"/>
 }
 
 IpfsImage.propTypes = {

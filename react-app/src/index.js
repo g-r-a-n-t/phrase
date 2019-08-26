@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import App from './pages/App'
 import connectors from './connectors.js'
@@ -11,6 +11,12 @@ import { IpfsContext } from './contexts/ipfs'
 
 function ContextProviders ({ children }) {
   const ipfs = useIpfs()
+  const web3 = useWeb3Context()
+
+  // TODO: remove to fix no-op warning
+  useEffect(() => {
+    web3.setFirstValidConnector(['MetaMask'])
+  })
 
   if (ipfs == null) return <p>loading ipfs...</p>
 
@@ -22,7 +28,7 @@ function ContextProviders ({ children }) {
 }
 
 ContextProviders.propTypes = {
-  children: PropTypes.elementType.isRequired
+  children: PropTypes.object.isRequired
 }
 
 ReactDOM.render(

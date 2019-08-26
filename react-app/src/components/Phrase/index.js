@@ -38,7 +38,7 @@ export function Phrase ({ _key }) {
     <div>
       <Row>
         <Col xs="auto">
-          <IpfsImage width="400px" height="400px" path={`${phrase.content}/image500x500.jpg`} type="image/jpeg" /><br/><br/>
+          <IpfsImage width="400px" height="400px" path={`${phrase.content}/image400x400.jpg`} type="image/jpeg" /><br/><br/>
         </Col>
         <Col>
           <h3><IpfsText path={`${phrase.content}/name.txt`} /></h3>
