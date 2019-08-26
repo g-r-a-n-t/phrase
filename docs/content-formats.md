@@ -5,11 +5,9 @@
 ```
 /name.txt
 /bio.txt
-/icon25x25.jpg
-/icon50x50.jpg
 /icon180x180.jpg
 ```
-_standard-2019_
+_ipfs-standard-2019_
 
 ## Phrases
 
@@ -18,14 +16,14 @@ _standard-2019_
 /description.txt
 /image400x400.jpg
 ```
-_plaque-2019_
+_ipfs-plaque-2019_
 
 ```
 /name.txt
 /description.txt
 /image.jpg
 ```
-_photo-2019_
+_ipfs-photo-2019_
 
 ```
 /name.txt
@@ -37,7 +35,7 @@ _photo-2019_
 ...
 /tracks/track10.mp4
 ```
-_album-2019_
+_ipfs-album-2019_
 
 ## Sentiments
 
@@ -45,4 +43,4 @@ _album-2019_
 /name.txt
 /image120x120.txt
 ```
-_standard-2019_
+_ipfs-standard-2019_
