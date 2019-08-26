@@ -7,6 +7,9 @@ import { CreatePhrase } from './Create'
 import { BodyWrapper, Body } from '../styles'
 
 export default function App () {
+  // TODO: App should not load without having an ipfs instance and connector
+  // If it does fail to load these things, it should provide an informative message
+
   return (
     <div className="App">
       <BrowserRouter>

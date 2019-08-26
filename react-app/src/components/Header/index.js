@@ -31,32 +31,32 @@ export default function Header () {
   const profile = useCurrentProfile()
 
   return (
-      <Navbar color="light" light expand="md">
-        <NavbarBrand tag={Link} to="/">
-          <img width="25px" height="25px" src="/logo.png" alt="logo"/>
-          <span>&nbsp;phrase</span>
-        </NavbarBrand>
-        <Nav className="ml-auto" navbar>
+    <Navbar color="light" light expand="md">
+      <NavbarBrand tag={Link} to="/">
+        <img width="25px" height="25px" src="/logo.png" alt="logo"/>
+        <span>&nbsp;phrase</span>
+      </NavbarBrand>
+      <Nav className="ml-auto" navbar>
+        <NavItem>
+          <NavLink tag={Link} to="/about">About</NavLink>
+        </NavItem>
+        { profile == null ? (
           <NavItem>
-            <NavLink tag={Link} to="/about">About</NavLink>
+            <NavLink tag={Link} to="/create/profile">Join</NavLink>
           </NavItem>
-            { profile == null ? (
-              <NavItem>
-                <NavLink tag={Link} to="/create/profile">Join</NavLink>
-              </NavItem>
-            ) : (
-              <>
-                <CreateDropdown />
-                <NavItem>
-                  <NavLink tag={Link} to="/me">
-                    <Rounded>
-                      <IpfsImage type="image/jpeg" path={`${profile.content}/image180x180.jpg`} width="25px" height="25px"/>
-                    </Rounded>
-                  </NavLink>
-                </NavItem>
-              </>
-            )}
-        </Nav>
-      </Navbar>
+        ) : (
+          <>
+            <CreateDropdown />
+            <NavItem>
+              <NavLink tag={Link} to="/me">
+                <Rounded>
+                  <IpfsImage type="image/jpeg" path={`${profile.content}/image180x180.jpg`} width="25px" height="25px"/>
+                </Rounded>
+              </NavLink>
+            </NavItem>
+          </>
+        )}
+      </Nav>
+    </Navbar>
   )
 }

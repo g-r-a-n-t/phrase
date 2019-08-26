@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import { Buffer } from 'ipfs'
+import { ethers } from 'ethers'
+import PropTypes from 'prop-types'
 import {
   Form, FormGroup, Label, Input, FormText,
-  Row, Col,
   Button,
   Spinner
 } from 'reactstrap'
-import { Buffer } from 'ipfs'
-import { ethers } from 'ethers'
 
 import { useIpfsFilesUpload } from '../../hooks/useIpfs'
 import { usePhrasePublisher } from '../../hooks/useEntity'
@@ -29,6 +29,11 @@ function PhraseUploader ({ files, onComplete }) {
   return null
 }
 
+PhraseUploader.propTypes = {
+  files: PropTypes.array.isRequired,
+  onComplete: PropTypes.func.isRequired
+}
+
 function PhrasePublisher ({ format, content, beneficiary, onComplete }) {
   const receipt = usePhrasePublisher(format, content, beneficiary)
 
@@ -44,6 +49,13 @@ function PhrasePublisher ({ format, content, beneficiary, onComplete }) {
   onComplete(receipt)
 
   return null
+}
+
+PhrasePublisher.propTypes = {
+  format: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  beneficiary: PropTypes.string.isRequired,
+  onComplete: PropTypes.func.isRequired
 }
 
 function PlaqueForm ({ onReady }) {
@@ -98,6 +110,10 @@ function PlaqueForm ({ onReady }) {
   )
 }
 
+PlaqueForm.propTypes = {
+  onReady: PropTypes.func.isRequired
+}
+
 export default function CreatePhrase () {
   const [status, setStatus] = useState('SELECTING_FORMAT')
   // SELECTING_FORMAT
@@ -112,7 +128,7 @@ export default function CreatePhrase () {
   const [path, setPath] = useState(null)
   const [receipt, setReceipt] = useState(null)
 
-  if (status == 'SELECTING_FORMAT') {
+  if (status === 'SELECTING_FORMAT') {
     return (
       <Button onClick={() => {
         setStatus('ENTERING_VALUES')
@@ -121,14 +137,14 @@ export default function CreatePhrase () {
         Plaque
       </Button>
     )
-  } else if (status == 'ENTERING_VALUES') {
+  } else if (status === 'ENTERING_VALUES') {
     return (
       <PlaqueForm onReady={ (_files) => {
         setFiles(_files)
         setStatus('WAITING_TO_UPLOAD')
       }}/>
     )
-  } else if (status == 'WAITING_TO_UPLOAD') {
+  } else if (status === 'WAITING_TO_UPLOAD') {
     return (
       <PhraseUploader
         files={files}
@@ -138,7 +154,7 @@ export default function CreatePhrase () {
         }}
       />
     )
-  } else if (status == 'WAITING_TO_PUBLISH') {
+  } else if (status === 'WAITING_TO_PUBLISH') {
     return (
       <PhrasePublisher
         format={format}
@@ -152,5 +168,6 @@ export default function CreatePhrase () {
     )
   }
 
-  return <p>uploaded!</p>
+  console.log('transaction receipt', receipt)
+  return <p>Your phrase has been published!</p>
 }

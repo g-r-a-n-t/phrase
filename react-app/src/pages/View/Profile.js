@@ -51,6 +51,7 @@ ProfileInfo.propTypes = {
   content: PropTypes.string.isRequired
 }
 
+// TODO: Should hande a profile that does not have content and generate a default profile picture
 export default function ViewProfile ({ match }) {
   console.log('Rendering ProfileView (account): ', match.params.account)
 

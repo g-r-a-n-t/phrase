@@ -33,6 +33,7 @@ export function Phrase ({ _key }) {
 
   if (phrase == null) return <Spinner type="grow" color="secondary" />
 
+  // TODO: Load format specific content
   // standard format
   return (
     <div>

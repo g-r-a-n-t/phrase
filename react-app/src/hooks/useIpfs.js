@@ -57,7 +57,7 @@ async function uploadFilesAsFolder (ipfs, files, setPath) {
   console.log('Uploading file to IPFS', files)
   const result = await ipfs.add(files, { wrapWithDirectory: true })
   const path = result[result.length - 1].hash
-  console.log(`File has been uploaded to IPFS with path `, path)
+  console.log('File has been uploaded to IPFS with path ', path)
 
   setPath(path)
 }

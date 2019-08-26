@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import ImageUploader from 'react-images-upload'
+import PropTypes from 'prop-types'
 
 export default function ImageSelect ({ onReady }) {
   const [image, setImage] = useState(null)
-
-  useEffect(() => {
-    onReady(image)
-  }, [image])
 
   if (image == null) {
     return (
@@ -22,5 +19,11 @@ export default function ImageSelect ({ onReady }) {
     )
   }
 
-  return <p>loaded image</p>
+  onReady(image)
+
+  return null
+}
+
+ImageSelect.propTypes = {
+  onReady: PropTypes.func.isRequired
 }
