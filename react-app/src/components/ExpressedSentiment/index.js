@@ -7,10 +7,11 @@ import {
 
 import { useExpressedSentiment } from '../../hooks/useEntity'
 import { Sentiment } from '../Sentiment'
+import { debugComponentRender } from '../../tools/debug'
 
 // todo: Clicking the expressed sentiment should open a modal that displays the phrase
 export function ExpressedSentiment ({ _key }) {
-  console.log('Rendering ExpressedSentiment (key): ', _key)
+  debugComponentRender('ExpressedSentiment', _key)
 
   const expressedSentiment = useExpressedSentiment(_key)
 
@@ -27,13 +28,13 @@ ExpressedSentiment.propTypes = {
 
 // TODO: Evenly space expressed sentiments
 export function ExpressedSentimentGrid ({ keys }) {
-  console.log('Rendering ExpressedSentimentGrid (keys): ', keys)
+  debugComponentRender('ExpressedSentimentGrid', keys)
 
   if (keys.length === 0) {
     return (
       <h5 className="text-secondary text-center">
         <br />
-        No sentiments to display.
+          No sentiments have been expressed.
         <br /><br />
       </h5>
     )
@@ -44,7 +45,7 @@ export function ExpressedSentimentGrid ({ keys }) {
   const cols = []
   keys.forEach((key) => {
     cols.push(
-      <Col className="d-flex justify-content-center" key={`expressedSentiment-${key}`} xs="2">
+      <Col className="d-flex justify-content-center" key={`expressedSentiment-${key}-${cols.length}`} xs="2">
         <ExpressedSentiment _key={key} />
       </Col>
     )

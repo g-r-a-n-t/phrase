@@ -11,9 +11,10 @@ import { usePhrase } from '../../hooks/useEntity'
 import { useRegistryContract } from '../../hooks/useContract'
 import { IpfsImage, IpfsText } from '../../components/IpfsMedia'
 import { AbsoluteBottomRight, Clickable } from '../../styles'
+import { debugComponentRender } from '../../tools/debug'
 
 export function Phrase ({ _key }) {
-  console.log('Rendering Phrase (key): ', _key)
+  debugComponentRender('Phrase', _key)
 
   const phrase = usePhrase(_key)
   const registry = useRegistryContract()
@@ -52,13 +53,13 @@ Phrase.propTypes = {
 }
 
 export function PhraseList ({ keys }) {
-  console.log('Rendering PhraseList (keys): ', keys)
+  debugComponentRender('PhraseList', keys)
 
   if (keys.length === 0) {
     return (
       <h5 className="text-secondary text-center">
         <br />
-          No phrases to display.
+          No phrases have been created.
         <br /><br />
       </h5>
     )

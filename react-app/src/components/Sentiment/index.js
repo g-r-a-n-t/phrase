@@ -7,6 +7,7 @@ import {
 
 import { useSentiment } from '../../hooks/useEntity'
 import { IpfsImage } from '../IpfsMedia'
+import { debugComponentRender } from '../../tools/debug'
 
 // TODO: a unique border should be generated for the sentiment using the key
 const NeonBorder = styled.div`
@@ -20,7 +21,7 @@ const NeonBorder = styled.div`
 
 // TODO: Clicking the sentiment should flip it like a card and display the name and value details
 export function Sentiment ({ _key }) {
-  console.log('Rendering Sentiment (key): ', _key)
+  debugComponentRender('Sentiment', _key)
 
   const sentiment = useSentiment(_key)
 

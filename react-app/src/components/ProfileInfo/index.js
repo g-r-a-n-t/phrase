@@ -5,13 +5,14 @@ import { Spinner } from 'reactstrap'
 
 import { useProfile } from '../../hooks/useEntity'
 import { IpfsImage, IpfsText } from '../../components/IpfsMedia'
+import { debugComponentRender } from '../../tools/debug'
 
 const Wrapper = styled.div`
   width: 180px;
 `
 
 export function ProfileInfo ({ account }) {
-  console.log('Rendering ProfileInfo (address): ', account)
+  debugComponentRender('ProfileInfo', account)
 
   const profile = useProfile(account)
 
@@ -23,7 +24,7 @@ export function ProfileInfo ({ account }) {
       <IpfsImage width="180px" height="180px" path={`${profile.content}/image180x180.jpg`} type="image/jpeg" />
       <br/><br/>
       <h5><IpfsText path={`${profile.content}/name.txt`} /></h5>
-      <p><IpfsText path={`${profile.content}/bio.txt`} /></p>
+      <IpfsText path={`${profile.content}/bio.txt`} />
     </Wrapper>
   )
 }
