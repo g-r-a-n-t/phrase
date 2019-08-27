@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { useIpfs } from './hooks/useIpfs'
 import { IpfsContext } from './contexts/ipfs'
+import { CacheContext, initCache } from './contexts/cache'
 
 function ContextProviders ({ children }) {
   const ipfs = useIpfs()
@@ -21,9 +22,11 @@ function ContextProviders ({ children }) {
   if (ipfs == null) return <p>loading ipfs...</p>
 
   return (
-    <IpfsContext.Provider value={ipfs}>
-      {children}
-    </IpfsContext.Provider>
+    <CacheContext.Provider value={initCache()}>
+      <IpfsContext.Provider value={ipfs}>
+        {children}
+      </IpfsContext.Provider>
+    </CacheContext.Provider>
   )
 }
 

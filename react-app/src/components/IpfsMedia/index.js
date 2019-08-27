@@ -2,18 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Spinner } from 'reactstrap'
 
-import { useIpfsFileBuffer } from '../../hooks/useIpfs'
+import { useIpfsFileBuffer, useIpfsFileUrl } from '../../hooks/useIpfs'
 import { debugComponentRender } from '../../tools/debug'
 
 export function IpfsImage ({ width, height, path, type }) {
-  // TODO: memoize this
   debugComponentRender('IpfsImage', path, type)
 
-  const buf = useIpfsFileBuffer(path)
+  const url = useIpfsFileUrl(path)
 
-  if (buf == null) return <Spinner type="grow" color="secondary" />
-
-  const url = bufToUrl(buf, type)
+  if (url == null) return <Spinner type="grow" color="secondary" />
 
   return <img width={width} height={height} src={url} alt="profile icon"/>
 }
@@ -43,16 +40,10 @@ IpfsText.propTypes = {
 
 function bufToString (buffer) {
   let s = ''
+
   buffer.forEach((u) => {
     s += String.fromCharCode(u)
   })
 
   return s
-}
-
-function bufToUrl (buf, type) {
-  const blob = new Blob([buf], { type: type })
-  const urlCreator = window.URL || window.webkitURL
-
-  return urlCreator.createObjectURL(blob)
 }
