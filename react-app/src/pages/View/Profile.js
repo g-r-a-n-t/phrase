@@ -18,8 +18,6 @@ import { ExpressedSentimentGrid } from '../../components/ExpressedSentiment'
 export default function ViewProfile ({ match }) {
   console.log('Rendering ProfileView (account): ', match.params.account)
 
-  const [activeTab, setActiveTab] = useState('1')
-
   const account = match.params.account
   const profile = useProfile(account)
 
@@ -31,36 +29,13 @@ export default function ViewProfile ({ match }) {
         <ProfileInfo account={account} />
       </Col>
       <Col>
-        <Nav tabs>
-          <NavItem>
-            <Clickable>
-              <NavLink
-                className={classnames({ active: activeTab === '1' })}
-                onClick={() => { setActiveTab('1') }}
-              >
-                phrases
-              </NavLink>
-            </Clickable>
-          </NavItem>
-          <NavItem>
-            <Clickable>
-              <NavLink
-                className={classnames({ active: activeTab === '2' })}
-                onClick={() => { setActiveTab('2') }}
-              >
-                sentiments
-              </NavLink>
-            </Clickable>
-          </NavItem>
-        </Nav>
-        <TabContent activeTab={activeTab}>
-          <TabPane tabId="1">
-            <PhraseList keys={profile.phrases} />
-          </TabPane>
-          <TabPane tabId="2">
-            <ExpressedSentimentGrid keys={profile.expressedSentiments} />
-          </TabPane>
-        </TabContent>
+        <div className="border border-ligh rounded">
+          <ExpressedSentimentGrid keys={profile.expressedSentiments} />
+        </div>
+        <br />
+        <div className="border border-ligh rounded">
+          <PhraseList keys={profile.phrases} />
+        </div>
       </Col>
     </Row>
   )

@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-// TODO: not realted to this file specifically, but bootstrap classes should be globally available.
-
 export const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,4 +20,9 @@ export const Clickable = styled.div`
 export const Rounded = styled.div`
   border-radius: 50%;
   overflow: hidden;
+`
+export const AbsoluteBottomRight = styled.div`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 `
