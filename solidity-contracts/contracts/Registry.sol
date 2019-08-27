@@ -269,6 +269,6 @@ contract Registry {
     view
     returns (bool)
   {
-    return expressedSentiments[key].phrase == "" || expressedSentiments[key].sentiment == "";
+    return expressedSentiments[key].phrase != "" && expressedSentiments[key].sentiment != "";
   }
 }
