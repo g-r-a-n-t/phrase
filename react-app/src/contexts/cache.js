@@ -32,7 +32,7 @@ export function initCache() {
   const get = (id, force = false) => {
     if (cache[id] === undefined || cache[id] === null) return null
 
-    const expired = now() > cache[id].expired
+    const expired = now() > cache[id].expiration
 
     if (expired && !force) return null
 
