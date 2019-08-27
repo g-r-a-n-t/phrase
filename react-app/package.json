@@ -9,6 +9,7 @@
     "ipfs": "^0.37.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-flexbox-grid": "^2.1.2",
     "react-images-upload": "^1.2.7",
     "react-promise": "^3.0.2",
     "react-router": "^5.0.1",

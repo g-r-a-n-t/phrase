@@ -4,6 +4,7 @@ import Ipfs from 'ipfs'
 import config from '../config'
 import { IpfsContext } from '../contexts/ipfs'
 
+// This should only be called once (when initializing the ipfs context)
 export function useIpfs () {
   const [ipfs, setIpfs] = useState(null)
 
@@ -14,6 +15,7 @@ export function useIpfs () {
   return ipfs
 }
 
+// TODO: implement a similar method that returns a url and cache the url
 export function useIpfsFileBuffer (path) {
   const [buf, setBuf] = useState(null)
   const ipfs = useContext(IpfsContext)
@@ -43,6 +45,7 @@ async function startIpfs (setIpfs) {
   setIpfs(_ipfs)
 }
 
+// TODO: add caching
 async function fetchFile (ipfs, path, setBuf) {
   if (ipfs == null) return null
 

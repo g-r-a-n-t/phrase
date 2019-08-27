@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+// TODO: not realted to this file specifically, but bootstrap classes should be globally available.
+
 export const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;

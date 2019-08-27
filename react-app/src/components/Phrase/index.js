@@ -49,7 +49,7 @@ export function Phrase ({ _key }) {
       <ExpressSentiment>
         <img src="heart.svg" alt="heart" width="30px" onClick={() => {
           registry.expressSentiment(
-            _key, '0x5ed586189eab1d4320c38bf1ff35b1dd3985f2aee2864d51a7e8e2a504d68299',
+            _key, '0x440a38d43b6e4c46ccdd3f527f340ca5938d4e73101e82dc90a5d023f29d32e9',
             { value: '0xde0b6b3a7640000' }
           )
         }}/>

@@ -46,6 +46,17 @@ export function useSentiment (key) {
   return content
 }
 
+export function useExpressedSentiment (key) {
+  const [content, setContent] = useState(null)
+  const registry = useRegistryContract()
+
+  useEffect(() => {
+    fetchExpressedSentiment(registry, key, setContent)
+  }, [key, registry])
+
+  return content
+}
+
 export function usePhrasePublisher (format, content, beneficiary) {
   const [receipt, setReceipt] = useState(null)
   const registry = useRegistryContract()
@@ -57,6 +68,7 @@ export function usePhrasePublisher (format, content, beneficiary) {
   return receipt
 }
 
+// TODO: Add caching (should evict content every 5 mins or so)
 async function fetchProfile (registry, address, setContent) {
   if (registry == null) return null
 
@@ -93,6 +105,17 @@ async function fetchSentiment (registry, key, setContent) {
     content: response.content,
     token: response.token,
     value: response.value
+  })
+}
+
+async function fetchExpressedSentiment (registry, key, setContent) {
+  if (registry == null) return null
+
+  const response = await registry.expressedSentiments(key)
+
+  setContent({
+    phrase: response.phrase,
+    sentiment: response.sentiment
   })
 }
 

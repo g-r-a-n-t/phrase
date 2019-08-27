@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import {
@@ -10,49 +9,10 @@ import {
 } from 'reactstrap'
 
 import { useProfile } from '../../hooks/useEntity'
-import { IpfsImage, IpfsText } from '../../components/IpfsMedia'
 import { PhraseList } from '../../components/Phrase'
 import { Clickable } from '../../styles'
-
-
-import { Sentiment } from '../../components/Sentiment'
-
-const ProfileName = styled.h5`
-  width: 180px;
-`
-
-const ProfileDescription = styled.div`
-  width: 180px;
-`
-
-const EmptyList = styled.h5`
-  width: 100%;
-  text-align: center;
-  margin: 10px;
-  color: grey;
-`
-
-function ProfileInfo ({ format, content }) {
-  console.log('Rendering ProfileInfo (format content): ', format, content)
-
-  // standard format
-  return (
-    <div>
-      <IpfsImage width="180px" height="180px" path={`${content}/image180x180.jpg`} type="image/jpeg" /><br/><br/>
-      <ProfileName>
-        <IpfsText path={`${content}/name.txt`} />
-      </ProfileName>
-      <ProfileDescription>
-        <IpfsText path={`${content}/bio.txt`} />
-      </ProfileDescription>
-    </div>
-  )
-}
-
-ProfileInfo.propTypes = {
-  format: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired
-}
+import { ProfileInfo } from '../../components/ProfileInfo'
+import { ExpressedSentimentGrid } from '../../components/ExpressedSentiment'
 
 // TODO: Should hande a profile that does not have content and generate a default profile picture
 export default function ViewProfile ({ match }) {
@@ -60,14 +20,15 @@ export default function ViewProfile ({ match }) {
 
   const [activeTab, setActiveTab] = useState('1')
 
-  const profile = useProfile(match.params.account) // TODO: Handle aliases
+  const account = match.params.account
+  const profile = useProfile(account)
 
   if (profile == null) return <Spinner type="grow" color="secondary" />
 
   return (
     <Row>
       <Col xs="auto">
-        <ProfileInfo format={profile.format} content={profile.content} />
+        <ProfileInfo account={account} />
       </Col>
       <Col>
         <Nav tabs>
@@ -97,8 +58,7 @@ export default function ViewProfile ({ match }) {
             <PhraseList keys={profile.phrases} />
           </TabPane>
           <TabPane tabId="2">
-            <Sentiment _key="0x90f37e23f84419d053adad4a22bac7b4d10a2d8ced43025eccbf147035b7064c"/>
-            <EmptyList>Nothing to show</EmptyList>
+            <ExpressedSentimentGrid keys={profile.expressedSentiments} />
           </TabPane>
         </TabContent>
       </Col>
