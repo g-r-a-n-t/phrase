@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import Ipfs from 'ipfs'
 
 import config from '../config'
@@ -16,7 +16,6 @@ export function useIpfs () {
   return ipfs
 }
 
-// TODO: implement a similar method that returns a url and cache the url
 export function useIpfsFileBuffer (path) {
   const [buf, setBuf] = useState(null)
   const ipfs = useIpfsContext()
@@ -24,7 +23,7 @@ export function useIpfsFileBuffer (path) {
 
   useEffect(() => {
     fetchBuf(cache, ipfs, path, setBuf)
-  }, [path, ipfs])
+  }, [path, ipfs, cache])
 
   return buf
 }
@@ -36,7 +35,7 @@ export function useIpfsFileUrl (path, type) {
 
   useEffect(() => {
     fetchUrl(cache, ipfs, path, type, setUrl)
-  }, [path, ipfs])
+  }, [path, ipfs, cache, type])
 
   return url
 }
@@ -95,7 +94,7 @@ async function fetchUrl (cache, ipfs, path, type, setUrl) {
   setUrl(url)
 }
 
-function maybeUseCache(cache, id, setValue) {
+function maybeUseCache (cache, id, setValue) {
   const result = cache.get(id)
 
   if (result !== null) {

@@ -20,7 +20,7 @@ export function useProfile (account) {
 
   useEffect(() => {
     fetchProfile(cache, registry, address, setContent)
-  }, [registry, address])
+  }, [registry, address, cache])
 
   return content
 }
@@ -37,7 +37,7 @@ export function usePhrase (key) {
 
   useEffect(() => {
     fetchPhrase(cache, registry, key, setContent)
-  }, [key, registry])
+  }, [key, registry, cache])
 
   return content
 }
@@ -49,7 +49,7 @@ export function useSentiment (key) {
 
   useEffect(() => {
     fetchSentiment(cache, registry, key, setContent)
-  }, [key, registry])
+  }, [key, registry, cache])
 
   return content
 }
@@ -61,7 +61,7 @@ export function useExpressedSentiment (key) {
 
   useEffect(() => {
     fetchExpressedSentiment(cache, registry, key, setContent)
-  }, [key, registry])
+  }, [key, registry, cache])
 
   return content
 }
@@ -159,7 +159,7 @@ async function fetchExpressedSentiment (cache, registry, key, setContent) {
   setContent(expressedSentiment)
 }
 
-function maybeUseCache(cache, id, setContent) {
+function maybeUseCache (cache, id, setContent) {
   const result = cache.get(id)
 
   if (result !== null) {

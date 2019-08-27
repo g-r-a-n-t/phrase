@@ -18,15 +18,15 @@ export function useCacheContext () {
   return useContext(CacheContext)
 }
 
-export function cacheId(...vals) {
+export function cacheId (...vals) {
   return vals.join('-')
 }
 
-export function initCache() {
+export function initCache () {
   const cache = {}
 
   const set = (id, obj, lifetime = ONE_YEAR) => {
-    cache[id] = {'obj': obj, 'expiration': now() + lifetime}
+    cache[id] = { obj: obj, expiration: now() + lifetime }
   }
 
   const get = (id, force = false) => {
@@ -37,8 +37,8 @@ export function initCache() {
     if (expired && !force) return null
 
     return {
-      'obj': cache[id].obj,
-      'expired': expired
+      obj: cache[id].obj,
+      expired: expired
     }
   }
 
@@ -46,13 +46,13 @@ export function initCache() {
     cache[id] = null
   }
 
-  function now() {
+  function now () {
     return Date.now() / 1000
   }
 
   return {
-    'set': set,
-    'get': get,
-    'evict': evict
+    set: set,
+    get: get,
+    evict: evict
   }
 }
