@@ -1,14 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Row, Col,
   Spinner
 } from 'reactstrap'
-import styled from 'styled-components'
 
 import { useExpressedSentiment } from '../../hooks/useEntity'
 import { Sentiment } from '../Sentiment'
 
-// Clicking the expressed sentiment should open a modal that displays the phrase
+// todo: Clicking the expressed sentiment should open a modal that displays the phrase
 export function ExpressedSentiment ({ _key }) {
   console.log('Rendering ExpressedSentiment (key): ', _key)
 
@@ -19,6 +19,10 @@ export function ExpressedSentiment ({ _key }) {
   return (
     <Sentiment _key={expressedSentiment.sentiment} />
   )
+}
+
+ExpressedSentiment.propTypes = {
+  _key: PropTypes.string.isRequired
 }
 
 // TODO: Evenly space expressed sentiments
@@ -74,4 +78,8 @@ export function ExpressedSentimentGrid ({ keys }) {
       {rows}
     </div>
   )
+}
+
+ExpressedSentimentGrid.propTypes = {
+  keys: PropTypes.array.isRequired
 }

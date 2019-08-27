@@ -1,16 +1,12 @@
-import React, { useState } from 'react'
-import classnames from 'classnames'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {
   Row, Col,
-  Nav, NavLink, NavItem,
-  TabPane, TabContent,
   Spinner
 } from 'reactstrap'
 
 import { useProfile } from '../../hooks/useEntity'
 import { PhraseList } from '../../components/Phrase'
-import { Clickable } from '../../styles'
 import { ProfileInfo } from '../../components/ProfileInfo'
 import { ExpressedSentimentGrid } from '../../components/ExpressedSentiment'
 

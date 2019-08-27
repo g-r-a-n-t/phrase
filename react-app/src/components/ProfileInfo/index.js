@@ -6,11 +6,7 @@ import { Spinner } from 'reactstrap'
 import { useProfile } from '../../hooks/useEntity'
 import { IpfsImage, IpfsText } from '../../components/IpfsMedia'
 
-const ProfileName = styled.h5`
-  width: 180px;
-`
-
-const ProfileDescription = styled.div`
+const Wrapper = styled.div`
   width: 180px;
 `
 
@@ -23,18 +19,15 @@ export function ProfileInfo ({ account }) {
 
   // standard format
   return (
-    <div>
-      <IpfsImage width="180px" height="180px" path={`${profile.content}/image180x180.jpg`} type="image/jpeg" /><br/><br/>
-      <ProfileName>
-        <IpfsText path={`${profile.content}/name.txt`} />
-      </ProfileName>
-      <ProfileDescription>
-        <IpfsText path={`${profile.content}/bio.txt`} />
-      </ProfileDescription>
-    </div>
+    <Wrapper>
+      <IpfsImage width="180px" height="180px" path={`${profile.content}/image180x180.jpg`} type="image/jpeg" />
+      <br/><br/>
+      <h5><IpfsText path={`${profile.content}/name.txt`} /></h5>
+      <p><IpfsText path={`${profile.content}/bio.txt`} /></p>
+    </Wrapper>
   )
 }
 
 ProfileInfo.propTypes = {
-  account: PropTypes.string.isRequired,
+  account: PropTypes.string.isRequired
 }
