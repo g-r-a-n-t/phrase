@@ -9,5 +9,10 @@ export default {
   registry: {
     abi: REGISTRY.abi,
     address: REGISTRY.networks['5777'].address
+  },
+  debug: {
+    components: false,
+    cache: false,
+    network: true
   }
 }

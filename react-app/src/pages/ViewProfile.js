@@ -9,10 +9,11 @@ import { useProfile } from '../hooks/useEntity'
 import { PhraseList } from '../components/Phrase'
 import { ProfileInfo } from '../components/ProfileInfo'
 import { ExpressedSentimentGrid } from '../components/ExpressedSentiment'
+import debug from '../tools/debug'
 
 // TODO: Should hande a profile that does not have content and generate a default profile picture
 export default function ViewProfile ({ match }) {
-  console.log('Rendering ProfileView (account): ', match.params.account)
+  debug.componentRender('ViewProfile', match.params.account)
 
   const account = match.params.account
   const profile = useProfile(account)

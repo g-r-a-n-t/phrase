@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Ipfs from 'ipfs'
 
 import config from '../config'
+import debug from '../tools/debug'
 import { useIpfsContext } from '../contexts/ipfs'
 import { useCacheContext, cacheId } from '../contexts/cache'
 
@@ -66,9 +67,9 @@ async function fetchBuf (cache, ipfs, path, setBuf) {
 
   if (maybeUseCache(cache, id, setBuf)) return null
 
-  console.log(`Reading IPFS file buffer for ${path}`)
+  debug.networkOutbound('read IPFS file buffer', path)
   const buf = await ipfs.cat(path)
-  console.log('IPFS file buffer has been read')
+  debug.networkInbound(`read IPFS file buffer for ${path}`, buf)
 
   cache.set(id, buf)
 
@@ -84,10 +85,10 @@ async function fetchUrl (cache, ipfs, path, type, setUrl) {
 
   if (maybeUseCache(cache, id, setUrl)) return null
 
-  console.log(`Creating browser friendly IPFS file url for ${path}`)
+  debug.networkOutbound('read IPFS file buffer', path)
   const buf = await ipfs.cat(path)
+  debug.networkInbound(`read IPFS file buffer for ${path}`, buf)
   const url = bufToUrl(buf, type)
-  console.log('IPFS file url has been created: ')
 
   cache.set(id, url)
 
@@ -108,10 +109,10 @@ function maybeUseCache (cache, id, setValue) {
 async function uploadFilesAsFolder (ipfs, files, setPath) {
   if (ipfs == null) return null
 
-  console.log('Uploading file to IPFS', files)
+  debug.networkOutbound('uploading files to IPFS', files)
   const result = await ipfs.add(files, { wrapWithDirectory: true })
   const path = result[result.length - 1].hash
-  console.log('File has been uploaded to IPFS with path ', path)
+  debug.networkInbound('files uploaded to IPFS', path)
 
   setPath(path)
 }

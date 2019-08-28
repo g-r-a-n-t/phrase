@@ -1,5 +1,7 @@
 import { createContext, useContext } from 'react'
 
+import debug from '../tools/debug'
+
 // # Usage
 //
 // const cache = useCacheContext()
@@ -26,6 +28,7 @@ export function initCache () {
   const cache = {}
 
   const set = (id, obj, lifetime = ONE_YEAR) => {
+    debug.cacheSet(id, obj)
     cache[id] = { obj: obj, expiration: now() + lifetime }
   }
 
@@ -35,6 +38,8 @@ export function initCache () {
     const expired = now() > cache[id].expiration
 
     if (expired && !force) return null
+
+    debug.cacheGet(id, cache[id].obj)
 
     return {
       obj: cache[id].obj,

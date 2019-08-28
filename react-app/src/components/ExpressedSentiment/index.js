@@ -7,11 +7,11 @@ import {
 
 import { useExpressedSentiment } from '../../hooks/useEntity'
 import { Sentiment } from '../Sentiment'
-import { debugComponentRender } from '../../tools/debug'
+import debug from '../../tools/debug'
 
 // todo: Clicking the expressed sentiment should open a modal that displays the phrase
 export function ExpressedSentiment ({ _key }) {
-  debugComponentRender('ExpressedSentiment', _key)
+  debug.componentRender('ExpressedSentiment', _key)
 
   const expressedSentiment = useExpressedSentiment(_key)
 
@@ -28,7 +28,7 @@ ExpressedSentiment.propTypes = {
 
 // TODO: Evenly space expressed sentiments
 export function ExpressedSentimentGrid ({ keys }) {
-  debugComponentRender('ExpressedSentimentGrid', keys)
+  debug.componentRender('ExpressedSentimentGrid', keys)
 
   if (keys.length === 0) {
     return (

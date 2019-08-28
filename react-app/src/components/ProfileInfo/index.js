@@ -5,14 +5,14 @@ import { Spinner } from 'reactstrap'
 
 import { useProfile } from '../../hooks/useEntity'
 import { IpfsImage, IpfsText } from '../../components/IpfsMedia'
-import { debugComponentRender } from '../../tools/debug'
+import debug from '../../tools/debug'
 
 const Wrapper = styled.div`
   width: 180px;
 `
 
 export function ProfileInfo ({ account }) {
-  debugComponentRender('ProfileInfo', account)
+  debug.componentRender('ProfileInfo', account)
 
   const profile = useProfile(account)
 

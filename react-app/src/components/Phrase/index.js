@@ -11,10 +11,10 @@ import { usePhrase } from '../../hooks/useEntity'
 import { useRegistryContract } from '../../hooks/useContract'
 import { IpfsImage, IpfsText } from '../../components/IpfsMedia'
 import { AbsoluteBottomRight, Clickable } from '../../styles'
-import { debugComponentRender } from '../../tools/debug'
+import debug from '../../tools/debug'
 
 export function Phrase ({ _key }) {
-  debugComponentRender('Phrase', _key)
+  debug.componentRender('Phrase', _key)
 
   const phrase = usePhrase(_key)
   const registry = useRegistryContract()
@@ -53,7 +53,7 @@ Phrase.propTypes = {
 }
 
 export function PhraseList ({ keys }) {
-  debugComponentRender('PhraseList', keys)
+  debug.componentRender('PhraseList', keys)
 
   if (keys.length === 0) {
     return (

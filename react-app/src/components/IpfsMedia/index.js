@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { Spinner } from 'reactstrap'
 
 import { useIpfsFileBuffer, useIpfsFileUrl } from '../../hooks/useIpfs'
-import { debugComponentRender } from '../../tools/debug'
+import debug from '../../tools/debug'
 
 export function IpfsImage ({ width, height, path, type }) {
-  debugComponentRender('IpfsImage', path, type)
+  debug.componentRender('IpfsImage', path, type)
 
   const url = useIpfsFileUrl(path)
 
@@ -23,7 +23,7 @@ IpfsImage.propTypes = {
 }
 
 export function IpfsText ({ path }) {
-  debugComponentRender('IpfsText', path)
+  debug.componentRender('IpfsText', path)
 
   const buf = useIpfsFileBuffer(path)
 
