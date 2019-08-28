@@ -5,10 +5,10 @@ import {
   Spinner
 } from 'reactstrap'
 
-import { useProfile } from '../../hooks/useEntity'
-import { PhraseList } from '../../components/Phrase'
-import { ProfileInfo } from '../../components/ProfileInfo'
-import { ExpressedSentimentGrid } from '../../components/ExpressedSentiment'
+import { useProfile } from '../hooks/useEntity'
+import { PhraseList } from '../components/Phrase'
+import { ProfileInfo } from '../components/ProfileInfo'
+import { ExpressedSentimentGrid } from '../components/ExpressedSentiment'
 
 // TODO: Should hande a profile that does not have content and generate a default profile picture
 export default function ViewProfile ({ match }) {

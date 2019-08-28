@@ -4,8 +4,8 @@ import { createContext, useContext } from 'react'
 //
 // const cache = useCacheContext()
 // const id = cacheId(some, unique, details)
-// cache.set(id, obj, lifetime<seconds>)
-// cache.get(id, force) -> {obj, expired} -- force indicates that the cache should be pulled even if it's expired.
+// cache.set(id, obj, lifetime<seconds> = ONE_YEAR)
+// cache.get(id, force = false) -> {obj, expired} -- force indicates that the cache should be pulled even if it's expired.
 // cache.evict(id)
 //
 // note: this implementation may not be conventional

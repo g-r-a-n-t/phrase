@@ -2,7 +2,8 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import Header from '../components/Header'
-import { ViewProfile, About } from './View'
+import ViewProfile from './ViewProfile'
+import About from './About'
 import { CreatePhrase } from './Create'
 import { BodyWrapper, Body } from '../styles'
 
