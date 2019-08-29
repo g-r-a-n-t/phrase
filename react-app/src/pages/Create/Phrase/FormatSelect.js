@@ -23,7 +23,9 @@ export default function FormatSelect ({ onReady }) {
             </CardHeader>
             <CardBody>
               <CardTitle><h5>Video</h5></CardTitle>
-              <CardText>Consists of a video, name, and description.</CardText>
+              <CardText>
+                Consists of a video, name, and description.
+              </CardText>
               <Button onClick={() => { onReady('ipfs-plaque-2019') }}>Create</Button>
             </CardBody>
           </Card>

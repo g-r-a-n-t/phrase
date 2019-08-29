@@ -24,7 +24,7 @@ export function cacheId (...vals) {
   return vals.join('-')
 }
 
-export function initCache () {
+export function Cache () {
   const cache = {}
 
   const set = (id, obj, lifetime = ONE_YEAR) => {

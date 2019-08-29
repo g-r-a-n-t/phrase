@@ -5,7 +5,9 @@ import Header from '../components/Header'
 import ViewProfile from './ViewProfile'
 import About from './About'
 import { CreatePhrase } from './Create'
-import { BodyWrapper, Body } from '../styles'
+import {
+  Row, Col
+} from 'reactstrap'
 
 export default function App () {
   // TODO: App should not load without having an ipfs instance and connector
@@ -15,16 +17,17 @@ export default function App () {
     <div className="App">
       <BrowserRouter>
         <Header />
-        <BodyWrapper>
-          <Body>
+        <br/>
+        <Row>
+          <Col xs={{size: 8, offset: 2}}>
             <Switch>
               <Route exact path="/" component={About} />
               <Route exact path="/about" component={About} />
               <Route exact path="/create/phrase" component={CreatePhrase} />
               <Route exact strict path="/:account" component={ViewProfile} />
             </Switch>
-          </Body>
-        </BodyWrapper>
+          </Col>
+        </Row>
       </BrowserRouter>
     </div>
   )
