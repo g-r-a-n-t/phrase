@@ -12,7 +12,7 @@ export default {
   },
   debug: {
     components: false,
-    cache: true,
-    network: true
+    cache: false,
+    network: false
   }
 }

@@ -4,7 +4,7 @@ import {
   Spinner
 } from 'reactstrap'
 
-import { usePhrasePublisher } from '../../../hooks/useEntity'
+import { usePhrasePublisher } from '../../../hooks/usePublisher'
 
 export default function Publisher ({ format, content, beneficiary, onComplete }) {
   const receipt = usePhrasePublisher(format, content, beneficiary)

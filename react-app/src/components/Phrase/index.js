@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { IoIosHeart } from 'react-icons/io'
 import {
@@ -11,13 +11,14 @@ import { usePhrase } from '../../hooks/useEntity'
 import { useRegistryContract } from '../../hooks/useContract'
 import { IpfsImage, IpfsText } from '../../components/IpfsMedia'
 import { AbsoluteBottomRight, Clickable } from '../../styles'
+import ExpressSentimentModal from './ExpressSentimentModal'
 import debug from '../../tools/debug'
 
 export function Phrase ({ _key }) {
   debug.componentRender('Phrase', _key)
 
+  const [expressingSentiment, setExpressingSentiment] = useState(false)
   const phrase = usePhrase(_key)
-  const registry = useRegistryContract()
 
   if (phrase == null) return <Spinner type="grow" color="secondary" />
 
@@ -37,11 +38,13 @@ export function Phrase ({ _key }) {
       <AbsoluteBottomRight>
         <Clickable>
           <IoIosHeart size={32} onClick={() => {
-            registry.expressSentiment(
-              _key, '0x440a38d43b6e4c46ccdd3f527f340ca5938d4e73101e82dc90a5d023f29d32e9',
-              { value: '0xde0b6b3a7640000' }
-            )
+            setExpressingSentiment(true)
           }}/>
+          { expressingSentiment &&
+            <ExpressSentimentModal onDone={() => {
+              setExpressingSentiment(false)
+            }}/>
+          }
         </Clickable>
       </AbsoluteBottomRight>
     </div>

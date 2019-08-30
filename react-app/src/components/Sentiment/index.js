@@ -37,3 +37,17 @@ export function Sentiment ({ _key }) {
 Sentiment.propTypes = {
   _key: PropTypes.string.isRequired
 }
+
+export function SentimentGrid ({ keys }) {
+  const elements = []
+
+  for (let i = 0; i < keys.length; i++) {
+    elements.push(<Sentiment key={`sentiment-${i}`} _key={ keys[i] } />)
+  }
+
+  return (
+    <div className="d-flex flex-wrap justify-content-around">
+      { elements }
+    </div>
+  )
+}

@@ -66,17 +66,6 @@ export function useExpressedSentiment (key) {
   return content
 }
 
-export function usePhrasePublisher (format, content, beneficiary) {
-  const [receipt, setReceipt] = useState(null)
-  const registry = useRegistryContract()
-
-  useEffect(() => {
-    publishPhrase(registry, format, content, beneficiary, setReceipt)
-  }, [registry, format, content, beneficiary])
-
-  return receipt
-}
-
 async function fetchProfile (cache, registry, address, setContent) {
   if (registry == null) return null
 
@@ -168,12 +157,4 @@ function maybeUseCache (cache, id, setContent) {
   }
 
   return false
-}
-
-async function publishPhrase (registry, format, content, beneficiary, setReceipt) {
-  if (registry == null) return null
-
-  const receipt = await registry.createPhrase(format, content, beneficiary)
-
-  setReceipt(receipt)
 }
