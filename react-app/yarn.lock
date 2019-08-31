@@ -14110,6 +14110,11 @@ react-app-polyfill@^1.0.2:
     regenerator-runtime "0.13.3"
     whatwg-fetch "3.0.0"
 
+react-card-flip@^0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/react-card-flip/-/react-card-flip-0.8.1.tgz#53cd036d5145a10a5c45f2419252d6b5f8e47d8e"
+  integrity sha512-iuyRAya8anf5aaR6BTCYyF4Z767WEgzkYSUfjxEG2zwQYvXHv98NtngAQRM+lqmwYLPTv/5cuCIOsZapy38x0g==
+
 react-dev-utils@^9.0.2:
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-9.0.2.tgz#14f9a75120513967e13599d4f66d43bced7a3fce"

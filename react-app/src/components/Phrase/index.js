@@ -41,7 +41,7 @@ export function Phrase ({ _key }) {
             setExpressingSentiment(true)
           }}/>
           { expressingSentiment &&
-            <ExpressSentimentModal onDone={() => {
+            <ExpressSentimentModal phraseKey={_key} onDone={() => {
               setExpressingSentiment(false)
             }}/>
           }

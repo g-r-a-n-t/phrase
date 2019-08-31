@@ -60,7 +60,7 @@ async function publishSentiment (registry, format, content, token, value, setRec
 async function publishExpressedSentiment (registry, phraseKey, sentimentKey, sentiment, setReceipt) {
   if (registry == null || sentiment == null) return null
 
-  const receipt = await registry.expressSentiment(phraseKey, sentimentKey, { value: sentiment.value.toString(16) })
+  const receipt = await registry.expressSentiment(phraseKey, sentimentKey, { value: sentiment.value })
 
   setReceipt(receipt)
 }
