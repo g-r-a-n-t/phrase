@@ -28,7 +28,7 @@ const CardBack = styled.div`
 `
 
 // TODO: Clicking the sentiment should flip it like a card and display the name and value details
-export function Sentiment ({ _key, selectText = 'select', onSelect }) {
+export function Sentiment ({ _key, selectText = 'select', onSelect = null}) {
   debug.componentRender('Sentiment', _key)
 
   const [flipped, setFlipped] = useState(false)
@@ -46,7 +46,9 @@ export function Sentiment ({ _key, selectText = 'select', onSelect }) {
           <IpfsText path={`${sentiment.content}/name.txt`} />
           <div>{ sentiment.value.toString() }</div>
           <div>{ sentiment.token }</div>
-          <Button onClick={ () => { onSelect() }}>{ selectText }</Button>
+          { onSelect != null &&
+            <Button onClick={ () => { onSelect() }}>{ selectText }</Button>
+          }
         </CardBack>
       </ReactCardFlip>
     </Wrapper>

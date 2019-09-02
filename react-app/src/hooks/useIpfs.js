@@ -99,7 +99,7 @@ function maybeUseCache (cache, id, setValue) {
   const result = cache.get(id)
 
   if (result !== null) {
-    setValue(result.obj)
+    setValue(result.val)
     return true
   }
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 
-import { useWeb3Context } from 'web3-react'
 import config from '../config'
 
 const MIN_BLOCK = 0
@@ -19,17 +18,29 @@ export function useEvents (topic) {
   const [events, setEvents] = useState(null)
 
   useEffect(() => {
-    fetchLogs(provider, topic, setEvents)
-  }, [provider, topic])
+    fetchLogs(topic, setEvents)
+  }, [topic])
 
   return events
 }
+
+export function useCreatedProfiles () {
+  return useEvents(PROFILE_CREATED)
+}
+
+export function useCreatedPhrase () {
+  return useEvents(PHRASE_CREATED)
+}
+
+export function useExpressedSentiments () {
+  return useEvents(SENTIMENT_EXPRESSED)
+}
+
 export function useCreatedSentiments () {
   return useEvents(SENTIMENT_CREATED)
 }
 
-
-async function fetchLogs (provider, topic, setEvents) {
+async function fetchLogs (topic, setEvents) {
   const filter = {
     address: config.registry.address,
     fromBlock: MIN_BLOCK,

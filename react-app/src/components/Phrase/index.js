@@ -8,7 +8,6 @@ import {
 } from 'reactstrap'
 
 import { usePhrase } from '../../hooks/useEntity'
-import { useRegistryContract } from '../../hooks/useContract'
 import { IpfsImage, IpfsText } from '../../components/IpfsMedia'
 import { AbsoluteBottomRight, Clickable } from '../../styles'
 import ExpressSentimentModal from './ExpressSentimentModal'

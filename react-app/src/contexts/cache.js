@@ -6,8 +6,8 @@ import debug from '../tools/debug'
 //
 // const cache = useCacheContext()
 // const id = cacheId(some, unique, details)
-// cache.set(id, obj, lifetime<seconds> = ONE_YEAR)
-// cache.get(id, force = false) -> {obj, expired} -- force indicates that the cache should be pulled even if it's expired.
+// cache.set(id, val, lifetime<seconds> = ONE_YEAR)
+// cache.get(id, force = false) -> {val, expired} -- force indicates that the cache should be pulled even if it's expired.
 // cache.evict(id)
 //
 // note: this implementation may not be conventional
@@ -27,9 +27,9 @@ export function cacheId (...vals) {
 export function Cache () {
   const cache = {}
 
-  const set = (id, obj, lifetime = ONE_YEAR) => {
-    debug.cacheSet(id, obj)
-    cache[id] = { obj: obj, expiration: now() + lifetime }
+  const set = (id, val, lifetime = ONE_YEAR) => {
+    debug.cacheSet(id, val)
+    cache[id] = { val: val, expiration: now() + lifetime }
   }
 
   const get = (id, force = false) => {
@@ -39,10 +39,10 @@ export function Cache () {
 
     if (expired && !force) return null
 
-    debug.cacheGet(id, cache[id].obj)
+    debug.cacheGet(id, cache[id].val)
 
     return {
-      obj: cache[id].obj,
+      val: cache[id].val,
       expired: expired
     }
   }
