@@ -13,8 +13,8 @@ export function sentimentToPhrasesMap (expressedSentiments) {
   return map
 }
 
-export function sentimentToPhrasesList (expressedSentiment) {
-  const map = sentimentToPhrasesMap(expressedSentiment)
+export function sentimentToPhrasesList (expressedSentiments) {
+  const map = sentimentToPhrasesMap(expressedSentiments)
   return Object.keys(map).map((key) => {
     return {
       sentiment: key,

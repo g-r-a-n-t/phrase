@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
 import { IoIosAdd } from 'react-icons/io'
 import {
-  Modal, ModalBody, ModalFooter,
-  Button, Spinner
+  Spinner
 } from 'reactstrap';
 
 import { useCreatedSentiments } from '../../hooks/useEvents'
 import { useExpressedSentimentPublisher } from '../../hooks/usePublisher'
 import { Sentiment } from '../Sentiment'
+import { SimpleModal } from '../Modal'
 import debug from '../../tools/debug'
 
 export default function ExpressSentimentModal ({ phraseKey, onDone }) {
@@ -21,22 +21,16 @@ export default function ExpressSentimentModal ({ phraseKey, onDone }) {
   const sentimentKeys = createdSentiments.map((createdSentiment) => { return createdSentiment.sentiment })
 
   return (
-    <Modal isOpen={true} size="lg">
-      <ModalBody>
-        { sentimentKey == null ?
-          <ExpressSentimentGrid
-            keys={sentimentKeys}
-            onSelect={(key) => {
-              setSentimentKey(key)
-          }}/>
-        :
-          <ExpressedSentimentPublisher phraseKey={ phraseKey } sentimentKey={ sentimentKey } />
-        }
-      </ModalBody>
-      <ModalFooter>
-        <Button color="secondary" onClick={() => { onDone() }}>Cancel</Button>
-      </ModalFooter>
-    </Modal>
+    <SimpleModal onDone={ onDone }>
+      { sentimentKey == null ?
+        <ExpressSentimentGrid
+          keys={sentimentKeys}
+          onSelect={(key) => { setSentimentKey(key) }}
+        />
+      :
+        <ExpressedSentimentPublisher phraseKey={ phraseKey } sentimentKey={ sentimentKey } />
+      }
+    </SimpleModal>
   )
 }
 
