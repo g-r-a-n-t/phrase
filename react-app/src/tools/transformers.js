@@ -1,5 +1,5 @@
 
-export function sentimentsToPhrases (expressedSentiments) {
+export function sentimentToPhrasesMap (expressedSentiments) {
   const map = {}
 
   expressedSentiments.forEach((expressedSentiment) => {
@@ -11,4 +11,14 @@ export function sentimentsToPhrases (expressedSentiments) {
   })
 
   return map
+}
+
+export function sentimentToPhrasesList (expressedSentiment) {
+  const map = sentimentToPhrasesMap(expressedSentiment)
+  return Object.keys(map).map((key) => {
+    return {
+      sentiment: key,
+      phrases: map[key]
+    }
+  })
 }

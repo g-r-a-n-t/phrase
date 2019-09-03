@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { IoIosAdd } from 'react-icons/io'
 import {
   Modal, ModalBody, ModalFooter,
   Button, Spinner
@@ -6,7 +7,7 @@ import {
 
 import { useCreatedSentiments } from '../../hooks/useEvents'
 import { useExpressedSentimentPublisher } from '../../hooks/usePublisher'
-import { SentimentGrid } from '../Sentiment'
+import { Sentiment } from '../Sentiment'
 import debug from '../../tools/debug'
 
 export default function ExpressSentimentModal ({ phraseKey, onDone }) {
@@ -23,7 +24,7 @@ export default function ExpressSentimentModal ({ phraseKey, onDone }) {
     <Modal isOpen={true} size="lg">
       <ModalBody>
         { sentimentKey == null ?
-          <SentimentGrid
+          <ExpressSentimentGrid
             keys={sentimentKeys}
             onSelect={(key) => {
               setSentimentKey(key)
@@ -48,4 +49,23 @@ function ExpressedSentimentPublisher ({ phraseKey, sentimentKey }) {
   if (receipt == null) return <Spinner type="grow" color="secondary" />
 
   return <div>Sentiment expressed!</div>
+}
+
+function ExpressSentimentGrid ({ keys, onSelect }) {
+  const elements = keys.map((key) => {
+    return (
+      <Sentiment
+        selectText={<IoIosAdd size={19} />}
+        key={`sentiment-${key}`}
+        _key={ key }
+        onSelect={() => { onSelect(key) }}
+      />
+    )
+  })
+
+  return (
+    <div className="d-flex flex-wrap justify-content-left">
+      { elements }
+    </div>
+  )
 }
