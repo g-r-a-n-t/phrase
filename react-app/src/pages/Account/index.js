@@ -27,11 +27,11 @@ export default function Account ({ match }) {
         <ProfileInfo account={account} />
       </Col>
       <Col>
-        <div className="d-flex justify-content-around border border-light rounded">
+        <div className="d-flex justify-content-left border border-light rounded">
           <ExpressedSentimentsGrid keys={profile.expressedSentiments} />
         </div>
         <br />
-        <div className="border border-light rounded">
+        <div className="d-flex justify-content-around border border-light rounded">
           <PhraseList keys={profile.phrases} />
         </div>
       </Col>
