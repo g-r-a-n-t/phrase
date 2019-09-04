@@ -30,7 +30,7 @@ _ipfs-photo-2019_
 /description.txt
 /track-names.txt
 /credits.txt
-/image800x800.jpg
+/cover800x800.jpg
 /tracks/track1.mp4
 ...
 /tracks/track10.mp4

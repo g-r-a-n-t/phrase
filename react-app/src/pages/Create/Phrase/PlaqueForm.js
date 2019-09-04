@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { IoMdSquare } from 'react-icons/io'
 import {
   Form, FormGroup, Label, Input, FormText,
+  Row, Col,
   Button
 } from 'reactstrap'
 
@@ -31,30 +33,29 @@ export default function PlaqueForm ({ onReady }) {
 
   return (
     <Form>
+      <IoMdSquare size={32}/>
+      <br/><br/>
       <FormGroup>
-        <Label>Name</Label>
         <Input
           type="text"
           onChange={e => setName(e.target.value)}
-          placeholder="e.g. Local campaign fund"
+          placeholder="Name: e.g. Local campaign fund"
         />
       </FormGroup>
       <FormGroup>
-        <Label for="">Description</Label>
         <Input
           type="textarea"
           onChange={e => setDescription(e.target.value)}
-          placeholder="Add more details here."
+          placeholder="Description: Add more details here."
         />
       </FormGroup>
       <FormGroup>
-        <Label for="image">Image</Label>
         <ImageSelect onReady={ image => { setImage(image) } } />
         <FormText color="muted">
-          Please keep the image dimensions around 400x400.
+          This image will be displayed at 400 by 400px.
         </FormText>
       </FormGroup>
-      <Button onClick={ () => { onReady(toDir()) } }>Submit</Button>
+      <Button onClick={ () => { onReady(toDir()) } }>Create</Button>
     </Form>
   )
 }

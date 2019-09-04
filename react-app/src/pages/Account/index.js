@@ -13,7 +13,7 @@ import debug from '../../tools/debug'
 import { ExpressedSentimentsGrid } from './ExpressedSentimentsGrid'
 
 // TODO: Should hande a profile that does not have content and generate a default profile picture
-export default function ViewProfile ({ match }) {
+export default function Account ({ match }) {
   debug.componentRender('ViewProfile', match.params.account)
 
   const account = match.params.account
@@ -39,6 +39,6 @@ export default function ViewProfile ({ match }) {
   )
 }
 
-ViewProfile.propTypes = {
+Account.propTypes = {
   match: PropTypes.object.isRequired
 }

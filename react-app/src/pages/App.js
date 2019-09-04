@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import Header from '../components/Header'
-import ViewProfile from './ViewProfile'
+import Account from './Account'
 import About from './About'
 import { CreatePhrase } from './Create'
 import {
@@ -24,7 +24,7 @@ export default function App () {
               <Route exact path="/" component={About} />
               <Route exact path="/about" component={About} />
               <Route exact path="/create/phrase" component={CreatePhrase} />
-              <Route exact strict path="/:account" component={ViewProfile} />
+              <Route exact strict path="/:account" component={Account} />
             </Switch>
           </Col>
         </Row>

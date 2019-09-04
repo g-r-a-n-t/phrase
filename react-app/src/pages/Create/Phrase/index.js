@@ -5,6 +5,7 @@ import PlaqueForm from './PlaqueForm'
 import Publisher from './Publisher'
 import FormatSelect from './FormatSelect'
 import IpfsUploader from '../IpfsUploader'
+import { Thin } from '../../../components/Wrappers'
 
 // TODO: might be worth taking a look at other reduction patterns.
 export default function CreatePhrase () {
@@ -33,10 +34,12 @@ export default function CreatePhrase () {
       switch (format) {
         case 'ipfs-plaque-2019':
           return (
-            <PlaqueForm onReady={ (_files) => {
-              setFiles(_files)
-              setStatus('WAITING_TO_UPLOAD')
-            }}/>
+            <Thin>
+              <PlaqueForm onReady={ (_files) => {
+                setFiles(_files)
+                setStatus('WAITING_TO_UPLOAD')
+              }}/>
+            </Thin>
           )
           default:
             return <p>something went wrong</p>
@@ -64,6 +67,6 @@ export default function CreatePhrase () {
         />
       )
     default:
-      return <p>Phrase created! ${receipt}</p>
+      return <p>Phrase created!</p>
   }
 }

@@ -11,6 +11,7 @@
     "react-card-flip": "^0.8.1",
     "react-dom": "^16.9.0",
     "react-icons": "^3.7.0",
+    "react-image-crop": "^8.2.2",
     "react-images-upload": "^1.2.7",
     "react-promise": "^3.0.2",
     "react-router": "^5.0.1",
