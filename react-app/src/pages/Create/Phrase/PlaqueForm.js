@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { IoMdSquare } from 'react-icons/io'
 import {
-  Form, FormGroup, Label, Input, FormText,
-  Row, Col,
+  Form, FormGroup, Input, FormText,
   Button
 } from 'reactstrap'
 

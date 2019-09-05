@@ -1,70 +1,49 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { IoIosHeart } from 'react-icons/io'
-import styled from 'styled-components'
-import ReactCardFlip from 'react-card-flip'
 import {
-  ListGroup, ListGroupItem,
-  Container, Row, Col,
-  Card, CardBody,
-  Spinner
+  Spinner, Button
 } from 'reactstrap'
 
 import { usePhrase } from '../../hooks/useEntity'
-import { IpfsImage, IpfsText } from '../../components/IpfsMedia'
-import { Nothing } from '../../components/Wrappers'
-import { AbsoluteBottomRight, Clickable } from '../../styles'
+import { IpfsImage, IpfsText } from '../IpfsMedia'
+import { Nothing } from '../Wrappers'
+import FlipCard from '../FlipCard'
 import ExpressSentimentModal from './ExpressSentimentModal'
 import debug from '../../tools/debug'
-
-const Wrapper = styled.div`
-  margin: 5px;
-  cursor: pointer;
-`
-
-const CardSide = styled.div`
-  width: 400px;
-  height: 400px;
-  overflow: hidden;
-`
-
-const BackContainer = styled.div`
-  margin: 8px;
-`
 
 export function Phrase ({ _key }) {
   debug.componentRender('Phrase', _key)
 
-  const [flipped, setFlipped] = useState(false)
   const [expressingSentiment, setExpressingSentiment] = useState(false)
 
   const phrase = usePhrase(_key)
 
   if (phrase == null) return <Spinner type="grow" color="secondary" />
 
-  return (
-    <Wrapper onClick={() => { setFlipped(!flipped) }}>
-      <ReactCardFlip isFlipped={flipped} flipDirection="horizontal">
-        <CardSide className="border rounded" key="front">
-          <IpfsImage width="400px" height="400px" path={`${phrase.content}/image400x400.jpg`} type="image/jpeg" /><br/><br/>
-        </CardSide>
-        <CardSide className="border rounded bg-light" key="back">
-          <BackContainer>
-            <h3 className="fluid"><IpfsText path={`${phrase.content}/name.txt`} /></h3>
-            <IpfsText path={`${phrase.content}/description.txt`} />
-            <IoIosHeart size={32} onClick={() => {
-              setExpressingSentiment(true)
-            }}/>
-            { expressingSentiment &&
-              <ExpressSentimentModal phraseKey={_key} onDone={() => {
-                setExpressingSentiment(false)
-              }}/>
-            }
-          </BackContainer>
-        </CardSide>
-      </ReactCardFlip>
-    </Wrapper>
+  const front = (
+    <IpfsImage width="400px" height="400px" path={`${phrase.content}/image400x400.jpg`} type="image/jpeg" />
   )
+
+  const back = (
+    <>
+      <div style={{margin: '8px'}}>
+        <h3 className="fluid"><IpfsText path={`${phrase.content}/name.txt`} /></h3>
+        <IpfsText path={`${phrase.content}/description.txt`} />
+        <Button className="btn-sm fixed-bottom float-right" onClick={(e) => {
+          e.stopPropagation()
+          setExpressingSentiment(true)
+        }}><IoIosHeart size={19}/></Button>
+      </div>
+      { expressingSentiment &&
+        <ExpressSentimentModal phraseKey={_key} onDone={() => {
+          setExpressingSentiment(false)
+        }}/>
+      }
+    </>
+  )
+
+  return <FlipCard front={front} back={back} width="400px" height="400px" />
 }
 
 

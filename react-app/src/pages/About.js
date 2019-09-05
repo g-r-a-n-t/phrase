@@ -6,8 +6,8 @@ export default function About () {
       <h2>About</h2>
       <br/>
       <p>
-        Phrase is a value-backed sentiment expression platform built on top of
-        the <a href="https://en.wikipedia.org/wiki/Ethereum">Ethereum</a> network.
+        Phrase is a content publishing platform powered by value-backed sentiment
+        expression. It's built on the <a href="https://en.wikipedia.org/wiki/Ethereum">Ethereum</a> blockchain.
         Its purpose is to create an environment where public initiatives can
         source subsidy from many people based on their sentiment.
       </p>
