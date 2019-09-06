@@ -19,7 +19,7 @@ export default function App () {
         <Header />
         <br/>
         <Row>
-          <Col lg={{size: 10, offset: 1}}>
+          <Col lg={{ size: 10, offset: 1 }}>
             <Switch>
               <Route exact path="/" component={About} />
               <Route exact path="/about" component={About} />
@@ -28,6 +28,7 @@ export default function App () {
             </Switch>
           </Col>
         </Row>
+        <br/><br/><br/>
       </BrowserRouter>
     </div>
   )

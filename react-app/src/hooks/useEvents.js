@@ -4,13 +4,13 @@ import { ethers } from 'ethers'
 import config from '../config'
 
 const MIN_BLOCK = 0
-const PROFILE_CREATED = ethers.utils.id("ProfileCreated(address)")
-const PHRASE_CREATED = ethers.utils.id("PhraseCreated(address,bytes32)")
-const SENTIMENT_EXPRESSED = ethers.utils.id("SentimentExpressed(address,bytes32)")
-const SENTIMENT_CREATED = ethers.utils.id("SentimentCreated(bytes32)")
+const PROFILE_CREATED = ethers.utils.id('ProfileCreated(address)')
+const PHRASE_CREATED = ethers.utils.id('PhraseCreated(address,bytes32)')
+const SENTIMENT_EXPRESSED = ethers.utils.id('SentimentExpressed(address,bytes32)')
+const SENTIMENT_CREATED = ethers.utils.id('SentimentCreated(bytes32)')
 
 // TODO refactor so that you can easily switch between providers based on config
-const provider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
+const provider = new ethers.providers.JsonRpcProvider('http://localhost:8545')
 const registryInterface = new ethers.utils.Interface(config.registry.abi)
 
 // TODO use caching here. each subsequent call with new blocks should build on cache
@@ -45,7 +45,7 @@ async function fetchLogs (topic, setEvents) {
     address: config.registry.address,
     fromBlock: MIN_BLOCK,
     toBlock: 1000,
-    topics: [ topic ]
+    topics: [topic]
   }
 
   const logs = await provider.getLogs(filter)

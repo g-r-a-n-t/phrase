@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  Card, CardBody, CardHeader, CardTitle, CardText,
-  Row, Col,
-  Button
+  Card, CardBody, CardHeader, CardTitle,
+  Row, Col
 } from 'reactstrap'
 import {
   IoIosImage,
@@ -21,7 +20,7 @@ export default function FormatSelect ({ onReady }) {
       <br />
       <Row>
         <Col lg="6">
-          <Card onClick={() => { onReady('ipfs-plaque-2019') }} style={{cursor: 'pointer'}}>
+          <Card onClick={() => { onReady('ipfs-plaque-2019') }} style={{ cursor: 'pointer' }}>
             <CardHeader>
               <IoMdVideocam size={32}/>
             </CardHeader>
@@ -31,7 +30,7 @@ export default function FormatSelect ({ onReady }) {
           </Card>
         </Col>
         <Col lg="6">
-          <Card onClick={() => { onReady('ipfs-album-2019') }} style={{cursor: 'pointer'}}>
+          <Card onClick={() => { onReady('ipfs-album-2019') }} style={{ cursor: 'pointer' }}>
             <CardHeader>
               <IoIosMusicalNotes size={32}/>
             </CardHeader>
@@ -44,7 +43,7 @@ export default function FormatSelect ({ onReady }) {
       <br/>
       <Row>
         <Col lg="6">
-          <Card onClick={() => { onReady('ipfs-plaque-2019') }} style={{cursor: 'pointer'}}>
+          <Card onClick={() => { onReady('ipfs-plaque-2019') }} style={{ cursor: 'pointer' }}>
             <CardHeader>
               <IoMdSquare size={32}/>
             </CardHeader>
@@ -54,7 +53,7 @@ export default function FormatSelect ({ onReady }) {
           </Card>
         </Col>
         <Col lg="6">
-          <Card onClick={() => { onReady('ipfs-photo-2019') }} style={{cursor: 'pointer'}}>
+          <Card onClick={() => { onReady('ipfs-photo-2019') }} style={{ cursor: 'pointer' }}>
             <CardHeader>
               <IoIosImage size={32}/>
             </CardHeader>

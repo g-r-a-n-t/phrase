@@ -48,7 +48,7 @@ export default function Header () {
             <CreateDropdown />
             <NavItem>
               <NavLink tag={Link} to="/me">
-                <div className="rounded-circle" style={{overflow: 'hidden'}}>
+                <div className="rounded-circle" style={{ overflow: 'hidden' }}>
                   <IpfsImage type="image/jpeg" path={`${profile.content}/image180x180.jpg`} width="25px" height="25px"/>
                 </div>
               </NavLink>

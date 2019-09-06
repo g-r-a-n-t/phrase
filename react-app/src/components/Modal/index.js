@@ -1,10 +1,11 @@
 import React from 'react'
 import { IoIosClose } from 'react-icons/io'
+import PropTypes from 'prop-types'
 import {
   Modal, ModalBody
-} from 'reactstrap';
+} from 'reactstrap'
 
-export function SimpleModal ({ onDone, children }) {
+export function SimpleModal ({ children, onDone }) {
   const close = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={ onDone }><IoIosClose size={32}/></button>
 
   return (
@@ -14,4 +15,9 @@ export function SimpleModal ({ onDone, children }) {
       </ModalBody>
     </Modal>
   )
+}
+
+SimpleModal.propTypes = {
+  children: PropTypes.element.isRequired,
+  onDone: PropTypes.func.isRequired
 }

@@ -1,7 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { getToken } from '../../tools/tokens'
 
+// TODO: Add rounding
 export function TokenAmount ({ address, amount }) {
   const token = getToken(address)
 
@@ -13,6 +15,7 @@ export function TokenAmount ({ address, amount }) {
   )
 }
 
-function round (n) {
-  return Math.round(n * 100) / 100
+TokenAmount.propTypes = {
+  address: PropTypes.string.isRequired,
+  amount: PropTypes.object.isRequired
 }

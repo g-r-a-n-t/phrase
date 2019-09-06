@@ -10,7 +10,7 @@ import { TokenAmount } from '../Tokens'
 import FlipCard from '../FlipCard'
 import debug from '../../tools/debug'
 
-export function Sentiment ({ _key, onSelect = null, selectText}) {
+export function Sentiment ({ _key, onSelect = null, selectText }) {
   debug.componentRender('Sentiment', _key)
 
   const sentiment = useSentiment(_key)
@@ -38,5 +38,7 @@ export function Sentiment ({ _key, onSelect = null, selectText}) {
 }
 
 Sentiment.propTypes = {
-  _key: PropTypes.string.isRequired
+  _key: PropTypes.string.isRequired,
+  onSelect: PropTypes.func,
+  selectText: PropTypes.string
 }

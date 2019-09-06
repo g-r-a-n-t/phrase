@@ -22,7 +22,7 @@ export default function CreatePhrase () {
   const [path, setPath] = useState(null)
   const [receipt, setReceipt] = useState(null)
 
-  switch(status) {
+  switch (status) {
     case 'SELECTING_FORMAT':
       return (
         <FormatSelect onReady={(_format) => {
@@ -41,8 +41,8 @@ export default function CreatePhrase () {
               }}/>
             </Thin>
           )
-          default:
-            return <p>something went wrong</p>
+        default:
+          return <p>something went wrong</p>
       }
     case 'WAITING_TO_UPLOAD':
       return (
@@ -67,6 +67,7 @@ export default function CreatePhrase () {
         />
       )
     default:
+      console.log('receipt', receipt)
       return <p>Phrase created!</p>
   }
 }

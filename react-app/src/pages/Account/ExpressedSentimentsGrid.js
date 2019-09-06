@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { IoMdHand } from 'react-icons/io'
+import PropTypes from 'prop-types'
 import {
   Spinner
 } from 'reactstrap'
-
 
 import { useExpressedSentiments } from '../../hooks/useEntity'
 import { Sentiment } from '../../components/Sentiment'
@@ -47,4 +47,8 @@ export function ExpressedSentimentsGrid ({ keys }) {
       }
     </div>
   )
+}
+
+ExpressedSentimentsGrid.propTypes = {
+  keys: PropTypes.array.isRequired
 }

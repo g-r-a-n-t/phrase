@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { IoIosAdd } from 'react-icons/io'
+import PropTypes from 'prop-types'
 import {
   Spinner
-} from 'reactstrap';
+} from 'reactstrap'
 
 import { useCreatedSentiments } from '../../hooks/useEvents'
 import { useExpressedSentimentPublisher } from '../../hooks/usePublisher'
@@ -22,18 +23,21 @@ export default function ExpressSentimentModal ({ phraseKey, onDone }) {
 
   return (
     <SimpleModal onDone={ onDone }>
-      { sentimentKey == null ?
-        <ExpressSentimentGrid
+      { sentimentKey == null
+        ? <ExpressSentimentGrid
           keys={sentimentKeys}
           onSelect={(key) => { setSentimentKey(key) }}
         />
-      :
-        <ExpressedSentimentPublisher phraseKey={ phraseKey } sentimentKey={ sentimentKey } />
+        : <ExpressedSentimentPublisher phraseKey={ phraseKey } sentimentKey={ sentimentKey } />
       }
     </SimpleModal>
   )
 }
 
+ExpressSentimentModal.propTypes = {
+  phraseKey: PropTypes.string.isRequired,
+  onDone: PropTypes.func.isRequired
+}
 
 function ExpressedSentimentPublisher ({ phraseKey, sentimentKey }) {
   debug.componentRender('ExpressedSentimentPublisher', phraseKey, sentimentKey)
@@ -43,6 +47,11 @@ function ExpressedSentimentPublisher ({ phraseKey, sentimentKey }) {
   if (receipt == null) return <Spinner type="grow" color="secondary" />
 
   return <div>Sentiment expressed!</div>
+}
+
+ExpressedSentimentPublisher.propTypes = {
+  phraseKey: PropTypes.string.isRequired,
+  sentimentKey: PropTypes.string.isRequired
 }
 
 function ExpressSentimentGrid ({ keys, onSelect }) {
@@ -62,4 +71,9 @@ function ExpressSentimentGrid ({ keys, onSelect }) {
       { elements }
     </div>
   )
+}
+
+ExpressSentimentGrid.propTypes = {
+  keys: PropTypes.array.isRequired,
+  onSelect: PropTypes.func.isRequired
 }

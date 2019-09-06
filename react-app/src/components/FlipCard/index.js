@@ -1,5 +1,6 @@
-import React , { useState } from 'react'
+import React, { useState } from 'react'
 import ReactCardFlip from 'react-card-flip'
+import PropTypes from 'prop-types'
 
 export default function FlipCard ({ front, back, width, height }) {
   const [flipped, setFlipped] = useState(false)
@@ -22,4 +23,11 @@ export default function FlipCard ({ front, back, width, height }) {
       </ReactCardFlip>
     </div>
   )
+}
+
+FlipCard.propTypes = {
+  front: PropTypes.element.isRequired,
+  back: PropTypes.element.isRequired,
+  width: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired
 }

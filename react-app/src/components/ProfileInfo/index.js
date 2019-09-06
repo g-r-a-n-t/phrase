@@ -21,7 +21,7 @@ export function ProfileInfo ({ account }) {
   // standard format
   return (
     <Wrapper>
-      <div className="border rounded" style={{overflow: 'hidden'}}>
+      <div className="border rounded" style={{ overflow: 'hidden' }}>
         <IpfsImage width="180px" height="180px" path={`${profile.content}/image180x180.jpg`} type="image/jpeg" />
       </div>
       <br/>

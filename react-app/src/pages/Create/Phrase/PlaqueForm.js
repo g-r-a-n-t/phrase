@@ -51,7 +51,7 @@ export default function PlaqueForm ({ onReady }) {
       <FormGroup>
         <ImageSelect onReady={ image => { setImage(image) } } />
         <FormText color="muted">
-          This image will be displayed at 400 by 400px.
+          Image will be resized to 400x400px.
         </FormText>
       </FormGroup>
       <Button onClick={ () => { onReady(toDir()) } }>Create</Button>

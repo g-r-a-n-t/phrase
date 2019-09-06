@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import { IoIosHeart, IoMdHand } from 'react-icons/io'
 import {
   Row, Col,
-  Spinner,
-  Badge
+  Spinner
 } from 'reactstrap'
 
 import { useProfile } from '../../hooks/useEntity'
@@ -31,10 +30,9 @@ export default function Account ({ match }) {
       </Col>
       <Col>
         <div className="border border-light rounded">
-          { profile.expressedSentiments.length == 0 ?
-            <Subtle>No sentiments have been expressed</Subtle>
-          :
-            <>
+          { profile.expressedSentiments.length === 0
+            ? <Subtle>No sentiments have been expressed</Subtle>
+            : <>
               <Subtle>
                 -------- <IoIosHeart size={25}/> --------
               </Subtle>
@@ -46,10 +44,9 @@ export default function Account ({ match }) {
         </div>
         <br />
         <div className="border border-light rounded">
-          { profile.phrases.length == 0 ?
-            <Subtle>No sentiments have been expressed</Subtle>
-          :
-            <>
+          { profile.phrases.length === 0
+            ? <Subtle>No sentiments have been expressed</Subtle>
+            : <>
               <Subtle>
                 -------- <IoMdHand size={25}/> --------
               </Subtle>
