@@ -12,65 +12,59 @@ import {
   IoMdSquare
 } from 'react-icons/io'
 
+import { Thin, Subtle } from '../../../components/Wrappers'
+
 export default function FormatSelect ({ onReady }) {
   return (
-    <>
+    <Thin>
+      <Subtle>Select a phrase format.</Subtle>
+      <br />
       <Row>
-        <Col sm="6">
-          <Card>
+        <Col lg="6">
+          <Card onClick={() => { onReady('ipfs-plaque-2019') }} style={{cursor: 'pointer'}}>
             <CardHeader>
               <IoMdVideocam size={32}/>
             </CardHeader>
             <CardBody>
               <CardTitle><h5>Video</h5></CardTitle>
-              <CardText>
-                Consists of a video, name, and description.
-              </CardText>
-              <Button onClick={() => { onReady('ipfs-plaque-2019') }}>Create</Button>
             </CardBody>
           </Card>
         </Col>
-        <Col sm="6">
-          <Card>
+        <Col lg="6">
+          <Card onClick={() => { onReady('ipfs-album-2019') }} style={{cursor: 'pointer'}}>
             <CardHeader>
               <IoIosMusicalNotes size={32}/>
             </CardHeader>
             <CardBody>
               <CardTitle><h5>Album</h5></CardTitle>
-              <CardText>Consists of music.</CardText>
-              <Button onClick={() => { onReady('ipfs-photo-2019') }}>Create</Button>
             </CardBody>
           </Card>
         </Col>
       </Row>
       <br/>
       <Row>
-        <Col sm="6">
-          <Card>
+        <Col lg="6">
+          <Card onClick={() => { onReady('ipfs-plaque-2019') }} style={{cursor: 'pointer'}}>
             <CardHeader>
               <IoMdSquare size={32}/>
             </CardHeader>
             <CardBody>
               <CardTitle><h5>Plaque</h5></CardTitle>
-              <CardText>Consists of an image, name, and description.</CardText>
-              <Button onClick={() => { onReady('ipfs-plaque-2019') }}>Create</Button>
             </CardBody>
           </Card>
         </Col>
-        <Col sm="6">
-          <Card>
+        <Col lg="6">
+          <Card onClick={() => { onReady('ipfs-photo-2019') }} style={{cursor: 'pointer'}}>
             <CardHeader>
               <IoIosImage size={32}/>
             </CardHeader>
             <CardBody>
               <CardTitle><h5>Photo</h5></CardTitle>
-              <CardText>Consists of a variable size image, name, and description.</CardText>
-              <Button onClick={() => { onReady('ipfs-photo-2019') }}>Create</Button>
             </CardBody>
           </Card>
         </Col>
       </Row>
-    </>
+    </Thin>
   )
 }
 

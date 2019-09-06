@@ -19,7 +19,7 @@ export default function App () {
         <Header />
         <br/>
         <Row>
-          <Col xs={{size: 8, offset: 2}}>
+          <Col lg={{size: 10, offset: 1}}>
             <Switch>
               <Route exact path="/" component={About} />
               <Route exact path="/about" component={About} />

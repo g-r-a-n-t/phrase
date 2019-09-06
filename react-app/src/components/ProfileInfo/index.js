@@ -21,8 +21,10 @@ export function ProfileInfo ({ account }) {
   // standard format
   return (
     <Wrapper>
-      <IpfsImage width="180px" height="180px" path={`${profile.content}/image180x180.jpg`} type="image/jpeg" />
-      <br/><br/>
+      <div className="border rounded" style={{overflow: 'hidden'}}>
+        <IpfsImage width="180px" height="180px" path={`${profile.content}/image180x180.jpg`} type="image/jpeg" />
+      </div>
+      <br/>
       <h5><IpfsText path={`${profile.content}/name.txt`} /></h5>
       <IpfsText path={`${profile.content}/bio.txt`} />
     </Wrapper>

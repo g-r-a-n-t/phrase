@@ -7,7 +7,6 @@ import {
 
 import { useCurrentProfile } from '../../hooks/useEntity'
 import { IpfsImage } from '../../components/IpfsMedia'
-import { Rounded } from '../../styles'
 
 function CreateDropdown () {
   return (
@@ -49,9 +48,9 @@ export default function Header () {
             <CreateDropdown />
             <NavItem>
               <NavLink tag={Link} to="/me">
-                <Rounded>
+                <div className="rounded-circle" style={{overflow: 'hidden'}}>
                   <IpfsImage type="image/jpeg" path={`${profile.content}/image180x180.jpg`} width="25px" height="25px"/>
-                </Rounded>
+                </div>
               </NavLink>
             </NavItem>
           </>

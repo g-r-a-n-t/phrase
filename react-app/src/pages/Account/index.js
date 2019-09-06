@@ -1,13 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { IoIosHeart, IoMdHand } from 'react-icons/io'
 import {
   Row, Col,
-  Spinner
+  Spinner,
+  Badge
 } from 'reactstrap'
 
 import { useProfile } from '../../hooks/useEntity'
-import { PhraseList } from '../../components/Phrase'
+import { PhraseGrid } from '../../components/Phrase'
 import { ProfileInfo } from '../../components/ProfileInfo'
+import { Subtle } from '../../components/Wrappers'
 import debug from '../../tools/debug'
 
 import { ExpressedSentimentsGrid } from './ExpressedSentimentsGrid'
@@ -28,11 +31,33 @@ export default function Account ({ match }) {
       </Col>
       <Col>
         <div className="border border-light rounded">
-          <ExpressedSentimentsGrid keys={profile.expressedSentiments} />
+          { profile.expressedSentiments.length == 0 ?
+            <Subtle>No sentiments have been expressed</Subtle>
+          :
+            <>
+              <Subtle>
+                -------- <IoIosHeart size={25}/> --------
+              </Subtle>
+              <div className="d-flex justify-content-around">
+                <ExpressedSentimentsGrid keys={profile.expressedSentiments} />
+              </div>
+            </>
+          }
         </div>
         <br />
         <div className="border border-light rounded">
-          <PhraseList keys={profile.phrases} />
+          { profile.phrases.length == 0 ?
+            <Subtle>No sentiments have been expressed</Subtle>
+          :
+            <>
+              <Subtle>
+                -------- <IoMdHand size={25}/> --------
+              </Subtle>
+              <div className="d-flex justify-content-around">
+                <PhraseGrid keys={profile.phrases} />
+              </div>
+            </>
+          }
         </div>
       </Col>
     </Row>

@@ -1,15 +1,16 @@
 import React from 'react'
 
+import { Thin } from '../components/Wrappers'
+
 export default function About () {
   return (
-    <div>
+    <Thin>
       <h2>About</h2>
       <br/>
       <p>
         Phrase is a content publishing platform powered by value-backed sentiment
-        expression. It's built on the <a href="https://en.wikipedia.org/wiki/Ethereum">Ethereum</a> blockchain.
-        Its purpose is to create an environment where public initiatives can
-        source subsidy from many people based on their sentiment.
+        expression. Its purpose is to create an environment where public initiatives
+        can source subsidy from many people based on their sentiment.
       </p>
       <p>
         In the context of Phrase, <i>phrases</i> represent things that a person
@@ -25,6 +26,6 @@ export default function About () {
         of the phrase. The sentiments a person expresses are then displayed on their
         profile for all to see.
       </p>
-    </div>
+    </Thin>
   )
 }

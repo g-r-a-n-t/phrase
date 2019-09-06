@@ -3,13 +3,11 @@ import {
   Row, Col
 } from 'reactstrap'
 
-export function Nothing ({ children }) {
+export function Subtle ({ children }) {
   return (
-    <h5 className="text-secondary text-center">
-      <br />
-        { children }
-      <br /><br />
-    </h5>
+    <div className="text-secondary text-center" style={{margin: '10px'}}>
+      { children }
+    </div>
   )
 }
 

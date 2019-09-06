@@ -51,22 +51,26 @@ Phrase.propTypes = {
   _key: PropTypes.string.isRequired
 }
 
-export function PhraseList ({ keys }) {
+export function PhraseGrid ({ keys }) {
   debug.componentRender('PhraseGrid', keys)
 
-  if (keys.length === 0) return <Nothing>No phrases have been created.</Nothing>
-
-  const elements = keys.map((key) => {
-    return <Phrase _key={key} />
+  const elements = keys.reverse().map((key) => {
+    return (
+      <div key={`phrase-${key}`} style={{ margin: '5px' }}>
+        <Phrase _key={key} />
+      </div>
+    )
   })
 
+  // Max-width hack to keep items center
+  // TODO: try to improve this
   return (
-    <div className="d-flex flex-wrap justify-content-left">
+    <div className="d-flex flex-wrap justify-content-left" style={{maxWidth: '1230px'}}>
       { elements }
     </div>
   )
 }
 
-PhraseList.propTypes = {
+PhraseGrid.propTypes = {
   keys: PropTypes.array
 }
