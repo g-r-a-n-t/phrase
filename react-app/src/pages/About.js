@@ -8,9 +8,8 @@ export default function About () {
       <h2>About</h2>
       <br/>
       <p>
-        Phrase is a content publishing platform powered by value-backed sentiment
-        expression. Its purpose is to create an environment where public initiatives
-        can source subsidy from many people based on their sentiment.
+        Phrase is a content publishing platform that uses value-backed sentiment
+        expression as a means of support for public initiatives.
       </p>
       <p>
         In the context of Phrase, <i>phrases</i> represent things that a person
@@ -23,8 +22,8 @@ export default function About () {
         a sentiment or phrase. Each sentiment is given a fixed value by the
         creator. For someone to express sentiment towards a phrase, they must
         purchase it for the specified value, with all proceeds going to the creator
-        of the phrase. The sentiments a person expresses are then displayed on their
-        profile for all to see.
+        of the phrase. The expression of sentiment is public and used to create
+        identities for both users and phrases.
       </p>
     </Thin>
   )

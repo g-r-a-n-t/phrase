@@ -31,15 +31,32 @@ module.exports = async function(done) {
       }
     }
 
-    async function createPhrase(account, profile, phrase) {
+    async function createPhrases(account, profile, format) {
       try {
-        const phrasePath = path.join(phrasesPath, profile, phrase)
+        const profilePhrasesPath = path.join(phrasesPath, profile, format)
+        if (fs.existsSync(profilePhrasesPath)) {
+          const phrases = await fsProm.readdir(profilePhrasesPath)
+          for (let i = 0; i < phrases.length; i++) {
+            console.log(`-- ${phrases[i]} --`)
+            await createPhrase(account, profile, phrases[i], format)
+          }
+        } else {
+          console.log(`no phrases of format ${format} to create`)
+        }
+      } catch (e) {
+        console.log('something went wrong ', e)
+      }
+    }
+
+    async function createPhrase(account, profile, phrase, format) {
+      try {
+        const phrasePath = path.join(phrasesPath, profile, format, phrase)
         console.log('phrase path', phrasePath)
         shell.exec(`date > ${phrasePath}/time`)
         console.log(`adding ${phrase} to IPFS`)
         const cid = shell.exec(`jsipfs add -r -Q ${phrasePath} | tr -d "\n"`).stdout
         console.log(`\nadding ${phrase} to registry as ${account}`)
-        const receipt = await registry.createPhrase('ipfs-plaque-2019', `/ipfs/${cid}`, account, { from: account }) // TODO beneficiary should be 0
+        const receipt = await registry.createPhrase(format, `/ipfs/${cid}`, account, { from: account }) // TODO beneficiary should be 0
         console.log(`added ${phrase} to registry`)
         console.log(`registry key: ${receipt.logs[0].args.phrase}`)
       } catch (e) {
@@ -70,14 +87,8 @@ module.exports = async function(done) {
       for (let i = 0; i < profiles.length; i++) {
         console.log(`------------- ${profiles[i]} --------------`)
         await createProfile(accounts[i], profiles[i])
-        const profilePhrasesPath = path.join(phrasesPath, profiles[i])
-        if (fs.existsSync(profilePhrasesPath)) {
-          const phrases = await fsProm.readdir(profilePhrasesPath)
-          for (let j = 0; j < phrases.length; j++) {
-            console.log(`-- ${phrases[j]} --`)
-            await createPhrase(accounts[i], profiles[i], phrases[j])
-          }
-        }
+        await createPhrases(accounts[i], profiles[i], 'ipfs-plaque-2019')
+        await createPhrases(accounts[i], profiles[i], 'ipfs-album-2019')
       }
     } else {
       console.log('too many profiles.')

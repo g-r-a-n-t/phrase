@@ -5,9 +5,9 @@ import {
   Row, Col
 } from 'reactstrap'
 import {
-  IoIosImage,
-  IoMdVideocam,
-  IoIosMusicalNotes,
+  IoIosPhotos,
+  IoMdFilm,
+  IoMdDisc,
   IoMdSquare
 } from 'react-icons/io'
 
@@ -22,7 +22,7 @@ export default function FormatSelect ({ onReady }) {
         <Col lg="6">
           <Card onClick={() => { onReady('ipfs-plaque-2019') }} style={{ cursor: 'pointer' }}>
             <CardHeader>
-              <IoMdVideocam size={32}/>
+              <IoMdFilm size={32}/>
             </CardHeader>
             <CardBody>
               <CardTitle><h5>Video</h5></CardTitle>
@@ -32,7 +32,7 @@ export default function FormatSelect ({ onReady }) {
         <Col lg="6">
           <Card onClick={() => { onReady('ipfs-album-2019') }} style={{ cursor: 'pointer' }}>
             <CardHeader>
-              <IoIosMusicalNotes size={32}/>
+              <IoMdDisc size={32}/>
             </CardHeader>
             <CardBody>
               <CardTitle><h5>Album</h5></CardTitle>
@@ -55,10 +55,10 @@ export default function FormatSelect ({ onReady }) {
         <Col lg="6">
           <Card onClick={() => { onReady('ipfs-photo-2019') }} style={{ cursor: 'pointer' }}>
             <CardHeader>
-              <IoIosImage size={32}/>
+              <IoIosPhotos size={32}/>
             </CardHeader>
             <CardBody>
-              <CardTitle><h5>Photo</h5></CardTitle>
+              <CardTitle><h5>Image Collection</h5></CardTitle>
             </CardBody>
           </Card>
         </Col>

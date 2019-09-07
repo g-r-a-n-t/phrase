@@ -1,8 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {
+  IoIosPlayCircle,
+  IoIosPause
+} from 'react-icons/io'
 import { Spinner } from 'reactstrap'
 
-import { useIpfsFileBuffer, useIpfsFileUrl } from '../../hooks/useIpfs'
+import { useIpfsFileBuffer, useIpfsFileUrl, useIpfsFileList } from '../../hooks/useIpfs'
 import debug from '../../tools/debug'
 
 export function IpfsImage ({ width, height, path, type }) {
@@ -36,6 +40,44 @@ export function IpfsText ({ path }) {
 
 IpfsText.propTypes = {
   path: PropTypes.string.isRequired
+}
+
+export function IpfsTracks ({ path }) {
+  debug.componentRender('IpfsTracks', path)
+
+  const files = useIpfsFileList(path)
+
+  if (files == null) return <Spinner type="grow" color="secondary" />
+
+  const trackReg = /^\d{2} (.+)\.mp3$/
+
+  const tracks = files.filter(file => trackReg.test(file))
+
+  const elements = tracks.map(track => <IpfsTrack path={`${path}/${track}`}/>)
+
+  return (
+    <div>
+      { elements }
+    </div>
+  )
+}
+
+export function IpfsTrack ({ path }) {
+  debug.componentRender('IpfsTrack', path)
+
+  const url = useIpfsFileUrl(path, 'audio/mpeg3')
+
+  if (url == null) return <Spinner type="grow" color="secondary" />
+
+  const trackReg = /^.+\/(\d{2}) (.+)\.mp3$/
+  const number = path.match(trackReg)[1]
+  const name = path.match(trackReg)[2]
+
+  return (
+    <div className="small bg-white border" style={{padding: '3px', margin: '1px'}}>
+      <IoIosPlayCircle size={18} /> { number }. <b>{ name }</b>
+    </div>
+  )
 }
 
 function bufToString (buffer) {

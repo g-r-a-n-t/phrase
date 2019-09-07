@@ -31,7 +31,7 @@ export default function Account ({ match }) {
       <Col>
         <div className="border border-light rounded">
           { profile.expressedSentiments.length === 0
-            ? <Subtle>No sentiments have been expressed</Subtle>
+            ? <Subtle>No sentiments have been expressed.</Subtle>
             : <>
               <Subtle>
                 -------- <IoIosHeart size={25}/> --------
@@ -45,13 +45,13 @@ export default function Account ({ match }) {
         <br />
         <div className="border border-light rounded">
           { profile.phrases.length === 0
-            ? <Subtle>No sentiments have been expressed</Subtle>
+            ? <Subtle>No phrases have been created.</Subtle>
             : <>
               <Subtle>
                 -------- <IoMdHand size={25}/> --------
               </Subtle>
               <div className="d-flex justify-content-around">
-                <PhraseGrid keys={profile.phrases} />
+                <PhraseGrid keys={profile.phrases} width="1230px" />
               </div>
             </>
           }

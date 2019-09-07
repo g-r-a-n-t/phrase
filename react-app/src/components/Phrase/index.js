@@ -6,9 +6,10 @@ import {
 } from 'reactstrap'
 
 import { usePhrase } from '../../hooks/useEntity'
-import { IpfsImage, IpfsText } from '../IpfsMedia'
-import FlipCard from '../FlipCard'
+import { PlaqueFront, PlaqueBack} from './Plaque'
+import { AlbumFront, AlbumBack} from './Album'
 import ExpressSentimentModal from './ExpressSentimentModal'
+import FlipCard from '../FlipCard'
 import debug from '../../tools/debug'
 
 export function Phrase ({ _key }) {
@@ -20,20 +21,31 @@ export function Phrase ({ _key }) {
 
   if (phrase == null) return <Spinner type="grow" color="secondary" />
 
-  const front = (
-    <IpfsImage width="400px" height="400px" path={`${phrase.content}/image400x400.jpg`} type="image/jpeg" />
-  )
+  const [front, _back] = (() => {
+    switch(phrase.format) {
+      case 'ipfs-plaque-2019':
+        return [
+          <PlaqueFront _key={ _key }/>,
+          <PlaqueBack _key={ _key }/>
+        ]
+      case 'ipfs-album-2019':
+        return [
+          <AlbumFront _key={ _key }/>,
+          <AlbumBack _key={ _key }/>
+        ]
+      default:
+        return [null, null]
+    }
+  })()
+
 
   const back = (
     <>
-      <div style={{ margin: '8px' }}>
-        <h3 className="fluid"><IpfsText path={`${phrase.content}/name.txt`} /></h3>
-        <IpfsText path={`${phrase.content}/description.txt`} />
-        <Button className="btn-sm fixed-bottom float-right" onClick={(e) => {
-          e.stopPropagation()
-          setExpressingSentiment(true)
-        }}><IoIosHeart size={19}/></Button>
-      </div>
+      { _back }
+      <Button className="btn-sm btn-primary fixed-bottom float-right" onClick={(e) => {
+        e.stopPropagation()
+        setExpressingSentiment(true)
+      }}><IoIosHeart size={19}/></Button>
       { expressingSentiment &&
         <ExpressSentimentModal phraseKey={_key} onDone={() => {
           setExpressingSentiment(false)
@@ -42,14 +54,14 @@ export function Phrase ({ _key }) {
     </>
   )
 
-  return <FlipCard front={front} back={back} width="400px" height="400px" />
+  return <FlipCard front={ front } back={ back } width="400px" height="400px" />
 }
 
 Phrase.propTypes = {
   _key: PropTypes.string.isRequired
 }
 
-export function PhraseGrid ({ keys }) {
+export function PhraseGrid ({ keys, width }) {
   debug.componentRender('PhraseGrid', keys)
 
   const elements = keys.reverse().map((key) => {
@@ -60,10 +72,8 @@ export function PhraseGrid ({ keys }) {
     )
   })
 
-  // Max-width hack to keep items center
-  // TODO: try to improve this
   return (
-    <div className="d-flex flex-wrap justify-content-left" style={{ maxWidth: '1230px' }}>
+    <div className="d-flex flex-wrap justify-content-left" style={{width: width}}>
       { elements }
     </div>
   )

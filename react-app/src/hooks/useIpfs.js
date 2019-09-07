@@ -41,6 +41,18 @@ export function useIpfsFileUrl (path, type) {
   return url
 }
 
+export function useIpfsFileList(path) {
+  const [files, setFiles] = useState(null)
+  const ipfs = useIpfsContext()
+  const cache = useCacheContext()
+
+  useEffect(() => {
+    fetchFileList(cache, ipfs, path, setFiles)
+  }, [path, ipfs, cache])
+
+  return files
+}
+
 export function useIpfsFilesUpload (file) {
   const [path, setPath] = useState(null)
   const ipfs = useIpfsContext()
@@ -85,15 +97,33 @@ async function fetchUrl (cache, ipfs, path, type, setUrl) {
 
   if (maybeUseCache(cache, id, setUrl)) return null
 
-  debug.networkOutbound('read IPFS file buffer', path)
+  debug.networkOutbound('create IPFS file url', path)
   const buf = await ipfs.cat(path)
-  debug.networkInbound(`read IPFS file buffer for ${path}`, buf)
   const url = bufToUrl(buf, type)
+  debug.networkInbound(`created IPFS file url for ${path}`, url)
 
   cache.set(id, url)
 
   setUrl(url)
 }
+
+async function fetchFileList (cache, ipfs, path, setFiles) {
+  if (ipfs == null) return null
+
+  const id = cacheId('ipfsFileList', path)
+
+  if (maybeUseCache(cache, id, setFiles)) return null
+
+  debug.networkOutbound('read IPFS file list', path)
+  const files = await ipfs.files.ls(path)
+  const names = files.map(file => file.name)
+  debug.networkInbound(`read IPFS file list for ${path}`, names)
+
+  cache.set(id, names)
+
+  setFiles(names)
+}
+
 
 function maybeUseCache (cache, id, setValue) {
   const result = cache.get(id)

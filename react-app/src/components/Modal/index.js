@@ -9,7 +9,7 @@ export function SimpleModal ({ children, onDone }) {
   const close = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={ onDone }><IoIosClose size={32}/></button>
 
   return (
-    <Modal isOpen={true} size="lg" toggle={ onDone } external={ close }>
+    <Modal isOpen={true} size="xl" toggle={ onDone } external={ close }>
       <ModalBody>
         { children }
       </ModalBody>

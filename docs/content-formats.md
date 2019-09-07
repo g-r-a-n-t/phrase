@@ -2,45 +2,46 @@
 
 ## Profiles
 
+_ipfs-standard-2019_
+
 ```
 /name.txt
 /bio.txt
-/icon180x180.jpg
+/icon.jpg (120x120px)
 ```
-_ipfs-standard-2019_
 
 ## Phrases
 
-```
-/name.txt
-/description.txt
-/image400x400.jpg
-```
 _ipfs-plaque-2019_
 
 ```
 /name.txt
 /description.txt
-/image.jpg
+/cover.jpg (400x400px)
 ```
-_ipfs-photo-2019_
+
+_ipfs-image-2019_
 
 ```
 /name.txt
-/description.txt
-/track-names.txt
-/credits.txt
-/cover800x800.jpg
-/tracks/track1.mp4
-...
-/tracks/track10.mp4
+/image.jpg
 ```
+
 _ipfs-album-2019_
+
+```
+/name.txt
+/cover.jpg (400x400px)
+/01 Track Name.mp3
+...
+/09 Track Name.mp3
+```
 
 ## Sentiments
 
+_ipfs-standard-2019_
+
 ```
 /name.txt
-/image120x120.txt
+/image.txt (120x120px)
 ```
-_ipfs-standard-2019_
