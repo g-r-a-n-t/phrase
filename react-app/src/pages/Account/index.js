@@ -51,7 +51,7 @@ export default function Account ({ match }) {
                 -------- <IoMdHand size={25}/> --------
               </Subtle>
               <div className="d-flex justify-content-around">
-                <PhraseGrid keys={profile.phrases} width="1230px" />
+                <PhraseGrid keys={profile.phrases.slice().reverse()} width="1230px" />
               </div>
             </>
           }

@@ -8,8 +8,8 @@ export default function About () {
       <h2>About</h2>
       <br/>
       <p>
-        Phrase is a content publishing platform that uses value-backed sentiment
-        expression as a means of support for public initiatives.
+        Phrase is a content publishing and distribution platform that uses
+        value-backed sentiment as a means of support for public work.
       </p>
       <p>
         In the context of Phrase, <i>phrases</i> represent things that a person

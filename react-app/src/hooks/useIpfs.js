@@ -29,6 +29,13 @@ export function useIpfsFileBuffer (path) {
   return buf
 }
 
+export function useIpfsString (path) {
+  const buf = useIpfsFileBuffer(path)
+
+  return bufToStr(buf)
+}
+
+
 export function useIpfsFileUrl (path, type) {
   const [url, setUrl] = useState(null)
   const ipfs = useIpfsContext()
@@ -148,8 +155,22 @@ async function uploadFilesAsFolder (ipfs, files, setPath) {
 }
 
 function bufToUrl (buf, type) {
+  if (buf == null) return null
+
   const blob = new Blob([buf], { type: type })
   const urlCreator = window.URL || window.webkitURL
 
   return urlCreator.createObjectURL(blob)
+}
+
+function bufToStr (buf) {
+  if (buf == null) return null
+
+  let s = ''
+
+  buf.forEach((u) => {
+    s += String.fromCharCode(u)
+  })
+
+  return s
 }

@@ -42,7 +42,7 @@ export function Phrase ({ _key }) {
   const back = (
     <>
       { _back }
-      <Button className="btn-sm btn-primary fixed-bottom float-right" onClick={(e) => {
+      <Button className="btn-sm fixed-bottom" onClick={(e) => {
         e.stopPropagation()
         setExpressingSentiment(true)
       }}><IoIosHeart size={19}/></Button>
@@ -64,7 +64,7 @@ Phrase.propTypes = {
 export function PhraseGrid ({ keys, width }) {
   debug.componentRender('PhraseGrid', keys)
 
-  const elements = keys.reverse().map((key) => {
+  const elements = keys.map((key) => {
     return (
       <div key={`phrase-${key}`} style={{ margin: '5px' }}>
         <Phrase _key={key} />

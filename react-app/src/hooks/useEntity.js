@@ -144,6 +144,7 @@ async function fetchExpressedSentiments (cache, registry, keys, setContent) {
         if (cache.get(id) != null) {
           content[key] = cache.get(id).val
           resolve()
+          return
         }
 
         registry.expressedSentiments(key).then((response) => {

@@ -34,3 +34,17 @@ export function ProfileInfo ({ account }) {
 ProfileInfo.propTypes = {
   account: PropTypes.string.isRequired
 }
+
+export function ProfileName ({ account }) {
+  debug.componentRender('ProfileName', account)
+
+  const profile = useProfile(account)
+
+  if (profile == null) return <Spinner type="grow" color="secondary" />
+
+  return <IpfsText path={`${profile.content}/name.txt`} />
+}
+
+ProfileName.propTypes = {
+  account: PropTypes.string.isRequired
+}

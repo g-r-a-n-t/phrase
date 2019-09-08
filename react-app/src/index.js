@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import App from './pages/App'
 import connectors from './connectors.js'
@@ -24,7 +24,7 @@ function ContextProviders ({ children }) {
   return (
     <CacheContext.Provider value={Cache()}>
       <IpfsContext.Provider value={ipfs}>
-        {children}
+        { children }
       </IpfsContext.Provider>
     </CacheContext.Provider>
   )

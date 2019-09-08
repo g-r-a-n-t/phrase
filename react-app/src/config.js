@@ -13,6 +13,6 @@ export default {
   debug: {
     components: false,
     cache: true,
-    network: false
+    network: true
   }
 }
