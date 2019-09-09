@@ -9,21 +9,22 @@ export default function Footer () {
 
   if (mediaSelection == null) return null
 
+  // key is required on TrackPlayer to reinit the completion state
+  // completed state in track player is needed due to multiple time
+  // change events being called.
   const player = (()=>{
     switch(mediaSelection.type) {
       case 'track':
-        return <TrackPlayer
+        return <TrackPlayer key={`trackPlayer-${mediaSelection.content}`}
           _key={ mediaSelection._key }
           content={ mediaSelection.content }
+          onComplete={ () => setMediaSelection(mediaSelection.next) }
         />
     }
   })()
 
   return (
-    <div className="fixed-bottom bg-light border" style={{width: '100%', height: '60px'}}>
-      <button onClick={() => {
-        setMediaSelection(mediaSelection.next)
-      }}>next</button>
+    <div className="fixed-bottom bg-light border" style={{width: '100%'}}>
       { player }
     </div>
   )

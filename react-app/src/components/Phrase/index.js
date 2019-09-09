@@ -6,8 +6,8 @@ import {
 } from 'reactstrap'
 
 import { usePhrase } from '../../hooks/useEntity'
-import { PlaqueFront, PlaqueBack} from './Plaque'
-import { AlbumFront, AlbumBack} from './Album'
+import { PlaqueFront, PlaqueBack } from './Plaque'
+import { AlbumFront, AlbumBack } from './Album'
 import ExpressSentimentModal from './ExpressSentimentModal'
 import FlipCard from '../FlipCard'
 import debug from '../../tools/debug'
@@ -42,7 +42,7 @@ export function Phrase ({ _key }) {
   const back = (
     <>
       { _back }
-      <Button className="btn-sm fixed-bottom" onClick={(e) => {
+      <Button className="btn-sm bg-primary border-light fixed-bottom" onClick={(e) => {
         e.stopPropagation()
         setExpressingSentiment(true)
       }}><IoIosHeart size={19}/></Button>
@@ -82,3 +82,5 @@ export function PhraseGrid ({ keys, width }) {
 PhraseGrid.propTypes = {
   keys: PropTypes.array
 }
+
+export { AlbumThumb } from './Album'

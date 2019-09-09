@@ -26,7 +26,7 @@ export function Sentiment ({ _key, onSelect = null, selectText }) {
         <TokenAmount address={ sentiment.token } amount={ sentiment.value } />
       </div>
       { onSelect != null &&
-        <Button className="btn-sm fixed-bottom" onClick={(e) => {
+        <Button className="btn-sm bg-primary border-light fixed-bottom" onClick={(e) => {
           e.stopPropagation()
           onSelect(_key)
         }}>{ selectText }</Button>

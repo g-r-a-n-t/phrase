@@ -1,6 +1,7 @@
 import React from 'react'
-import { IoIosPlayCircle, IoIosPause } from 'react-icons/io'
+import { MdPlayCircleOutline, MdPauseCircleOutline } from 'react-icons/md'
 import {
+  Row, Col,
   ListGroup, ListGroupItem,
   Spinner
 } from 'reactstrap'
@@ -13,22 +14,30 @@ import { ProfileName } from '../../components/ProfileInfo'
 import { decomposeTrack, isTrack } from '../../tools/paths'
 import debug from '../../tools/debug'
 
-export function AlbumThumb ({ _key }) {
+export function AlbumThumb ({ _key, track = null }) {
   const phrase = usePhrase(_key)
 
   if (phrase == null) return <Spinner type="grow" color="secondary" />
 
   return (
-    <>
-      <IpfsImage
-        width="50px"
-        height="50px"
-        path={`${phrase.content}/cover.jpg`}
-        type="image/jpeg"
-      />
-      <IpfsText path={`${phrase.content}/name.txt`} />
-      <ProfileName _key={phrase.creator} />
-    </>
+    <Row>
+      <Col lg={{size: 'auto'}}>
+        <IpfsImage
+          width="50px"
+          height="50px"
+          path={`${phrase.content}/cover.jpg`}
+          type="image/jpeg"
+        />
+      </Col>
+      <Col lg={{size: 'auto'}} className="small p-2">
+        { track != null &&
+          <b>{ decomposeTrack(track).name } &middot; </b>
+        }
+        <IpfsText path={`${phrase.content}/name.txt`} />
+        <br/>
+        <ProfileName account={phrase.creator} />
+      </Col>
+    </Row>
   )
 }
 
@@ -114,7 +123,12 @@ export function Track ({ selection }) {
         setMediaSelection(selection)
       }}
     >
-      <IoIosPlayCircle size={18} /> { track.number }. <b>{ track.name }</b>
+      { mediaSelection != null && mediaSelection.content == selection.content ?
+        <MdPauseCircleOutline size={20} />
+      :
+        <MdPlayCircleOutline size={20} />
+      }
+      &nbsp; { track.number }. <b>{ track.name }</b>
     </div>
   )
 }

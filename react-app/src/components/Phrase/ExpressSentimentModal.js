@@ -67,7 +67,7 @@ function ExpressSentimentGrid ({ keys, onSelect }) {
   })
 
   return (
-    <div className="d-flex flex-wrap justify-content-left">
+    <div className="d-flex flex-wrap justify-content-around">
       { elements }
     </div>
   )

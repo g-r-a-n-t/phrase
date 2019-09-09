@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import { Spinner } from 'reactstrap'
 
 import { useProfile } from '../../hooks/useEntity'
@@ -42,7 +43,11 @@ export function ProfileName ({ account }) {
 
   if (profile == null) return <Spinner type="grow" color="secondary" />
 
-  return <IpfsText path={`${profile.content}/name.txt`} />
+  return (
+    <Link to={`/${account}`}>
+      <IpfsText path={`${profile.content}/name.txt`} />
+    </Link>
+  )
 }
 
 ProfileName.propTypes = {
