@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import { MediaContext } from '../contexts/media'
@@ -7,9 +7,7 @@ import Footer from '../components/Footer'
 import Account from './Account'
 import About from './About'
 import { CreatePhrase } from './Create'
-import {
-  Row, Col
-} from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 
 export default function App () {
   // TODO: App should not load without having an ipfs instance and connector

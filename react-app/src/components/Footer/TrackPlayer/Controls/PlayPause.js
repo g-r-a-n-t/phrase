@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { withMediaProps } from 'react-media-player'
 import { MdPlayCircleOutline, MdPauseCircleOutline, MdFileDownload } from 'react-icons/md'
 
@@ -29,6 +30,10 @@ function PlayPause ({ media: { play, pause, isPlaying } }) {
         size={32}
       />
   }
+}
+
+PlayPause.propTypes = {
+  media: PropTypes.object.isRequired
 }
 
 export default withMediaProps(PlayPause)

@@ -1,12 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { withMediaProps } from 'react-media-player'
 
-function Time ({ media }) {
+function Time ({ media: { currentTime, duration } }) {
   return (
     <div className="small">
-      { `${secToMin(media.currentTime)} / ${secToMin(media.duration)}` }
+      { `${secToMin(currentTime)} / ${secToMin(duration)}` }
     </div>
   )
+}
+
+Time.propTypes = {
+  media: PropTypes.object.isRequired
 }
 
 function secToMin (_s) {

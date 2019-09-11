@@ -1,11 +1,10 @@
 import React from 'react'
 
 import { useMediaContext } from '../../contexts/media'
-import { IpfsImage } from '../../components/IpfsMedia'
 import TrackPlayer from './TrackPlayer'
 
 export default function Footer () {
-  const [media, _] = useMediaContext()
+  const [media] = useMediaContext()
 
   if (media == null) return null
 
@@ -13,6 +12,8 @@ export default function Footer () {
     switch (media.selection.type) {
       case 'track':
         return <TrackPlayer />
+      default:
+        return null
     }
   })()
 

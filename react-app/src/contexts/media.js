@@ -1,7 +1,5 @@
 import { createContext, useContext } from 'react'
 
-import debug from '../tools/debug'
-
 export const MediaContext = createContext()
 
 export function useMediaContext () {
@@ -39,6 +37,7 @@ export function TrackSelection (_key, content) {
   }
 }
 
+// Creates a doubly linked list with all selections.
 export function linkSelections (selections) {
   for (let i = 0; i < selections.length; i++) {
     if (i !== 0) selections[i].prev = selections[i - 1]

@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { IoIosHeart } from 'react-icons/io'
-import {
-  Spinner, Button
-} from 'reactstrap'
+import { Spinner, Button } from 'reactstrap'
 
 import { usePhrase } from '../../hooks/useEntity'
 import { PlaqueFront, PlaqueBack } from './Plaque'
@@ -25,13 +23,13 @@ export function Phrase ({ _key }) {
     switch (phrase.format) {
       case 'ipfs-plaque-2019':
         return [
-          <PlaqueFront _key={ _key }/>,
-          <PlaqueBack _key={ _key }/>
+          <PlaqueFront key={ `plaqueFront-${_key}` } _key={ _key }/>,
+          <PlaqueBack key={ `plaqueBack-${_key}` } _key={ _key }/>
         ]
       case 'ipfs-album-2019':
         return [
-          <AlbumFront _key={ _key }/>,
-          <AlbumBack _key={ _key }/>
+          <AlbumFront key={ `albumFront-${_key}` } _key={ _key }/>,
+          <AlbumBack key={ `albumBack-${_key}` } _key={ _key }/>
         ]
       default:
         return [null, null]
@@ -79,5 +77,6 @@ export function PhraseGrid ({ keys, width }) {
 }
 
 PhraseGrid.propTypes = {
-  keys: PropTypes.array
+  keys: PropTypes.array,
+  width: PropTypes.number
 }

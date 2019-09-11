@@ -1,19 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Media, Player, controls } from 'react-media-player'
-import {
-  Row, Col,
-  Spinner
-} from 'reactstrap'
+import { Row, Col, Spinner } from 'reactstrap'
 
 import { useIpfsFileUrl } from '../../../hooks/useIpfs'
 import { usePhrase } from '../../../hooks/useEntity'
-import { useMediaContext, PlayStatus, next, playing, paused, loading } from '../../../contexts/media'
+import { useMediaContext, PlayStatus, next, playing } from '../../../contexts/media'
 import { IpfsImage, IpfsText } from '../../../components/IpfsMedia'
 import { ProfileName } from '../../../components/ProfileInfo'
 import { decomposeTrack } from '../../../tools/paths'
 import { PlayPause, MuteUnmute, Time, Next, Prev, Strategy } from './Controls'
 
-const { SeekBar, Duration, Volume } = controls
+const { SeekBar, Volume } = controls
 
 export default function TrackPlayer () {
   const [media, setMedia] = useMediaContext()
@@ -21,8 +19,6 @@ export default function TrackPlayer () {
   const audio = useIpfsFileUrl(media.selection.content, 'audio/mpeg3')
 
   if (phrase == null) return <Spinner type="grow" color="secondary" />
-
-  const track = decomposeTrack(media.selection.content)
 
   return (
     <Media>
@@ -34,7 +30,7 @@ export default function TrackPlayer () {
             onTimeUpdate={(e) => {
               // Multiple calls are made to onTimeUpdate where e.currentTime == e.duration
               // There may be issues here because of this.
-              if (e.currentTime == e.duration && media.status == PlayStatus.PLAYING) {
+              if (e.currentTime === e.duration && media.status === PlayStatus.PLAYING) {
                 setMedia(next(media))
               }
             }}
@@ -92,4 +88,9 @@ function AlbumThumb ({ _key, content }) {
       </Col>
     </Row>
   )
+}
+
+AlbumThumb.propTypes = {
+  _key: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired
 }

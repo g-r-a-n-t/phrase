@@ -1,13 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { MdPlayCircleOutline, MdPauseCircleOutline, MdFileDownload } from 'react-icons/md'
-import {
-  Row, Col,
-  ListGroup, ListGroupItem,
-  Spinner
-} from 'reactstrap'
+import { Spinner } from 'reactstrap'
 
 import { usePhrase } from '../../hooks/useEntity'
-import { useIpfsFileList, useIpfsFileUrl } from '../../hooks/useIpfs'
+import { useIpfsFileList } from '../../hooks/useIpfs'
 import { useMediaContext, TrackSelection, PlayStatus, Media, linkSelections, paused, playing } from '../../contexts/media'
 import { IpfsImage, IpfsText } from '../IpfsMedia'
 import { ProfileName } from '../../components/ProfileInfo'
@@ -27,6 +24,10 @@ export function AlbumFront ({ _key }) {
       type="image/jpeg"
     />
   )
+}
+
+AlbumFront.propTypes = {
+  _key: PropTypes.string.isRequired
 }
 
 export function AlbumBack ({ _key }) {
@@ -50,6 +51,10 @@ export function AlbumBack ({ _key }) {
       </div>
     </div>
   )
+}
+
+AlbumBack.propTypes = {
+  _key: PropTypes.string.isRequired
 }
 
 export function Tracks ({ _key, content }) {
@@ -80,6 +85,11 @@ export function Tracks ({ _key, content }) {
   )
 }
 
+Tracks.propTypes = {
+  _key: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired
+}
+
 // TODO: clean this up
 export function Track ({ selection }) {
   debug.componentRender('IpfsTrack', selection)
@@ -88,7 +98,7 @@ export function Track ({ selection }) {
 
   const track = decomposeTrack(selection.content)
 
-  if (media == null || media.selection.content != selection.content) {
+  if (media == null || media.selection.content !== selection.content) {
     return (
       <div
         className="small bg-white border"
@@ -147,4 +157,8 @@ export function Track ({ selection }) {
         </div>
       )
   }
+}
+
+Track.propTypes = {
+  selection: PropTypes.object.isRequired
 }

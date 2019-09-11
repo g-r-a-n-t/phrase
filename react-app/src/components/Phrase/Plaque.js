@@ -1,7 +1,6 @@
 import React from 'react'
-import {
-  Spinner
-} from 'reactstrap'
+import PropTypes from 'prop-types'
+import { Spinner } from 'reactstrap'
 
 import { usePhrase } from '../../hooks/useEntity'
 import { IpfsImage, IpfsText } from '../IpfsMedia'
@@ -21,6 +20,10 @@ export function PlaqueFront ({ _key }) {
   )
 }
 
+PlaqueFront.propTypes = {
+  _key: PropTypes.string.isRequired
+}
+
 export function PlaqueBack ({ _key }) {
   const phrase = usePhrase(_key)
 
@@ -34,4 +37,8 @@ export function PlaqueBack ({ _key }) {
       <IpfsText path={`${phrase.content}/description.txt`} />
     </div>
   )
+}
+
+PlaqueBack.propTypes = {
+  _key: PropTypes.string.isRequired
 }
