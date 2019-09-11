@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  Spinner
-} from 'reactstrap'
+import { Spinner } from 'reactstrap'
 
-import { useIpfsFilesUpload } from '../../hooks/useIpfs'
+import { useIpfsFilesUpload } from 'hooks/useIpfs'
 
 export default function IpfsUploader ({ files, onComplete }) {
   const path = useIpfsFilesUpload(files)

@@ -6,11 +6,11 @@ import {
   Spinner
 } from 'reactstrap'
 
-import { useProfile } from '../../hooks/useEntity'
-import { PhraseGrid } from '../../components/Phrase'
-import { ProfileInfo } from '../../components/ProfileInfo'
-import { Subtle } from '../../components/Wrappers'
-import debug from '../../tools/debug'
+import { useProfile } from 'hooks/useEntity'
+import { PhraseGrid } from 'components/Phrase'
+import { ProfileInfo } from 'components/ProfileInfo'
+import { Subtle } from 'components/Wrappers'
+import debug from 'tools/debug'
 
 import { ExpressedSentimentsGrid } from './ExpressedSentimentsGrid'
 

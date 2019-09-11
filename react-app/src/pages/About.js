@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Thin } from '../components/Wrappers'
+import { Thin } from 'components/Wrappers'
 
 export default function About () {
   return (

@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import { IoIosAdd } from 'react-icons/io'
 import PropTypes from 'prop-types'
-import {
-  Spinner
-} from 'reactstrap'
+import { Spinner } from 'reactstrap'
 
-import { useCreatedSentiments } from '../../hooks/useEvents'
-import { useExpressedSentimentPublisher } from '../../hooks/usePublisher'
-import { Sentiment } from '../Sentiment'
-import { SimpleModal } from '../Modal'
-import debug from '../../tools/debug'
+import { useCreatedSentiments } from 'hooks/useEvents'
+import { useExpressedSentimentPublisher } from 'hooks/usePublisher'
+import { Sentiment } from 'components/Sentiment'
+import { SimpleModal } from 'components/Modal'
+import debug from 'tools/debug'
 
 export default function ExpressSentimentModal ({ phraseKey, onDone }) {
   debug.componentRender('ExpressSentimentModal', phraseKey, onDone)

@@ -8,7 +8,7 @@ import {
   repeatOne,
   exhaust
 }
-  from '../../../../contexts/media'
+  from 'contexts/media'
 
 // TODO fix repleat one
 export default function Strategy () {

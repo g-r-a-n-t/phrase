@@ -5,12 +5,12 @@ import {
   Spinner
 } from 'reactstrap'
 
-import { useExpressedSentiments } from '../../hooks/useEntity'
-import { Sentiment } from '../../components/Sentiment'
-import { PhraseGrid } from '../../components/Phrase'
-import { SimpleModal } from '../../components/Modal'
-import { sentimentToPhrasesList, sentimentToPhrasesMap } from '../../tools/transformers'
-import debug from '../../tools/debug'
+import { useExpressedSentiments } from 'hooks/useEntity'
+import { Sentiment } from 'components/Sentiment'
+import { PhraseGrid } from 'components/Phrase'
+import { SimpleModal } from 'components/Modal'
+import { sentimentToPhrasesList, sentimentToPhrasesMap } from 'tools/transformers'
+import debug from 'tools/debug'
 
 export function ExpressedSentimentsGrid ({ keys }) {
   debug.componentRender('ExpressedSentimentsGrid', keys)

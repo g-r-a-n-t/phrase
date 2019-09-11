@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Spinner } from 'reactstrap'
 
-import { useIpfsString, useIpfsFileUrl } from '../../hooks/useIpfs'
-import debug from '../../tools/debug'
+import { useIpfsString, useIpfsFileUrl } from 'hooks/useIpfs'
+import debug from 'tools/debug'
 
 export function IpfsImage ({ width, height, path, type }) {
   debug.componentRender('IpfsImage', path, type)

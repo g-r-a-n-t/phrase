@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useMediaContext } from '../../contexts/media'
+import { useMediaContext } from 'contexts/media'
 import TrackPlayer from './TrackPlayer'
 
 export default function Footer () {

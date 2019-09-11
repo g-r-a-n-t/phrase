@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { withMediaProps } from 'react-media-player'
 import { MdPlayCircleOutline, MdPauseCircleOutline, MdFileDownload } from 'react-icons/md'
 
-import { useMediaContext, PlayStatus, playing, paused } from '../../../../contexts/media'
+import { useMediaContext, PlayStatus, playing, paused } from 'contexts/media'
 
 function PlayPause ({ media: { play, pause, isPlaying } }) {
   const [media, setMedia] = useMediaContext()

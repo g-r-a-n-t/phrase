@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import { MediaContext } from '../contexts/media'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import { MediaContext } from 'contexts/media'
+import Header from 'components/Header'
+import Footer from 'components/Footer'
 import Account from './Account'
 import About from './About'
 import { CreatePhrase } from './Create'

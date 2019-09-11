@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useWeb3Context } from 'web3-react'
 import { ethers } from 'ethers'
 
-import config from '../config'
+import config from 'config'
 
 export function useRegistryContract () {
   return useContract(config.registry.address, config.registry.abi)

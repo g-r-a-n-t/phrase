@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import ImageUploader from 'react-images-upload'
 import PropTypes from 'prop-types'
+import { IoIosCrop } from 'react-icons/io'
+import { Button } from 'reactstrap'
 import ReactCrop from 'react-image-crop'
 import 'react-image-crop/dist/ReactCrop.css'
-import { IoIosCrop } from 'react-icons/io'
-import {
-  Button
-} from 'reactstrap'
 
 // TODO: add dimensions parameter and resize to them after crop
 // TODO: make sure it can take in other image formats and convert the tm jpg

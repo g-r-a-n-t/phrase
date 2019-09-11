@@ -4,8 +4,8 @@ import { ethers } from 'ethers'
 import PlaqueForm from './PlaqueForm'
 import Publisher from './Publisher'
 import FormatSelect from './FormatSelect'
-import IpfsUploader from '../IpfsUploader'
-import { Thin } from '../../../components/Wrappers'
+import IpfsUploader from 'components/IpfsUploader'
+import { Thin } from 'components/Wrappers'
 
 // TODO: might be worth taking a look at other reduction patterns.
 export default function CreatePhrase () {

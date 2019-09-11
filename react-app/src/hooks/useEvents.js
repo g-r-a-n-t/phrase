@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 
-import config from '../config'
+import config from 'config'
 
 const MIN_BLOCK = 0
 const PROFILE_CREATED = ethers.utils.id('ProfileCreated(address)')

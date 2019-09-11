@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
 
-import debug from '../tools/debug'
+import debug from 'tools/debug'
 
 // # Usage
 //

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { Media, Player, controls } from 'react-media-player'
 import { Row, Col, Spinner } from 'reactstrap'
 
-import { useIpfsFileUrl } from '../../../hooks/useIpfs'
-import { usePhrase } from '../../../hooks/useEntity'
-import { useMediaContext, PlayStatus, next, playing } from '../../../contexts/media'
-import { IpfsImage, IpfsText } from '../../../components/IpfsMedia'
-import { ProfileName } from '../../../components/ProfileInfo'
-import { decomposeTrack } from '../../../tools/paths'
+import { useIpfsFileUrl } from 'hooks/useIpfs'
+import { usePhrase } from 'hooks/useEntity'
+import { useMediaContext, PlayStatus, next, playing } from 'contexts/media'
+import { IpfsImage, IpfsText } from 'components/IpfsMedia'
+import { ProfileName } from 'components/ProfileInfo'
+import { decomposeTrack } from 'tools/paths'
 import { PlayPause, MuteUnmute, Time, Next, Prev, Strategy } from './Controls'
 
 const { SeekBar, Volume } = controls
@@ -55,7 +55,7 @@ export default function TrackPlayer () {
           </Col>
           <Col className="d-flex justify-content-end">
             <div className="d-flex p-2">
-              <MuteUnmute />
+              <MuteUnmute />&nbsp;
               <Volume style={{ width: '50px' }} />
             </div>
           </Col>

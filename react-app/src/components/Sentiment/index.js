@@ -1,14 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  Spinner, Button
-} from 'reactstrap'
+import { Spinner, Button } from 'reactstrap'
 
-import { useSentiment } from '../../hooks/useEntity'
-import { IpfsImage, IpfsText } from '../IpfsMedia'
-import { TokenAmount } from '../Tokens'
-import FlipCard from '../FlipCard'
-import debug from '../../tools/debug'
+import { useSentiment } from 'hooks/useEntity'
+import { IpfsImage, IpfsText } from 'components/IpfsMedia'
+import { TokenAmount } from 'components/Tokens'
+import FlipCard from 'components/FlipCard'
+import debug from 'tools/debug'
 
 export function Sentiment ({ _key, onSelect = null, selectText }) {
   debug.componentRender('Sentiment', _key)

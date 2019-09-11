@@ -11,7 +11,7 @@ import {
   IoMdSquare
 } from 'react-icons/io'
 
-import { Thin, Subtle } from '../../../components/Wrappers'
+import { Thin, Subtle } from 'components/Wrappers'
 
 export default function FormatSelect ({ onReady }) {
   return (

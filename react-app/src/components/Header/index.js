@@ -5,8 +5,8 @@ import {
   UncontrolledDropdown, DropdownToggle, DropdownItem, DropdownMenu
 } from 'reactstrap'
 
-import { useCurrentProfile } from '../../hooks/useEntity'
-import { IpfsImage } from '../../components/IpfsMedia'
+import { useCurrentProfile } from 'hooks/useEntity'
+import { IpfsImage } from 'components/IpfsMedia'
 
 function CreateDropdown () {
   return (

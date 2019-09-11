@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useWeb3Context } from 'web3-react'
 
-import { useCacheContext, cacheId } from '../contexts/cache'
+import { useCacheContext, cacheId } from 'contexts/cache'
 import { useRegistryContract } from './useContract'
 
 const PROFILE_CACHE_LIFETIME = 60 * 10

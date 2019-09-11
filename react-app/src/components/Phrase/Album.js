@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import { MdPlayCircleOutline, MdPauseCircleOutline, MdFileDownload } from 'react-icons/md'
 import { Spinner } from 'reactstrap'
 
-import { usePhrase } from '../../hooks/useEntity'
-import { useIpfsFileList } from '../../hooks/useIpfs'
-import { useMediaContext, TrackSelection, PlayStatus, Media, linkSelections, paused, playing } from '../../contexts/media'
-import { IpfsImage, IpfsText } from '../IpfsMedia'
-import { ProfileName } from '../../components/ProfileInfo'
-import { decomposeTrack, isTrack } from '../../tools/paths'
-import debug from '../../tools/debug'
+import { usePhrase } from 'hooks/useEntity'
+import { useIpfsFileList } from 'hooks/useIpfs'
+import { useMediaContext, TrackSelection, PlayStatus, Media, linkSelections, paused, playing } from 'contexts/media'
+import { IpfsImage, IpfsText } from 'components/IpfsMedia'
+import { ProfileName } from 'components/ProfileInfo'
+import { decomposeTrack, isTrack } from 'tools/paths'
+import debug from 'tools/debug'
 
 export function AlbumFront ({ _key }) {
   const phrase = usePhrase(_key)

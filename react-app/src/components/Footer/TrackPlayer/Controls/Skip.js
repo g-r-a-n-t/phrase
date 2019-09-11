@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
 
-import { useMediaContext, next, prev } from '../../../../contexts/media'
+import { useMediaContext, next, prev } from 'contexts/media'
 
 export function Next () {
   const [media, setMedia] = useMediaContext()

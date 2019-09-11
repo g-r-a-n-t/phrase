@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Spinner } from 'reactstrap'
 
-import { usePhrase } from '../../hooks/useEntity'
-import { IpfsImage, IpfsText } from '../IpfsMedia'
+import { usePhrase } from 'hooks/useEntity'
+import { IpfsImage, IpfsText } from 'components/IpfsMedia'
 
 export function PlaqueFront ({ _key }) {
   const phrase = usePhrase(_key)

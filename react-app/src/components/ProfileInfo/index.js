@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Spinner } from 'reactstrap'
 
-import { useProfile } from '../../hooks/useEntity'
-import { IpfsImage, IpfsText } from '../../components/IpfsMedia'
-import debug from '../../tools/debug'
+import { useProfile } from 'hooks/useEntity'
+import { IpfsImage, IpfsText } from 'components/IpfsMedia'
+import debug from 'tools/debug'
 
 const Wrapper = styled.div`
   width: 180px;

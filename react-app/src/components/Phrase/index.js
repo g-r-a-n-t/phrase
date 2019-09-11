@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { IoIosHeart } from 'react-icons/io'
 import { Spinner, Button } from 'reactstrap'
 
-import { usePhrase } from '../../hooks/useEntity'
+import { usePhrase } from 'hooks/useEntity'
 import { PlaqueFront, PlaqueBack } from './Plaque'
 import { AlbumFront, AlbumBack } from './Album'
 import ExpressSentimentModal from './ExpressSentimentModal'
-import FlipCard from '../FlipCard'
-import debug from '../../tools/debug'
+import FlipCard from 'components/FlipCard'
+import debug from 'tools/debug'
 
 export function Phrase ({ _key }) {
   debug.componentRender('Phrase', _key)
@@ -77,6 +77,6 @@ export function PhraseGrid ({ keys, width }) {
 }
 
 PhraseGrid.propTypes = {
-  keys: PropTypes.array,
-  width: PropTypes.number
+  keys: PropTypes.array.isRequired,
+  width: PropTypes.string.isRequired
 }

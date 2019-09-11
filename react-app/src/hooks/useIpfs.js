@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import Ipfs from 'ipfs'
 
-import config from '../config'
-import debug from '../tools/debug'
-import { useIpfsContext } from '../contexts/ipfs'
-import { useCacheContext, cacheId } from '../contexts/cache'
+import config from 'config'
+import debug from 'tools/debug'
+import { useIpfsContext } from 'contexts/ipfs'
+import { useCacheContext, cacheId } from 'contexts/cache'
 
 // This should only be called once (when initializing the ipfs context)
 export function useIpfs () {
