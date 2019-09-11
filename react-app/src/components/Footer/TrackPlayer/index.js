@@ -10,7 +10,7 @@ import { usePhrase } from '../../../hooks/useEntity'
 import { useMediaContext, PlayStatus, next, playing, paused, loading } from '../../../contexts/media'
 import { IpfsImage, IpfsText } from '../../../components/IpfsMedia'
 import { ProfileName } from '../../../components/ProfileInfo'
-import { decomposeTrack }from '../../../tools/paths'
+import { decomposeTrack } from '../../../tools/paths'
 import { PlayPause, MuteUnmute, Time, Next, Prev, Strategy } from './Controls'
 
 const { SeekBar, Duration, Volume } = controls
@@ -26,8 +26,8 @@ export default function TrackPlayer () {
 
   return (
     <Media>
-      <div style={{margin: '10px'}}>
-        <div style={{width: '0px', height: '0px'}}>
+      <div style={{ margin: '10px' }}>
+        <div style={{ width: '0px', height: '0px' }}>
           <Player
             src={ audio }
             autoPlay={ true }
@@ -50,7 +50,7 @@ export default function TrackPlayer () {
           <Col className="d-flex justify-content-center">
             <div className="d-flex p-2">
               <Prev /> <PlayPause /> <Next />&nbsp;
-              <SeekBar style={{width: '400px'}} />&nbsp;
+              <SeekBar style={{ width: '400px' }} />&nbsp;
               <div>
                 <Time />
                 <Strategy />
@@ -60,7 +60,7 @@ export default function TrackPlayer () {
           <Col className="d-flex justify-content-end">
             <div className="d-flex p-2">
               <MuteUnmute />
-              <Volume style={{width: '50px'}} />
+              <Volume style={{ width: '50px' }} />
             </div>
           </Col>
         </Row>
@@ -76,7 +76,7 @@ function AlbumThumb ({ _key, content }) {
 
   return (
     <Row>
-      <Col lg={{size: 'auto'}}>
+      <Col lg={{ size: 'auto' }}>
         <IpfsImage
           width="50px"
           height="50px"
@@ -84,7 +84,7 @@ function AlbumThumb ({ _key, content }) {
           type="image/jpeg"
         />
       </Col>
-      <Col lg={{size: 'auto'}} className="small p-2">
+      <Col lg={{ size: 'auto' }} className="small p-2">
         <b>{ decomposeTrack(content).name } &middot; </b>
         <IpfsText path={`${phrase.content}/name.txt`} />
         <br/>

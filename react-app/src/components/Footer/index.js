@@ -10,14 +10,14 @@ export default function Footer () {
   if (media == null) return null
 
   const player = (() => {
-    switch(media.selection.type) {
+    switch (media.selection.type) {
       case 'track':
         return <TrackPlayer />
     }
   })()
 
   return (
-    <div className="fixed-bottom bg-light border" style={{width: '100%'}}>
+    <div className="fixed-bottom bg-light border" style={{ width: '100%' }}>
       { player }
     </div>
   )

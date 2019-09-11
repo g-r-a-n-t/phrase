@@ -35,7 +35,6 @@ export function useIpfsString (path) {
   return bufToStr(buf)
 }
 
-
 export function useIpfsFileUrl (path, type) {
   const [url, setUrl] = useState(null)
   const ipfs = useIpfsContext()
@@ -48,7 +47,7 @@ export function useIpfsFileUrl (path, type) {
   return url
 }
 
-export function useIpfsFileList(path) {
+export function useIpfsFileList (path) {
   const [files, setFiles] = useState(null)
   const ipfs = useIpfsContext()
   const cache = useCacheContext()
@@ -130,7 +129,6 @@ async function fetchFileList (cache, ipfs, path, setFiles) {
 
   setFiles(names)
 }
-
 
 function maybeUseCache (cache, id, setValue) {
   const result = cache.get(id)

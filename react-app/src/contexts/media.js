@@ -48,7 +48,7 @@ export function linkSelections (selections) {
 
 export function next (media) {
   const nextSelection = (() => {
-    switch(media.strategy) {
+    switch (media.strategy) {
       case PlayStrategy.REPEAT_SELECTION:
         return media.selection
       case PlayStrategy.REPEAT_SELECTIONS:
@@ -70,7 +70,7 @@ export function next (media) {
 
 export function prev (media) {
   const prevSelection = (() => {
-    switch(media.strategy) {
+    switch (media.strategy) {
       case PlayStrategy.REPEAT_SELECTION:
         return media.selection
       case PlayStrategy.REPEAT_SELECTIONS:
@@ -113,9 +113,9 @@ function setStatus (media, status) {
   }
 }
 
-export function repeatAll(media) { return setStrategy(media, PlayStrategy.REPEAT_SELECTIONS) }
-export function repeatOne(media) { return setStrategy(media, PlayStrategy.REPEAT_SELECTION) }
-export function exhaust(media) { return setStrategy(media, PlayStrategy.EXHAUST_SELECTIONS) }
+export function repeatAll (media) { return setStrategy(media, PlayStrategy.REPEAT_SELECTIONS) }
+export function repeatOne (media) { return setStrategy(media, PlayStrategy.REPEAT_SELECTION) }
+export function exhaust (media) { return setStrategy(media, PlayStrategy.EXHAUST_SELECTIONS) }
 
 function setStrategy (media, strategy) {
   return {

@@ -14,7 +14,7 @@ function PlayPause ({ media: { play, pause, isPlaying } }) {
       return <MdPauseCircleOutline
         size={32}
         onClick={ () => setMedia(paused(media)) }
-        style={{cursor: 'pointer'}}
+        style={{ cursor: 'pointer' }}
       />
     case PlayStatus.PAUSED:
       if (isPlaying) pause()
@@ -22,7 +22,7 @@ function PlayPause ({ media: { play, pause, isPlaying } }) {
       return <MdPlayCircleOutline
         size={32}
         onClick={ () => setMedia(playing(media)) }
-        style={{cursor: 'pointer'}}
+        style={{ cursor: 'pointer' }}
       />
     default:
       return <MdFileDownload

@@ -6,8 +6,9 @@ import {
   PlayStrategy,
   repeatAll,
   repeatOne,
-  exhaust }
-from '../../../../contexts/media'
+  exhaust
+}
+  from '../../../../contexts/media'
 
 // TODO fix repleat one
 export default function Strategy () {
@@ -19,21 +20,21 @@ export default function Strategy () {
         className="text-dark"
         size={16}
         onClick={() => { setMedia(exhaust(media)) }}
-        style={{cursor: 'pointer'}}
+        style={{ cursor: 'pointer' }}
       />
     case PlayStrategy.REPEAT_SELECTIONS:
       return <MdRepeat
         className="text-dark"
         size={16}
         onClick={() => { setMedia(repeatOne(media)) }}
-        style={{cursor: 'pointer'}}
+        style={{ cursor: 'pointer' }}
       />
     default: // PlayStrategy.EXHAUST_SELECTIONS
       return <MdRepeat
         className="text-secondary"
         size={16}
         onClick={() => { setMedia(repeatAll(media)) }}
-        style={{cursor: 'pointer'}}
+        style={{ cursor: 'pointer' }}
       />
   }
 }

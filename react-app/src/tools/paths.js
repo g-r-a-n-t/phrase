@@ -2,7 +2,7 @@
 const TRACK = /^(.+)\/(\d{2}) (.+)\.mp3$/
 
 export function isTrack (path) {
- return TRACK.test(path)
+  return TRACK.test(path)
 }
 
 export function decomposeTrack (path) {

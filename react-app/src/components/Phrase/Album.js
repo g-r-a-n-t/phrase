@@ -39,7 +39,7 @@ export function AlbumBack ({ _key }) {
       <div>
         <IpfsText path={`${phrase.content}/name.txt`} />
       </div>
-      <div className="small" style={{marginTop: '-3px', marginBottom: '5px'}}>
+      <div className="small" style={{ marginTop: '-3px', marginBottom: '5px' }}>
         <ProfileName account={ phrase.creator } />
       </div>
       <div>
@@ -88,12 +88,11 @@ export function Track ({ selection }) {
 
   const track = decomposeTrack(selection.content)
 
-
   if (media == null || media.selection.content != selection.content) {
     return (
       <div
         className="small bg-white border"
-        style={{padding: '1px', marginBottom: '1px'}}
+        style={{ padding: '1px', marginBottom: '1px' }}
         onClick={e => {
           e.stopPropagation()
           setMedia(Media(selection))
@@ -110,7 +109,7 @@ export function Track ({ selection }) {
       return (
         <div
           className="small bg-light border"
-          style={{padding: '1px', marginBottom: '1px'}}
+          style={{ padding: '1px', marginBottom: '1px' }}
           onClick={e => {
             e.stopPropagation()
             setMedia(paused(media))
@@ -124,7 +123,7 @@ export function Track ({ selection }) {
       return (
         <div
           className="small bg-light border"
-          style={{padding: '1px', marginBottom: '1px'}}
+          style={{ padding: '1px', marginBottom: '1px' }}
           onClick={e => {
             e.stopPropagation()
             setMedia(playing(media))
@@ -138,7 +137,7 @@ export function Track ({ selection }) {
       return (
         <div
           className="small bg-light border"
-          style={{padding: '1px', marginBottom: '1px'}}
+          style={{ padding: '1px', marginBottom: '1px' }}
           onClick={e => {
             e.stopPropagation()
           }}

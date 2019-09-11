@@ -22,7 +22,7 @@ export function Phrase ({ _key }) {
   if (phrase == null) return <Spinner type="grow" color="secondary" />
 
   const [front, _back] = (() => {
-    switch(phrase.format) {
+    switch (phrase.format) {
       case 'ipfs-plaque-2019':
         return [
           <PlaqueFront _key={ _key }/>,
@@ -37,7 +37,6 @@ export function Phrase ({ _key }) {
         return [null, null]
     }
   })()
-
 
   const back = (
     <>
@@ -73,7 +72,7 @@ export function PhraseGrid ({ keys, width }) {
   })
 
   return (
-    <div className="d-flex flex-wrap justify-content-left" style={{width: width}}>
+    <div className="d-flex flex-wrap justify-content-left" style={{ width: width }}>
       { elements }
     </div>
   )

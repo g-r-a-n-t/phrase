@@ -11,10 +11,9 @@ export function Next () {
   return <MdNavigateNext
     size={32}
     onClick={() => setMedia(next(media))}
-    style={{cursor: 'pointer'}}
+    style={{ cursor: 'pointer' }}
   />
 }
-
 
 export function Prev () {
   const [media, setMedia] = useMediaContext()
@@ -24,6 +23,6 @@ export function Prev () {
   return <MdNavigateBefore
     size={32}
     onClick={() => setMedia(prev(media))}
-    style={{cursor: 'pointer'}}
+    style={{ cursor: 'pointer' }}
   />
 }

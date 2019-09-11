@@ -17,7 +17,7 @@ export default function App () {
   const [selectedMedia, setSelectedMedia] = useState(null)
 
   return (
-    <div className="App" style={{overflowX: 'hidden'}}>
+    <div className="App" style={{ overflowX: 'hidden' }}>
       <BrowserRouter>
         <Header />
         <br/>
