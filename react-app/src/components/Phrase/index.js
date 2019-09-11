@@ -82,5 +82,3 @@ export function PhraseGrid ({ keys, width }) {
 PhraseGrid.propTypes = {
   keys: PropTypes.array
 }
-
-export { AlbumThumb } from './Album'

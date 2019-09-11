@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import { MediaSelectionContext } from '../contexts/mediaSelection'
+import { MediaContext } from '../contexts/media'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Account from './Account'
@@ -21,7 +21,7 @@ export default function App () {
       <BrowserRouter>
         <Header />
         <br/>
-        <MediaSelectionContext.Provider value={[selectedMedia, setSelectedMedia]}>
+        <MediaContext.Provider value={[selectedMedia, setSelectedMedia]}>
           <Row>
             <Col lg={{ size: 10, offset: 1 }}>
               <Switch>
@@ -33,7 +33,7 @@ export default function App () {
             </Col>
           </Row>
           <Footer />
-        </MediaSelectionContext.Provider>
+        </MediaContext.Provider>
       </BrowserRouter>
     </div>
   )

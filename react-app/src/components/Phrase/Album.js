@@ -1,5 +1,5 @@
 import React from 'react'
-import { MdPlayCircleOutline, MdPauseCircleOutline } from 'react-icons/md'
+import { MdPlayCircleOutline, MdPauseCircleOutline, MdFileDownload } from 'react-icons/md'
 import {
   Row, Col,
   ListGroup, ListGroupItem,
@@ -8,38 +8,11 @@ import {
 
 import { usePhrase } from '../../hooks/useEntity'
 import { useIpfsFileList, useIpfsFileUrl } from '../../hooks/useIpfs'
-import { useMediaSelectionContext, TrackSelection, linkSelections } from '../../contexts/mediaSelection'
+import { useMediaContext, TrackSelection, PlayStatus, Media, linkSelections, paused, playing } from '../../contexts/media'
 import { IpfsImage, IpfsText } from '../IpfsMedia'
 import { ProfileName } from '../../components/ProfileInfo'
 import { decomposeTrack, isTrack } from '../../tools/paths'
 import debug from '../../tools/debug'
-
-export function AlbumThumb ({ _key, track = null }) {
-  const phrase = usePhrase(_key)
-
-  if (phrase == null) return <Spinner type="grow" color="secondary" />
-
-  return (
-    <Row>
-      <Col lg={{size: 'auto'}}>
-        <IpfsImage
-          width="50px"
-          height="50px"
-          path={`${phrase.content}/cover.jpg`}
-          type="image/jpeg"
-        />
-      </Col>
-      <Col lg={{size: 'auto'}} className="small p-2">
-        { track != null &&
-          <b>{ decomposeTrack(track).name } &middot; </b>
-        }
-        <IpfsText path={`${phrase.content}/name.txt`} />
-        <br/>
-        <ProfileName account={phrase.creator} />
-      </Col>
-    </Row>
-  )
-}
 
 export function AlbumFront ({ _key }) {
   const phrase = usePhrase(_key)
@@ -107,28 +80,72 @@ export function Tracks ({ _key, content }) {
   )
 }
 
+// TODO: clean this up
 export function Track ({ selection }) {
   debug.componentRender('IpfsTrack', selection)
 
-  const [mediaSelection, setMediaSelection] = useMediaSelectionContext()
+  const [media, setMedia] = useMediaContext()
 
   const track = decomposeTrack(selection.content)
 
-  return (
-    <div
-      className="small bg-white border"
-      style={{padding: '1px', marginBottom: '1px'}}
-      onClick={e => {
-        e.stopPropagation()
-        setMediaSelection(selection)
-      }}
-    >
-      { mediaSelection != null && mediaSelection.content == selection.content ?
-        <MdPauseCircleOutline size={20} />
-      :
+
+  if (media == null || media.selection.content != selection.content) {
+    return (
+      <div
+        className="small bg-white border"
+        style={{padding: '1px', marginBottom: '1px'}}
+        onClick={e => {
+          e.stopPropagation()
+          setMedia(Media(selection))
+        }}
+      >
         <MdPlayCircleOutline size={20} />
-      }
-      &nbsp; { track.number }. <b>{ track.name }</b>
-    </div>
-  )
+        &nbsp; { track.number }. <b>{ track.name }</b>
+      </div>
+    )
+  }
+
+  switch (media.status) {
+    case PlayStatus.PLAYING:
+      return (
+        <div
+          className="small bg-light border"
+          style={{padding: '1px', marginBottom: '1px'}}
+          onClick={e => {
+            e.stopPropagation()
+            setMedia(paused(media))
+          }}
+        >
+          <MdPauseCircleOutline size={20} />
+          &nbsp; { track.number }. <b>{ track.name }</b>
+        </div>
+      )
+    case PlayStatus.PAUSED:
+      return (
+        <div
+          className="small bg-light border"
+          style={{padding: '1px', marginBottom: '1px'}}
+          onClick={e => {
+            e.stopPropagation()
+            setMedia(playing(media))
+          }}
+        >
+          <MdPlayCircleOutline size={20} />
+          &nbsp; { track.number }. <b>{ track.name }</b>
+        </div>
+      )
+    default:
+      return (
+        <div
+          className="small bg-light border"
+          style={{padding: '1px', marginBottom: '1px'}}
+          onClick={e => {
+            e.stopPropagation()
+          }}
+        >
+          <MdFileDownload size={20} />
+          &nbsp; { track.number }. <b>{ track.name }</b>
+        </div>
+      )
+  }
 }

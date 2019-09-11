@@ -1,25 +1,18 @@
 import React from 'react'
 
-import { useMediaSelectionContext } from '../../contexts/mediaSelection'
+import { useMediaContext } from '../../contexts/media'
 import { IpfsImage } from '../../components/IpfsMedia'
 import TrackPlayer from './TrackPlayer'
 
 export default function Footer () {
-  const [mediaSelection, setMediaSelection] = useMediaSelectionContext()
+  const [media, _] = useMediaContext()
 
-  if (mediaSelection == null) return null
+  if (media == null) return null
 
-  // key is required on TrackPlayer to reinit the completion state
-  // completed state in track player is needed due to multiple time
-  // change events being called.
-  const player = (()=>{
-    switch(mediaSelection.type) {
+  const player = (() => {
+    switch(media.selection.type) {
       case 'track':
-        return <TrackPlayer key={`trackPlayer-${mediaSelection.content}`}
-          _key={ mediaSelection._key }
-          content={ mediaSelection.content }
-          onComplete={ () => setMediaSelection(mediaSelection.next) }
-        />
+        return <TrackPlayer />
     }
   })()
 

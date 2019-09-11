@@ -1,29 +1,29 @@
 import React from 'react'
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
 
-import { useMediaSelectionContext } from '../../../../contexts/mediaSelection'
+import { useMediaContext, next, prev } from '../../../../contexts/media'
 
 export function Next () {
-  const [mediaSelection, setMediaSelection] = useMediaSelectionContext()
+  const [media, setMedia] = useMediaContext()
 
-  if (mediaSelection == null) return null
+  if (media == null) return null
 
   return <MdNavigateNext
     size={32}
-    onClick={() => setMediaSelection(mediaSelection.next)}
+    onClick={() => setMedia(next(media))}
     style={{cursor: 'pointer'}}
   />
 }
 
 
 export function Prev () {
-  const [mediaSelection, setMediaSelection] = useMediaSelectionContext()
+  const [media, setMedia] = useMediaContext()
 
-  if (mediaSelection == null) return null
+  if (media == null) return null
 
   return <MdNavigateBefore
     size={32}
-    onClick={() => setMediaSelection(mediaSelection.prev)}
+    onClick={() => setMedia(prev(media))}
     style={{cursor: 'pointer'}}
   />
 }
