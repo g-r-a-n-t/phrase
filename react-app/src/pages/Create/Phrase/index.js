@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { ethers } from 'ethers'
 
-import PlaqueForm from './PlaqueForm'
+import { PlaqueForm, AlbumForm } from './Forms'
 import Publisher from './Publisher'
 import FormatSelect from './FormatSelect'
 import IpfsUploader from 'components/IpfsUploader'
-import { Thin } from 'components/Wrappers'
+import { Subtle, Thin } from 'components/Wrappers'
 
 // TODO: might be worth taking a look at other reduction patterns.
 export default function CreatePhrase () {
@@ -41,8 +41,17 @@ export default function CreatePhrase () {
               }}/>
             </Thin>
           )
+        case 'ipfs-album-2019':
+          return (
+            <Thin>
+              <AlbumForm onReady={ (_files) => {
+                setFiles(_files)
+                setStatus('WAITING_TO_UPLOAD')
+              }}/>
+            </Thin>
+          )
         default:
-          return <p>something went wrong</p>
+          return <Subtle>Sorry, this format actually isn't supported yet.</Subtle>
       }
     case 'WAITING_TO_UPLOAD':
       return (

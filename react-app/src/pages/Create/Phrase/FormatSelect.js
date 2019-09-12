@@ -17,20 +17,15 @@ export default function FormatSelect ({ onReady }) {
             <CardBody>
               <CardTitle><h5>Plaque</h5></CardTitle>
               <CardText>
-                <p>
-                  A reduced representation of broad ranging activity that benefits
-                  the public: e.g. political action, open-source
-                  software, non-profits.
-                </p>
-                <section className="align-bottom">
-                  <h6>Content:</h6>
-                  <ul>
-                    <li>Cover Image</li>
-                    <li>Name</li>
-                    <li>Description</li>
-                  </ul>
-                </section>
+                Representation of broad ranging activity that benefits the
+                public: e.g. political action, open-source software, non-profits.
               </CardText>
+              <b>Content:</b>
+              <ul>
+                <li>Cover Image</li>
+                <li>Name</li>
+                <li>Description</li>
+              </ul>
             </CardBody>
           </Card>
         </Col>
@@ -42,19 +37,15 @@ export default function FormatSelect ({ onReady }) {
             <CardBody>
               <CardTitle><h5>Album</h5></CardTitle>
               <CardText>
-                <p>
-                  A collection of songs with visual art.
-                </p>
-                <section>
-                  <h6>Content:</h6>
-                  <ul>
-                    <li>Cover Image</li>
-                    <li>Back Image</li>
-                    <li>Name</li>
-                    <li>Audio</li>
-                  </ul>
-                </section>
+                Collection of songs with visual art.
               </CardText>
+              <b>Content:</b>
+              <ul>
+                <li>Cover Image</li>
+                <li>Back Image</li>
+                <li>Name</li>
+                <li>Audio</li>
+              </ul>
             </CardBody>
           </Card>
         </Col>
@@ -69,19 +60,15 @@ export default function FormatSelect ({ onReady }) {
             <CardBody>
               <CardTitle><h5>Video</h5></CardTitle>
               <CardText>
-                <p>
-                  Dynamic visual media. <i>Note: Videos are contained within collections.</i>
-                </p>
-                <section>
-                  <h6>Content:</h6>
-                  <ul>
-                    <li>Cover Image</li>
-                    <li>Name</li>
-                    <li>Description</li>
-                    <li>Video</li>
-                  </ul>
-                </section>
+                Dynamic visual media. <i>Note: Videos are contained within collections.</i>
               </CardText>
+              <b>Content:</b>
+              <ul>
+                <li>Cover Image</li>
+                <li>Name</li>
+                <li>Description</li>
+                <li>Video</li>
+              </ul>
             </CardBody>
           </Card>
         </Col>
@@ -93,18 +80,14 @@ export default function FormatSelect ({ onReady }) {
             <CardBody>
               <CardTitle><h5>Image</h5></CardTitle>
               <CardText>
-                <p>
-                  Static visual media. <i>Note: Images are contained within collections.</i>
-                </p>
-                <section>
-                  <h6>Content:</h6>
-                  <ul>
-                    <li>Image</li>
-                    <li>Name</li>
-                    <li>Description</li>
-                  </ul>
-                </section>
+                Static visual media. <i>Note: Images are contained within collections.</i>
               </CardText>
+              <b>Content:</b>
+              <ul>
+                <li>Image</li>
+                <li>Name</li>
+                <li>Description</li>
+              </ul>
             </CardBody>
           </Card>
         </Col>
