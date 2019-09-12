@@ -13,11 +13,19 @@ export function Subtle ({ children }) {
 }
 
 Subtle.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.element,
-    PropTypes.string
-  ]).isRequired
+  children: PropTypes.node.isRequired
+}
+
+export function Bright ({ children }) {
+  return (
+    <div className="text-primary text-center" style={{ margin: '10px' }}>
+      { children }
+    </div>
+  )
+}
+
+Subtle.propTypes = {
+  children: PropTypes.node.isRequired
 }
 
 export function Thin ({ children }) {
