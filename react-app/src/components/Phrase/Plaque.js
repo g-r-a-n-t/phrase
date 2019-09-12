@@ -14,7 +14,7 @@ export function PlaqueFront ({ _key }) {
     <IpfsImage
       width="400px"
       height="400px"
-      path={`${phrase.content}/image400x400.jpg`}
+      path={`${phrase.content}/cover.jpg`}
       type="image/jpeg"
     />
   )

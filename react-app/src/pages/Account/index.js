@@ -8,7 +8,7 @@ import {
 
 import { useProfile } from 'hooks/useEntity'
 import { PhraseGrid } from 'components/Phrase'
-import { ProfileInfo } from 'components/ProfileInfo'
+import { ProfileInfo } from 'components/Profile'
 import { Subtle } from 'components/Wrappers'
 import debug from 'tools/debug'
 

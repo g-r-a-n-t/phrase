@@ -7,7 +7,7 @@ import { useIpfsFileUrl } from 'hooks/useIpfs'
 import { usePhrase } from 'hooks/useEntity'
 import { useMediaContext, PlayStatus, next, playing } from 'contexts/media'
 import { IpfsImage, IpfsText } from 'components/IpfsMedia'
-import { ProfileName } from 'components/ProfileInfo'
+import { ProfileName } from 'components/Profile'
 import { decomposeTrack } from 'tools/paths'
 import { PlayPause, MuteUnmute, Time, Next, Prev, Strategy } from './Controls'
 

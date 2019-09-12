@@ -1,16 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Spinner } from 'reactstrap'
 
 import { useProfile } from 'hooks/useEntity'
 import { IpfsImage, IpfsText } from 'components/IpfsMedia'
 import debug from 'tools/debug'
-
-const Wrapper = styled.div`
-  width: 180px;
-`
 
 export function ProfileInfo ({ account }) {
   debug.componentRender('ProfileInfo', account)
@@ -21,14 +16,19 @@ export function ProfileInfo ({ account }) {
 
   // standard format
   return (
-    <Wrapper>
+    <div style={{width: '180px'}}>
       <div className="border rounded" style={{ overflow: 'hidden' }}>
-        <IpfsImage width="180px" height="180px" path={`${profile.content}/image180x180.jpg`} type="image/jpeg" />
+        <IpfsImage
+          width="180px"
+          height="180px"
+          path={`${profile.content}/icon.jpg`} 
+          type="image/jpeg"
+        />
       </div>
       <br/>
       <h5><IpfsText path={`${profile.content}/name.txt`} /></h5>
       <IpfsText path={`${profile.content}/bio.txt`} />
-    </Wrapper>
+    </div>
   )
 }
 

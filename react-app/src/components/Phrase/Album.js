@@ -7,7 +7,7 @@ import { usePhrase } from 'hooks/useEntity'
 import { useIpfsFileList } from 'hooks/useIpfs'
 import { useMediaContext, TrackSelection, PlayStatus, Media, linkSelections, paused, playing } from 'contexts/media'
 import { IpfsImage, IpfsText } from 'components/IpfsMedia'
-import { ProfileName } from 'components/ProfileInfo'
+import { ProfileName } from 'components/Profile'
 import { decomposeTrack, isTrack } from 'tools/paths'
 import debug from 'tools/debug'
 

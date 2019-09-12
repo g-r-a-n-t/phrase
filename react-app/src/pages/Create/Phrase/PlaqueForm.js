@@ -21,7 +21,7 @@ export default function PlaqueForm ({ onReady }) {
         content: Buffer.from(description)
       },
       {
-        path: '/image400x400.jpg',
+        path: '/cover.jpg',
         content: image
       }
     ]

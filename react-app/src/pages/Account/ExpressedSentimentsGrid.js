@@ -41,8 +41,13 @@ export function ExpressedSentimentsGrid ({ keys }) {
     <div className="d-flex flex-wrap justify-content-left">
       { elements }
       { selectedSentiment !== null &&
-        <SimpleModal onDone={() => { setSelectedSentiment(null) }}>
-          <PhraseGrid keys={ sentimentToPhrasesMap(Object.values(expressedSentiments))[selectedSentiment] } />
+        <SimpleModal
+          onDone={() => { setSelectedSentiment(null) }}
+          width="860px"
+        >
+          <PhraseGrid
+            keys={ sentimentToPhrasesMap(Object.values(expressedSentiments))[selectedSentiment] }
+          />
         </SimpleModal>
       }
     </div>

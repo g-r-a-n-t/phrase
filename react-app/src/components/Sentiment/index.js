@@ -15,11 +15,18 @@ export function Sentiment ({ _key, onSelect = null, selectText }) {
 
   if (sentiment == null) return <Spinner type="grow" color="secondary" />
 
-  const front = <IpfsImage width="120px" height="120px" path={`${sentiment.content}/image120x120.jpg`} type="image/jpeg" />
+  const front = <IpfsImage
+    width="120px"
+    height="120px"
+    path={`${sentiment.content}/cover.jpg`} 
+    type="image/jpeg"
+  />
 
   const back = (
-    <>
-      <div className="small font-weight-bold"><IpfsText path={`${sentiment.content}/name.txt`} /></div>
+    <div style={{margin: '3px'}}>
+      <div className="small font-weight-bold">
+        <IpfsText path={`${sentiment.content}/name.txt`} />
+      </div>
       <div className="small">
         <TokenAmount address={ sentiment.token } amount={ sentiment.value } />
       </div>
@@ -29,7 +36,7 @@ export function Sentiment ({ _key, onSelect = null, selectText }) {
           onSelect(_key)
         }}>{ selectText }</Button>
       }
-    </>
+    </div>
   )
 
   return <FlipCard front={ front } back={ back } width="120px" height="120px" />

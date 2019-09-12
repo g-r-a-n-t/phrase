@@ -20,7 +20,7 @@ export default function ExpressSentimentModal ({ phraseKey, onDone }) {
   const sentimentKeys = createdSentiments.map((createdSentiment) => { return createdSentiment.sentiment })
 
   return (
-    <SimpleModal onDone={ onDone }>
+    <SimpleModal onDone={ onDone } width="720px">
       { sentimentKey == null
         ? <ExpressSentimentGrid
           keys={sentimentKeys}
@@ -55,17 +55,18 @@ ExpressedSentimentPublisher.propTypes = {
 function ExpressSentimentGrid ({ keys, onSelect }) {
   const elements = keys.map((key) => {
     return (
-      <Sentiment
-        selectText={<IoIosAdd size={19} />}
-        key={`sentiment-${key}`}
-        _key={ key }
-        onSelect={() => { onSelect(key) }}
-      />
+      <div key={`sentiment-${key}`} style={{ margin: '5px' }}>
+        <Sentiment
+          selectText={<IoIosAdd size={19} />}
+          _key={ key }
+          onSelect={() => { onSelect(key) }}
+        />
+      </div>
     )
   })
 
   return (
-    <div className="d-flex flex-wrap justify-content-around">
+    <div className="d-flex flex-wrap justify-content-left">
       { elements }
     </div>
   )
