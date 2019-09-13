@@ -52,7 +52,7 @@ export default function ImageSelect ({ onReady }) {
     setComplete(true)
   }
 
-  return <img alt="loaded from computer" src={ toUrl(cropped) }/>
+  return <div><img alt="loaded from computer" src={ toUrl(cropped) }/></div>
 }
 
 ImageSelect.propTypes = {

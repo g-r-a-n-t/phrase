@@ -51,7 +51,11 @@ export default function CreatePhrase () {
             </Thin>
           )
         default:
-          return <Subtle>Sorry, this format actually isn't supported yet.</Subtle>
+          return (
+            <Subtle>
+              <br/><br/>Sorry, this format actually isn't supported yet.<br/><br/>
+            </Subtle>
+          )
       }
     case 'WAITING_TO_UPLOAD':
       return (

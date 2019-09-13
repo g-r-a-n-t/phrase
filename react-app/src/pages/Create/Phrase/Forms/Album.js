@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { IoMdDisc } from 'react-icons/io'
-import { Form, FormGroup, Input, FormText, Button } from 'reactstrap'
+import { Label, Form, FormGroup, Input, FormText, Button } from 'reactstrap'
 
 import ImageSelect from 'components/ImageSelect'
 
-const NAME_LENGTH = [4, 48]
+const NAME_LENGTH = [4, 64]
 
 export default function AlbumForm ({ onReady }) {
   const [name, setName] = useState(null)
-  const [cover, setImage] = useState(null)
+  const [cover, setCover] = useState(null)
   const [tracks, setTracks] = useState(null)
 
   function valid () {
@@ -49,19 +49,27 @@ export default function AlbumForm ({ onReady }) {
       <IoMdDisc className="text-primary" size={32}/>
       <br/><br/>
       <FormGroup>
+        <Label><b>Album Name:</b></Label>
         <Input
           type="text"
           onChange={e => setName(e.target.value)}
-          placeholder={ `Name: e.g. Magical Mystery Tour (${NAME_LENGTH.join('-')} characters)` }
+          placeholder={ `e.g. Magical Mystery Tour (${NAME_LENGTH.join('-')} characters)` }
         />
       </FormGroup>
       <FormGroup>
+        <Label><b>Tracks:</b></Label>
         <Input type="file" multiple onChange={ (e) => { setTracks(e.target.files) } } />
+        <FormText color="muted">
+          The name of each track being uploaded should follow this pattern:
+          "<b>[Number] [Name].mp3</b>" e.g. "<b>06 I Am the Walrus.mp3</b>",
+          "<b>05 Your Mother Should Know.mp3</b>".
+        </FormText>
       </FormGroup>
       <FormGroup>
-        <ImageSelect onReady={ image => { setImage(image) } } />
+        <Label><b>Cover:</b></Label>
+        <ImageSelect onReady={ image => { setCover(image) } } />
         <FormText color="muted">
-          Image will be resized to 400x400p.
+          Image will be resized to 400x400px.
         </FormText>
       </FormGroup>
       <Button className={ valid() ? '' : 'd-none' } onClick={ () => { onReady(toDir()) } }>Create</Button>

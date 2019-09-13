@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { IoMdSquare } from 'react-icons/io'
-import { Form, FormGroup, Input, FormText, Button } from 'reactstrap'
+import { Label, Form, FormGroup, Input, FormText, Button } from 'reactstrap'
 
 import ImageSelect from 'components/ImageSelect'
 
@@ -11,7 +11,7 @@ const DESC_LENGTH = [32, 512]
 export default function PlaqueForm ({ onReady }) {
   const [name, setName] = useState(null)
   const [description, setDescription] = useState(null)
-  const [image, setImage] = useState(null)
+  const [cover, setCover] = useState(null)
 
   function valid () {
     return (
@@ -21,7 +21,7 @@ export default function PlaqueForm ({ onReady }) {
       description !== null                 &&
       description.length >= DESC_LENGTH[0] &&
       description.length <= DESC_LENGTH[1] &&
-      image !== null
+      cover !== null
     )
   }
 
@@ -37,7 +37,7 @@ export default function PlaqueForm ({ onReady }) {
       },
       {
         path: '/cover.jpg',
-        content: image
+        content: cover
       }
     ]
   }
@@ -47,26 +47,32 @@ export default function PlaqueForm ({ onReady }) {
       <IoMdSquare className="text-primary" size={32}/>
       <br/><br/>
       <FormGroup>
+        <Label><b>Plaque Name:</b></Label>
         <Input
           type="text"
           onChange={e => setName(e.target.value)}
-          placeholder="Name: e.g. Local campaign fund (4-16 characters)"
+          placeholder={ `e.g. Local campaign fund (${NAME_LENGTH.join('-')} characters)` }
         />
       </FormGroup>
       <FormGroup>
+        <Label><b>Description:</b></Label>
         <Input
           type="textarea"
           onChange={e => setDescription(e.target.value)}
-          placeholder="Description: Add more details here. (32-512 characters)"
+          placeholder={ `e.g. Add more details here (${DESC_LENGTH.join('-')} characters)` }
         />
       </FormGroup>
       <FormGroup>
-        <ImageSelect onReady={ image => { setImage(image) } } />
+        <Label><b>Cover:</b></Label>
+        <ImageSelect onReady={ image => { setCover(image) } } />
         <FormText color="muted">
           Image will be resized to 400x400px.
         </FormText>
       </FormGroup>
-      <Button className={ valid() ? '' : 'd-none' } onClick={ () => { onReady(toDir()) } }>Create</Button>
+      <Button
+        className={ valid() ? '' : 'd-none' }
+        onClick={ () => { onReady(toDir()) } }
+      >Create</Button>
     </Form>
   )
 }
