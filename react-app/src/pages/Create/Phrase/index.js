@@ -70,9 +70,9 @@ export default function CreatePhrase () {
     case 'WAITING_TO_PUBLISH':
       return (
         <Publisher
-          format={format}
-          content={`/ipfs/${path}`}
-          beneficiary={ethers.constants.AddressZero}
+          format={ format }
+          content={ `/ipfs/${path}` }
+          beneficiary={ ethers.constants.AddressZero }
           onComplete={(receipt) => {
             setReceipt(receipt)
             setStatus('COMPLETE')

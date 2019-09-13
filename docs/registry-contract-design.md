@@ -49,10 +49,9 @@ The registry contract is responsible for the creation of entities and expression
 
 ## Public Methods
 
-- `createProfile(content)`
-- `updateProfile(content)`
-- `createPhrase(content, beneficiary)`
-- `createSentiment(content, token, value)`
+- `updateProfile(format, content)`
+- `createPhrase(format, content, beneficiary)`
+- `createSentiment(format, content, token, value)`
 - `expressSentiment(phrase, sentiment)`
 
 ## Hashing

@@ -1,5 +1,7 @@
 import CreatePhrase from './Phrase'
+import CreateSentiment from './Sentiment'
 
 export {
-  CreatePhrase
+  CreatePhrase,
+  CreateSentiment
 }
