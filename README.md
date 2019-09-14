@@ -15,4 +15,4 @@ The contract which handles the operations described above is quite simple. In sh
 
 For more information about the contract design, read [this](./docs/registry-contract-design.md).
 
-Each of the three entities discussed above has content associated with them in the form of an IPFS directory. Some formats can be found [here](./docs/content-formats.md).
+Each of the three entities discussed above has content associated with them, some formats can be found [here](./docs/content-formats.md).
