@@ -1,10 +1,10 @@
 # Phrase
 
-Phrase is a value-backed sentiment expression layer for the Ethereum blockchain. Its purpose is to create an environment where public initiatives can source subsidy from many people based on their sentiment.
+Phrase is a content publishing and distribution platform that uses value-backed sentiment as a means of support for public work.
 
-In the context of Phrase, *phrases* represent things that a person may find meaningful. This could be anything ranging from political action to cultural production. *Sentiments* on the other hand, represent how a person may feel about phrases.
+In the context of Phrase, phrases represent things that a person may find meaningful. This could be anything ranging from political action to cultural production. Sentiments on the other hand, represent how a person may feel about phrases.
 
-The creation of phrases and sentiments is open; meaning anyone can create a sentiment or phrase. Each sentiment is given a fixed value by the creator. For someone to express sentiment towards a phrase, they must purchase it for the specified value, with all proceeds going to the creator of the phrase. The sentiments a person expresses are then used to create a digital identity for that person to share.
+The creation of phrases and sentiments is open; meaning anyone can create a sentiment or phrase. Each sentiment is given a fixed value by the creator. For someone to express sentiment towards a phrase, they must purchase it for the specified value, with all proceeds going to the creator of the phrase. The expression of sentiment is public and used to create identities for both users and phrases.
 
 ## Technical Overview
 

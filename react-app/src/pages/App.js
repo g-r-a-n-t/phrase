@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { MediaContext } from 'contexts/media'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
+import Landing from './Landing'
 import Account from './Account'
 import About from './About'
 import { CreatePhrase, CreateSentiment } from './Create'
@@ -20,10 +21,10 @@ export default function App () {
         <Header />
         <br/>
         <MediaContext.Provider value={[selectedMedia, setSelectedMedia]}>
-          <Row>
+          <Row style={{marginBottom: '300px'}}>
             <Col lg={{ size: 10, offset: 1 }}>
               <Switch>
-                <Route exact path="/" component={About} />
+                <Route exact path="/" component={Landing} />
                 <Route exact path="/about" component={About} />
                 <Route exact path="/create/phrase" component={CreatePhrase} />
                 <Route exact path="/create/sentiment" component={CreateSentiment} />

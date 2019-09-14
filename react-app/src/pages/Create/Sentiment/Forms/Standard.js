@@ -46,6 +46,12 @@ export default function StandardForm ({ onReady }) {
         />
       </FormGroup>
       <FormGroup>
+        <Label><b>Value:</b> .005 ETH</Label>
+        <FormText color="muted">
+          The value of new sentiments is fixed for the time being.
+        </FormText>
+      </FormGroup>
+      <FormGroup>
         <Label><b>Cover:</b></Label>
         <ImageSelect onReady={ image => { setCover(image) } } />
         <FormText color="muted">

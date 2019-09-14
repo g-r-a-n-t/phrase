@@ -22,3 +22,27 @@ export function sentimentToPhrasesList (expressedSentiments) {
     }
   })
 }
+
+export function creatorToPhrasesMap (createdPhrases) {
+  const map = {}
+
+  createdPhrases.forEach((createdPhrase) => {
+    if (map[createdPhrase.creator] === undefined) {
+      map[createdPhrase.creator] = [createdPhrase.phrase]
+    } else {
+      map[createdPhrase.creator].push(createdPhrase.phrase)
+    }
+  })
+
+  return map
+}
+
+export function creatorToPhrasesList (createdPhrases) {
+  const map = creatorToPhrasesMap(createdPhrases)
+  return Object.keys(map).map((key) => {
+    return {
+      creator: key,
+      phrases: map[key]
+    }
+  })
+}

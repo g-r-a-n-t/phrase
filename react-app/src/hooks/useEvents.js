@@ -28,7 +28,7 @@ export function useCreatedProfiles () {
   return useEvents(PROFILE_CREATED)
 }
 
-export function useCreatedPhrase () {
+export function useCreatedPhrases () {
   return useEvents(PHRASE_CREATED)
 }
 
@@ -49,7 +49,9 @@ async function fetchLogs (topic, setEvents) {
   }
 
   const logs = await provider.getLogs(filter)
-  const events = logs.map((log) => registryInterface.parseLog(log).values)
+  const events = logs.map(log =>
+    registryInterface.parseLog(log).values
+  ).reverse()
 
   setEvents(events)
 }
