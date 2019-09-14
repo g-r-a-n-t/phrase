@@ -8,11 +8,11 @@ The creation of phrases and sentiments is open; meaning anyone can create a sent
 
 ## Technical Overview
 
-The contract which handles the operations described above is quite simple. In short, it handles the following actions:
+The interactions discussed above are facilitated by a registry contract. Its responsibilities are listed below:
 
 - Creation of phrases, sentiments, and profiles.
 - Expression of sentiment from a profile to a phrase.
 
-For more information about the contract design, read [this](./docs/registry-contract-design.md).
+For more information about the registry contract design, read [this](./docs/registry-contract-design.md).
 
 Each of the three entities discussed above has content associated with them, some formats can be found [here](./docs/content-formats.md).
