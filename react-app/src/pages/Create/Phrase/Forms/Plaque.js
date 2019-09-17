@@ -5,7 +5,7 @@ import { Label, Form, FormGroup, Input, FormText, Button } from 'reactstrap'
 
 import ImageSelect from 'components/ImageSelect'
 
-const NAME_LENGTH = [4, 16]
+const NAME_LENGTH = [4, 32]
 const DESC_LENGTH = [32, 512]
 
 export default function PlaqueForm ({ onReady }) {
@@ -59,7 +59,7 @@ export default function PlaqueForm ({ onReady }) {
         <Input
           type="textarea"
           onChange={e => setDescription(e.target.value)}
-          placeholder={ `e.g. Add more details here (${DESC_LENGTH.join('-')} characters)` }
+          placeholder={ `Add more details here (${DESC_LENGTH.join('-')} characters)` }
         />
       </FormGroup>
       <FormGroup>

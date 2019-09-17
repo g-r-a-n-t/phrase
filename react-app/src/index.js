@@ -4,7 +4,9 @@ import App from './pages/App'
 import connectors from './connectors.js'
 import Web3Provider, { useWeb3Context } from 'web3-react'
 import PropTypes from 'prop-types'
+
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'styles.css'
 
 import { useIpfs } from './hooks/useIpfs'
 import { IpfsContext } from './contexts/ipfs'

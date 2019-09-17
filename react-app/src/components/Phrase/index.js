@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { IoIosHeart } from 'react-icons/io'
+import { CSSTransitionGroup } from 'react-transition-group'
 import { Spinner, Button } from 'reactstrap'
 
 import { usePhrase } from 'hooks/useEntity'
@@ -58,8 +59,10 @@ Phrase.propTypes = {
   _key: PropTypes.string.isRequired
 }
 
-export function PhraseGrid ({ keys, width }) {
+export function PhraseGrid ({ keys, cols }) {
   debug.componentRender('PhraseGrid', keys)
+
+  const WIDTH = 410
 
   const elements = keys.map((key) => {
     return (
@@ -70,9 +73,15 @@ export function PhraseGrid ({ keys, width }) {
   })
 
   return (
-    <div className="d-flex flex-wrap justify-content-left" style={{ width: width }}>
+    <CSSTransitionGroup
+      transitionName="example"
+      transitionEnterTimeout={500}
+      transitionLeaveTimeout={300}
+      className="d-flex flex-wrap justify-content-left"
+      style={{ width: '100%', maxWidth: `${WIDTH * cols}px` }}
+    >
       { elements }
-    </div>
+    </CSSTransitionGroup>
   )
 }
 

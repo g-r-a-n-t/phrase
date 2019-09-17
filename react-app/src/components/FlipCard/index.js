@@ -2,7 +2,13 @@ import React, { useState } from 'react'
 import ReactCardFlip from 'react-card-flip'
 import PropTypes from 'prop-types'
 
-export default function FlipCard ({ front, back, width, height }) {
+export default function FlipCard ({
+  front,
+  back,
+  width,
+  height,
+  onFlip = ()=>{}
+}) {
   const [flipped, setFlipped] = useState(false)
 
   const cardStyle = {
@@ -12,7 +18,14 @@ export default function FlipCard ({ front, back, width, height }) {
   }
 
   return (
-    <div className="d-flex" style={{ cursor: 'pointer' }} onClick={() => { setFlipped(!flipped) }}>
+    <div
+      className="d-flex"
+      style={{ cursor: 'pointer', width: width, height: height }}
+      onClick={() => {
+        onFlip(!flipped)
+        setFlipped(!flipped)
+      }}
+    >
       <ReactCardFlip isFlipped={ flipped } flipDirection="horizontal">
         <div style={ cardStyle } className="border rounded" key="front">
           { front }
@@ -29,5 +42,6 @@ FlipCard.propTypes = {
   front: PropTypes.element.isRequired,
   back: PropTypes.element.isRequired,
   width: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired
+  height: PropTypes.string.isRequired,
+  onFlip: PropTypes.func
 }

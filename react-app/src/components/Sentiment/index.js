@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Spinner, Button } from 'reactstrap'
 
@@ -8,7 +8,12 @@ import { TokenAmount } from 'components/Tokens'
 import FlipCard from 'components/FlipCard'
 import debug from 'tools/debug'
 
-export function Sentiment ({ _key, onSelect = null, selectText }) {
+export function Sentiment ({
+  _key,
+  onFlip = () => {},
+  onSelect = () => {},
+  selectText = null
+}) {
   debug.componentRender('Sentiment', _key)
 
   const sentiment = useSentiment(_key)
@@ -18,7 +23,7 @@ export function Sentiment ({ _key, onSelect = null, selectText }) {
   const front = <IpfsImage
     width="120px"
     height="120px"
-    path={`${sentiment.content}/cover.jpg`} 
+    path={`${sentiment.content}/cover.jpg`}
     type="image/jpeg"
   />
 
@@ -30,7 +35,7 @@ export function Sentiment ({ _key, onSelect = null, selectText }) {
       <div className="small">
         <TokenAmount address={ sentiment.token } amount={ sentiment.value } />
       </div>
-      { onSelect != null &&
+      { selectText != null &&
         <Button className="btn-sm bg-primary border-light fixed-bottom" onClick={(e) => {
           e.stopPropagation()
           onSelect(_key)
@@ -39,11 +44,40 @@ export function Sentiment ({ _key, onSelect = null, selectText }) {
     </div>
   )
 
-  return <FlipCard front={ front } back={ back } width="120px" height="120px" />
+  return <FlipCard front={ front } back={ back } onFlip={ onFlip } width="120px" height="120px" />
 }
 
 Sentiment.propTypes = {
   _key: PropTypes.string.isRequired,
   onSelect: PropTypes.func,
-  selectText: PropTypes.string
+  selectText: PropTypes.node
+}
+
+export function SentimentGrid ({ keys, onFlip = () => {} }) {
+  const [flipped, setFlipped] = useState(new Set())
+
+  const elements = keys.map(key => {
+    return (
+      <div key={ `sentiment-${key}` } style={{ margin: '5px' }}>
+        <Sentiment _key={ key } onFlip={isFlipped => {
+          let newFlipped = flipped
+          if (isFlipped) {
+            newFlipped.add(key)
+          } else {
+            newFlipped.delete(key)
+          }
+
+          setFlipped(newFlipped)
+          onFlip(Array.from(newFlipped))
+        }}/>
+      </div>
+    )
+  })
+
+
+  return (
+    <div className="d-flex flex-wrap">
+      { elements }
+    </div>
+  )
 }

@@ -4,6 +4,7 @@ import { Spinner } from 'reactstrap'
 
 import { usePhrase } from 'hooks/useEntity'
 import { IpfsImage, IpfsText } from 'components/IpfsMedia'
+import { ProfileName } from 'components/Profile'
 
 export function PlaqueFront ({ _key }) {
   const phrase = usePhrase(_key)
@@ -31,10 +32,16 @@ export function PlaqueBack ({ _key }) {
 
   return (
     <div style={{ margin: '10px' }}>
-      <h5 className="text-secondary">
+      <h7>
         <IpfsText path={`${phrase.content}/name.txt`} />
-      </h5>
-      <IpfsText path={`${phrase.content}/description.txt`} />
+      </h7>
+      <div className="small">
+        <ProfileName account={ phrase.creator } />
+      </div>
+      <br />
+      <p>
+        <IpfsText path={`${phrase.content}/description.txt`} />
+      </p>
     </div>
   )
 }

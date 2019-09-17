@@ -1,0 +1,35 @@
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.background-enter {
+  transform: translate(0, -100%);
+}
+
+.background-enter.background-enter-active {
+  transform: translate(0, 0%);
+  transition: transform 500ms ease-in-out;
+}
+
+.background-leave {
+  transform: translate(0, 0%);
+}
+
+.background-leave.background-leave-active {
+  transform: translate(0, -100%);
+  transition: transform 300ms ease-in-out;
+}

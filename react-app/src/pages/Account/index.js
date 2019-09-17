@@ -12,7 +12,7 @@ import { ProfileInfo } from 'components/Profile'
 import { Subtle } from 'components/Wrappers'
 import debug from 'tools/debug'
 
-import { ExpressedSentimentsGrid } from './ExpressedSentimentsGrid'
+import { ExpressedSentiments } from './ExpressedSentiments'
 
 // TODO: Should hande a profile that does not have content and generate a default profile picture
 export default function Account ({ match }) {
@@ -36,8 +36,8 @@ export default function Account ({ match }) {
               <Subtle>
                 -------- <IoIosHeart size={25}/> --------
               </Subtle>
-              <div className="d-flex justify-content-around">
-                <ExpressedSentimentsGrid keys={profile.expressedSentiments} />
+              <div>
+                <ExpressedSentiments keys={ profile.expressedSentiments } />
               </div>
             </>
           }
@@ -50,8 +50,8 @@ export default function Account ({ match }) {
               <Subtle>
                 -------- <IoMdHand size={25}/> --------
               </Subtle>
-              <div className="d-flex justify-content-around">
-                <PhraseGrid keys={profile.phrases.slice().reverse()} width="1230px" />
+              <div className="d-flex justify-content-center">
+                <PhraseGrid keys={profile.phrases.slice().reverse()} cols={ 3 } />
               </div>
             </>
           }
