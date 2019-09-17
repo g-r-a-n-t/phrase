@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { IoIosAdd } from 'react-icons/io'
 import PropTypes from 'prop-types'
-import { Spinner } from 'reactstrap'
+import { MdArrowForward, MdCheck } from 'react-icons/md'
+import { Spinner, Button, Alert } from 'reactstrap'
 
 import { useCreatedSentiments } from 'hooks/useEvents'
 import { useExpressedSentimentPublisher } from 'hooks/usePublisher'
 import { Sentiment } from 'components/Sentiment'
+import { Phrase } from 'components/Phrase'
 import { SimpleModal } from 'components/Modal'
 import debug from 'tools/debug'
 
@@ -23,10 +25,14 @@ export default function ExpressSentimentModal ({ phraseKey, onDone }) {
     <SimpleModal onDone={ onDone } width="720px">
       { sentimentKey == null
         ? <ExpressSentimentGrid
-          keys={sentimentKeys}
+          keys={ sentimentKeys }
           onSelect={(key) => { setSentimentKey(key) }}
         />
-        : <ExpressedSentimentPublisher phraseKey={ phraseKey } sentimentKey={ sentimentKey } />
+        : <ExpressedSentimentPublisher
+          phraseKey={ phraseKey }
+          sentimentKey={ sentimentKey }
+          onCancel={ () => { setSentimentKey(null) }}
+        />
       }
     </SimpleModal>
   )
@@ -37,14 +43,39 @@ ExpressSentimentModal.propTypes = {
   onDone: PropTypes.func.isRequired
 }
 
-function ExpressedSentimentPublisher ({ phraseKey, sentimentKey }) {
+function ExpressedSentimentPublisher ({ phraseKey, sentimentKey, onCancel = () => {} }) {
   debug.componentRender('ExpressedSentimentPublisher', phraseKey, sentimentKey)
 
   const receipt = useExpressedSentimentPublisher(phraseKey, sentimentKey)
 
-  if (receipt == null) return <Spinner type="grow" color="secondary" />
+  const arrow = (
+    <div className="d-flex align-items-center justify-content-around">
+      <Sentiment _key={ sentimentKey }/>
+      <MdArrowForward size={ 50 }/>
+      <Phrase _key={ phraseKey }/>
+    </div>
+  )
 
-  return <div>Sentiment expressed!</div>
+  if (receipt == null) return (
+    <>
+      { arrow }
+      <br/>
+      <div className="text-center">
+        <Spinner size="sm" color="primary"/> &nbsp; &nbsp; &nbsp;
+        <Button className="btn-cancel" onClick={ onCancel }>cancel</Button>
+      </div>
+    </>
+  )
+
+  console.log('receipt', receipt)
+  return (
+    <Alert color="success">
+      { arrow }
+      <div className="text-center text-success">
+        <MdCheck size={ 80 }/>
+      </div>
+    </Alert>
+  )
 }
 
 ExpressedSentimentPublisher.propTypes = {
@@ -57,7 +88,7 @@ function ExpressSentimentGrid ({ keys, onSelect }) {
     return (
       <div key={`sentiment-${key}`} style={{ margin: '5px' }}>
         <Sentiment
-          selectText={<IoIosAdd size={19} />}
+          selectText={ <IoIosAdd size={19} /> }
           _key={ key }
           onSelect={() => { onSelect(key) }}
         />
@@ -66,9 +97,14 @@ function ExpressSentimentGrid ({ keys, onSelect }) {
   })
 
   return (
-    <div className="d-flex flex-wrap justify-content-left">
-      { elements }
-    </div>
+    <>
+      <h6 className="border-bottom" style={{ paddingBottom: '5px' }}>
+        Recently Created
+      </h6>
+      <div className="d-flex flex-wrap justify-content-left">
+        { elements }
+      </div>
+    </>
   )
 }
 

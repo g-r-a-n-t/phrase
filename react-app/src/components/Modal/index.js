@@ -3,7 +3,7 @@ import { IoIosClose } from 'react-icons/io'
 import PropTypes from 'prop-types'
 import { Modal, ModalBody } from 'reactstrap'
 
-export function SimpleModal ({ children, width = '800px', onDone }) {
+export function SimpleModal ({ children, onDone }) {
   const close = <button
       className="close"
       style={{ position: 'absolute', top: '15px', right: '15px' }}
@@ -14,11 +14,10 @@ export function SimpleModal ({ children, width = '800px', onDone }) {
 
   return (
     <Modal
-      size="xl"
+      size="lg"
       isOpen={ true }
       toggle={ onDone }
       external={ close }
-      style={{ width: width }}
     >
       <ModalBody>
         { children }
