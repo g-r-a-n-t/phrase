@@ -5,7 +5,7 @@ import { Label, Form, FormGroup, Input, FormText, Button } from 'reactstrap'
 
 import ImageSelect from 'components/ImageSelect'
 
-const NAME_LENGTH = [4, 16]
+const NAME_LENGTH = [4, 32]
 
 export default function StandardForm ({ onReady }) {
   const [name, setName] = useState(null)
@@ -46,13 +46,14 @@ export default function StandardForm ({ onReady }) {
         />
       </FormGroup>
       <FormGroup>
-        <Label><b>Value:</b> .005 ETH</Label>
+        <Label><b>Value:</b> .01 ETH</Label>
         <FormText color="muted">
           The value of new sentiments is fixed for the time being.
         </FormText>
       </FormGroup>
       <FormGroup>
         <Label><b>Cover:</b></Label>
+        <br/>
         <ImageSelect onReady={ image => { setCover(image) } } />
         <FormText color="muted">
           Image will be resized to 120x120px.

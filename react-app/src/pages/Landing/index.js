@@ -24,7 +24,7 @@ export default function Landing () {
 
   return (
     <>
-      <Subtle>----- Recent Activity -----</Subtle>
+      <Subtle>----- New Phrases -----</Subtle>
       { feed }
     </>
   )

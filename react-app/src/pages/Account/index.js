@@ -1,18 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { IoIosHeart, IoMdHand } from 'react-icons/io'
-import {
-  Row, Col,
-  Spinner
-} from 'reactstrap'
+import { Row, Col, Spinner } from 'reactstrap'
 
 import { useProfile } from 'hooks/useEntity'
 import { PhraseGrid } from 'components/Phrase'
 import { ProfileInfo } from 'components/Profile'
+import { ExpressedSentiments } from './ExpressedSentiments'
 import { Subtle } from 'components/Wrappers'
 import debug from 'tools/debug'
 
-import { ExpressedSentiments } from './ExpressedSentiments'
 
 // TODO: Should hande a profile that does not have content and generate a default profile picture
 export default function Account ({ match }) {

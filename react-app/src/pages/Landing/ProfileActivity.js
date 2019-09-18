@@ -16,9 +16,6 @@ export default function ProfileActivity ({ profile, createdPhrases = [], express
         <Col lg={{ size: 'auto' }}>
           <PhraseGrid keys={ createdPhrases }/>
         </Col>
-        <Col>
-          sentiments here
-        </Col>
       </Row>
     </div>
   )

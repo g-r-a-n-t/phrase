@@ -27,10 +27,10 @@ export default function FlipCard ({
       }}
     >
       <ReactCardFlip isFlipped={ flipped } flipDirection="horizontal">
-        <div style={ cardStyle } className="border rounded" key="front">
+        <div style={ cardStyle } className="border rounded shadow" key="front">
           { front }
         </div>
-        <div style={ cardStyle } className="border rounded bg-light" key="back">
+        <div style={ cardStyle } className="border rounded shadow bg-light" key="back">
           { back }
         </div>
       </ReactCardFlip>

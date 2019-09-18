@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md'
 import { Spinner, Collapse } from 'reactstrap'
 
-import { useExpressedSentiments } from 'hooks/useEntity'
+import { useExpressedSentiments } from 'hooks/useEntities'
 import { Sentiment, SentimentGrid } from 'components/Sentiment'
 import { PhraseGrid } from 'components/Phrase'
 import { SimpleModal } from 'components/Modal'

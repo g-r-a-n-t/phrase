@@ -69,12 +69,12 @@ function ExpressedSentimentPublisher ({ phraseKey, sentimentKey, onCancel = () =
 
   console.log('receipt', receipt)
   return (
-    <Alert color="success">
+    <>
       { arrow }
       <div className="text-center text-success">
         <MdCheck size={ 80 }/>
       </div>
-    </Alert>
+    </>
   )
 }
 

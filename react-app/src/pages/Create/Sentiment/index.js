@@ -9,7 +9,7 @@ import { Thin } from 'components/Wrappers'
 const Defaults = {
   format: 'ipfs-standard-2019',
   token: ethers.constants.AddressZero,
-  value: ethers.utils.bigNumberify(5000000000000000)
+  value: ethers.utils.bigNumberify('10000000000000000')
 }
 
 const Status = {
