@@ -60,6 +60,10 @@ async function fetchProfile (cache, registry, address, setContent) {
 
   const id = cacheId('profileContent', address)
 
+  // TODO: Evict user cache when profile-updating events occur
+  // - Phrase created
+  // - Sentiment expressed
+  // - content/format changed
   //if (maybeUseCache(cache, id, setContent)) return null
 
   const response = await registry.getProfile(address)

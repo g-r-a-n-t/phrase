@@ -12,9 +12,9 @@ contract('registry', function(accounts) {
   it('can express sentiment in ether.', async () => {
     const sentimentValue = web3.utils.toWei('1', 'ether');
     const billyJoel = accounts[0];
-    await registry.createProfile("na", "Billy Joel", {from: billyJoel});
+    await registry.updateProfile("na", "Billy Joel", {from: billyJoel});
     const philCollins = accounts[1];
-    await registry.createProfile("na", "Phil Collins", {from: philCollins});
+    await registry.updateProfile("na", "Phil Collins", {from: philCollins});
     const riverOfDreams = phraseKey(
       await registry.createPhrase("na", "River of Dreams", ZERO_ADDRESS, {from: billyJoel})
     );

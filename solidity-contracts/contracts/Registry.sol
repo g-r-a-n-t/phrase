@@ -4,7 +4,7 @@ import "./ERC20Interface.sol";
 
 contract Registry {
   event PhraseCreated(address creator, bytes32 phrase);
-  event SentimentCreated(bytes32 sentiment);
+  event SentimentCreated(address creator, bytes32 sentiment);
   event SentimentExpressed(address expresser, bytes32 expressedSentiment);
   event ProfileCreated(address creator);
 
@@ -39,20 +39,13 @@ contract Registry {
   mapping(bytes32 => Sentiment) public sentiments;
   mapping(bytes32 => ExpressedSentiment) public expressedSentiments;
 
-  // TODO: change to update profile
-  function createProfile(
+  function updateProfile(
     string memory format,
     string memory content
   )
     public
   {
-    // Verify that the profile does not already exist.
-    require(
-      !profileExists(msg.sender),
-      "Profile should not exist for the message sender."
-    );
-
-    // Create a new profile for the given address.
+    // Update the profile's format and content.
     profiles[msg.sender].format = format;
     profiles[msg.sender].content = content;
 
@@ -102,7 +95,7 @@ contract Registry {
     bytes32 key = hashSentiment(sentiment);
     sentiments[key] = sentiment;
 
-    emit SentimentCreated(key);
+    emit SentimentCreated(msg.sender, key);
   }
 
   function expressSentiment(

@@ -17,14 +17,14 @@ module.exports = async function(done) {
     const phrasesPath = path.join(root, 'phrases')
     const sentimentsPath = path.join(root, 'sentiments')
 
-    async function createProfile(account, profile) {
+    async function updateProfile(account, profile) {
       try {
         const profilePath = path.join(profilesPath, profile)
         shell.exec(`date > ${profilePath}/time`)
         console.log(`adding ${profile} to IPFS`)
         const cid = shell.exec(`jsipfs add -r -Q ${profilePath} | tr -d "\n"`).stdout
         console.log(`\nadding ${profile} to registry as ${account}`)
-        await registry.createProfile('ipfs-standard-2019', `/ipfs/${cid}`, { from: account })
+        await registry.updateProfile('ipfs-standard-2019', `/ipfs/${cid}`, { from: account })
         console.log(`added ${profile} to registry`)
       } catch (e) {
         console.log('something went wrong ', e)
@@ -86,7 +86,7 @@ module.exports = async function(done) {
     if(profiles.length <= 10) {
       for (let i = 0; i < profiles.length; i++) {
         console.log(`------------- ${profiles[i]} --------------`)
-        await createProfile(accounts[i], profiles[i])
+        await updateProfile(accounts[i], profiles[i])
         await createPhrases(accounts[i], profiles[i], 'ipfs-plaque-2019')
         await createPhrases(accounts[i], profiles[i], 'ipfs-album-2019')
       }
