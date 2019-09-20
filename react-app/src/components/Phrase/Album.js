@@ -41,7 +41,7 @@ export function AlbumBack ({ _key }) {
         <IpfsText path={`${phrase.content}/name.txt`} />
       </div>
       <div className="small" style={{ marginTop: '-3px', marginBottom: '5px' }}>
-        <ProfileName account={ phrase.creator } />
+        <ProfileName _key={ phrase.creator } />
       </div>
       <div>
         <Tracks

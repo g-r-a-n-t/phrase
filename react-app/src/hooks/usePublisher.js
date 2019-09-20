@@ -40,6 +40,17 @@ export function useExpressedSentimentPublisher (phraseKey, sentimentKey) {
   return receipt
 }
 
+export function useProfilePublisher (format, content) {
+  const [receipt, setReceipt] = useState(null)
+  const registry = useRegistryContract()
+
+  useEffect(() => {
+    publishProfile(registry, format, content, setReceipt)
+  }, [registry, format, content])
+
+  return receipt
+}
+
 async function publishPhrase (registry, format, content, beneficiary, setReceipt) {
   if (registry == null) return null
 
@@ -61,6 +72,14 @@ async function publishExpressedSentiment (registry, phraseKey, sentimentKey, sen
   if (registry == null || sentiment == null) return null
 
   const receipt = await registry.expressSentiment(phraseKey, sentimentKey, { value: sentiment.value })
+
+  setReceipt(receipt)
+}
+
+async function publishProfile (registry, format, content, setReceipt) {
+  if (registry == null) return null
+
+  const receipt = await registry.updateProfile(format, content)
 
   setReceipt(receipt)
 }

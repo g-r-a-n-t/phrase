@@ -7,10 +7,10 @@ import { useProfile } from 'hooks/useEntity'
 import { IpfsImage, IpfsText } from 'components/IpfsMedia'
 import debug from 'tools/debug'
 
-export function ProfileInfo ({ account }) {
-  debug.componentRender('ProfileInfo', account)
+export function ProfileInfo ({ _key }) {
+  debug.componentRender('ProfileInfo', _key)
 
-  const profile = useProfile(account)
+  const profile = useProfile(_key)
 
   if (profile == null) return <Spinner type="grow" color="secondary" />
 
@@ -20,13 +20,13 @@ export function ProfileInfo ({ account }) {
         <IpfsImage
           width="180px"
           height="180px"
-          path={`${profile.content}/icon.jpg`}
+          path={ `${profile.content}/icon.jpg` }
           type="image/jpeg"
         />
       </div>
       <br/>
-      <h5><IpfsText path={`${profile.content}/name.txt`} /></h5>
-      <IpfsText path={`${profile.content}/bio.txt`} />
+      <h5><IpfsText path={ `${profile.content}/name.txt` } /></h5>
+      <IpfsText path={ `${profile.content}/bio.txt` } />
     </div>
   )
 }
@@ -67,15 +67,15 @@ ProfileThumb.propTypes = {
   size: PropTypes.number
 }
 
-export function ProfileName ({ account }) {
-  debug.componentRender('ProfileName', account)
+export function ProfileName ({ _key }) {
+  debug.componentRender('ProfileName', _key)
 
-  const profile = useProfile(account)
+  const profile = useProfile(_key)
 
   if (profile == null) return <Spinner type="grow" color="secondary" />
 
   return (
-    <Link to={`/${account}`}>
+    <Link to={`/${_key}`}>
       <IpfsText path={`${profile.content}/name.txt`} />
     </Link>
   )

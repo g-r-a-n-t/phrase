@@ -6,28 +6,22 @@ import { useRegistryContract } from './useContract'
 
 const PROFILE_CACHE_LIFETIME = 60 * 10
 
-export function useProfile (account) {
+export function useProfile (key) {
   const [content, setContent] = useState(null)
   const registry = useRegistryContract()
-  const web3 = useWeb3Context()
   const cache = useCacheContext()
 
-  // TODO: move this out of the hook
-  let address = account
-  if (account === 'me') {
-    address = web3.account
-  }
-
   useEffect(() => {
-    fetchProfile(cache, registry, address, setContent)
-  }, [registry, address, cache])
+    fetchProfile(cache, registry, key, setContent)
+  }, [registry, key, cache])
 
   return content
 }
 
-// Throw this out after the above todo is completed
 export function useCurrentProfile () {
-  return useProfile('me')
+  const { account } = useWeb3Context()
+
+  return useProfile(account)
 }
 
 export function usePhrase (key) {
@@ -55,10 +49,10 @@ export function useSentiment (key) {
 }
 
 
-async function fetchProfile (cache, registry, address, setContent) {
+async function fetchProfile (cache, registry, key, setContent) {
   if (registry == null) return null
 
-  const id = cacheId('profileContent', address)
+  const id = cacheId('profileContent', key)
 
   // TODO: Evict user cache when profile-updating events occur
   // - Phrase created
@@ -66,7 +60,7 @@ async function fetchProfile (cache, registry, address, setContent) {
   // - content/format changed
   //if (maybeUseCache(cache, id, setContent)) return null
 
-  const response = await registry.getProfile(address)
+  const response = await registry.getProfile(key)
 
   const profile = {
     format: response['0'],

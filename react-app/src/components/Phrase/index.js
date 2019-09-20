@@ -45,7 +45,7 @@ export function Phrase ({ _key }) {
         setExpressingSentiment(true)
       }}><IoIosHeart size={19}/></Button>
       { expressingSentiment &&
-        <ExpressSentimentModal phraseKey={_key} onDone={() => {
+        <ExpressSentimentModal phraseKey={ _key } onDone={() => {
           setExpressingSentiment(false)
         }}/>
       }

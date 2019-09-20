@@ -36,7 +36,7 @@ export function PlaqueBack ({ _key }) {
         <IpfsText path={`${phrase.content}/name.txt`} />
       </h7>
       <div className="small">
-        <ProfileName account={ phrase.creator } />
+        <ProfileName _key={ phrase.creator } />
       </div>
       <br />
       <p>

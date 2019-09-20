@@ -84,7 +84,7 @@ function AlbumThumb ({ _key, content }) {
         <b>{ decomposeTrack(content).name } &middot; </b>
         <IpfsText path={`${phrase.content}/name.txt`} />
         <br/>
-        <ProfileName account={phrase.creator} />
+        <ProfileName _key={ phrase.creator } />
       </Col>
     </Row>
   )
