@@ -4,8 +4,8 @@ import { Spinner } from 'reactstrap'
 
 import { useIpfsFilesUpload } from 'hooks/useIpfs'
 
-export default function IpfsUploader ({ files, onComplete }) {
-  const path = useIpfsFilesUpload(files)
+export default function IpfsUploader ({ dir, onDone }) {
+  const path = useIpfsFilesUpload(dir)
 
   if (path == null) {
     return (
@@ -16,7 +16,7 @@ export default function IpfsUploader ({ files, onComplete }) {
     )
   }
 
-  onComplete(path)
+  onDone(path)
 
   return null
 }

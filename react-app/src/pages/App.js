@@ -7,7 +7,6 @@ import Footer from 'components/Footer'
 import Landing from './Landing'
 import Account from './Account'
 import About from './About'
-import { CreatePhrase, CreateSentiment } from './Create'
 import { Row, Col } from 'reactstrap'
 
 export default function App () {
@@ -26,8 +25,6 @@ export default function App () {
               <Switch>
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/about" component={About} />
-                <Route exact path="/create/phrase" component={CreatePhrase} />
-                <Route exact path="/create/sentiment" component={CreateSentiment} />
                 <Route exact strict path="/:account" component={Account} />
               </Switch>
             </Col>

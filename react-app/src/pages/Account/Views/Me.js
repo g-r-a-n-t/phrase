@@ -7,13 +7,15 @@ import { useProfile } from 'hooks/useEntity'
 import { PhraseGrid } from 'components/Phrase'
 import { ProfileInfo } from 'components/Profile'
 import { ExpressedSentiments } from './ExpressedSentiments'
-import { UpdateProfileModal } from './UpdateProfileModal'
 import { Subtle } from 'components/Wrappers'
+import { SimpleModal } from 'components/Modals'
+import { ProfilePublisher } from 'components/Publishers'
 
 export default function BasicView () {
   const { account } = useWeb3Context()
   const profile = useProfile(account)
-  const [editingProfile, setEditingProfile] = useState(false)
+
+  const [updatingProfile, setUpdatingProfile] = useState(false)
 
   if (profile == null) return <Spinner type="grow" color="secondary" />
 
@@ -22,11 +24,16 @@ export default function BasicView () {
       <Col xs="auto">
         <ProfileInfo _key={ account } />
         <br />
-        <Button onClick={ () => setEditingProfile(true) }>
+        <Button onClick={ () => setUpdatingProfile(true) }>
           <IoMdCreate size={23} />
         </Button>
-        { editingProfile &&
-          <UpdateProfileModal onDone={ () => setEditingProfile(false) } />
+        { updatingProfile &&
+          <SimpleModal
+            isOpen={ updatingProfile }
+            setOpen={ setUpdatingProfile }
+          >
+            <ProfilePublisher />
+          </SimpleModal>
         }
       </Col>
       <Col>

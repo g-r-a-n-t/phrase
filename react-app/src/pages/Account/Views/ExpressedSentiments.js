@@ -7,7 +7,6 @@ import { Spinner, Collapse } from 'reactstrap'
 import { useExpressedSentiments } from 'hooks/useEntities'
 import { Sentiment, SentimentGrid } from 'components/Sentiment'
 import { PhraseGrid } from 'components/Phrase'
-import { SimpleModal } from 'components/Modal'
 import { sentimentToPhrasesMap } from 'tools/transformers'
 import debug from 'tools/debug'
 

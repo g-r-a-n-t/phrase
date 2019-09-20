@@ -8,7 +8,7 @@ import { useCreatedSentiments } from 'hooks/useEvents'
 import { useExpressedSentimentPublisher } from 'hooks/usePublisher'
 import { Sentiment } from 'components/Sentiment'
 import { Phrase } from 'components/Phrase'
-import { SimpleModal } from 'components/Modal'
+import { SimpleModal } from 'components/Modals'
 import debug from 'tools/debug'
 
 export default function ExpressSentimentModal ({ phraseKey, onDone }) {

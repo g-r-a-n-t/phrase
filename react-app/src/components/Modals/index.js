@@ -3,11 +3,11 @@ import { IoIosClose } from 'react-icons/io'
 import PropTypes from 'prop-types'
 import { Modal, ModalBody } from 'reactstrap'
 
-export function SimpleModal ({ children, onDone }) {
+export function SimpleModal ({ children, isOpen, setOpen }) {
   const close = <button
       className="close"
       style={{ position: 'absolute', top: '15px', right: '15px' }}
-      onClick={ onDone }
+      onClick={ () => setOpen(false) }
     >
       <IoIosClose size={32}/>
     </button>
@@ -15,8 +15,8 @@ export function SimpleModal ({ children, onDone }) {
   return (
     <Modal
       size="lg"
-      isOpen={ true }
-      toggle={ onDone }
+      isOpen={ isOpen }
+      toggle={ () => setOpen(false) }
       external={ close }
     >
       <ModalBody>

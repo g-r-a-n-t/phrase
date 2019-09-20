@@ -1,30 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {
-  Navbar, NavbarBrand, Nav, NavItem, NavLink,
-  UncontrolledDropdown, DropdownToggle, DropdownItem, DropdownMenu
-} from 'reactstrap'
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 
 import { useCurrentProfile } from 'hooks/useEntity'
 import { IpfsImage } from 'components/IpfsMedia'
-
-function CreateDropdown () {
-  return (
-    <UncontrolledDropdown nav inNavbar>
-      <DropdownToggle nav caret>
-        Create
-      </DropdownToggle>
-      <DropdownMenu right>
-        <DropdownItem>
-          <NavLink tag={Link} to="/create/phrase">Phrase</NavLink>
-        </DropdownItem>
-        <DropdownItem>
-          <NavLink tag={Link} to="/create/sentiment">Sentiment</NavLink>
-        </DropdownItem>
-      </DropdownMenu>
-    </UncontrolledDropdown>
-  )
-}
 
 export default function Header () {
   const profile = useCurrentProfile()
@@ -45,7 +24,6 @@ export default function Header () {
           </NavItem>
         ) : (
           <>
-            <CreateDropdown />
             <NavItem>
               <NavLink tag={Link} to="/me">
                 <div className="rounded-circle" style={{ overflow: 'hidden' }}>
