@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { ethers } from 'ethers'
 import { IoMdSquare } from 'react-icons/io'
 import { Label, Form, FormGroup, Input, FormText, Button } from 'reactstrap'
 
@@ -8,7 +9,7 @@ import ImageSelect from 'components/ImageSelect'
 const NAME_LENGTH = [4, 32]
 const DESC_LENGTH = [32, 512]
 
-export default function PlaqueForm ({ onReady }) {
+export default function PlaqueForm ({ onDone }) {
   const [name, setName] = useState(null)
   const [description, setDescription] = useState(null)
   const [cover, setCover] = useState(null)
@@ -71,7 +72,11 @@ export default function PlaqueForm ({ onReady }) {
       </FormGroup>
       <Button
         className={ valid() ? '' : 'd-none' }
-        onClick={ () => { onReady(toDir()) } }
+        onClick={ () => onDone({
+          format: 'ipfs-plaque-2019',
+          dir: toDir(),
+          beneficiary: ethers.constant.AddressZero
+        })}
       >Create</Button>
     </Form>
   )

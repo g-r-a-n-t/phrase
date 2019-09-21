@@ -1,21 +1,19 @@
 import React, { useState } from 'react'
 import { useWeb3Context } from 'web3-react'
-import { IoIosHeart, IoMdHand, IoMdCreate } from 'react-icons/io'
-import { Row, Col, Spinner, Button } from 'reactstrap'
+import { IoIosHeart, IoMdHand, IoMdCreate, IoMdAdd } from 'react-icons/io'
+import { Row, Col, Spinner, Button, Alert } from 'reactstrap'
 
 import { useProfile } from 'hooks/useEntity'
 import { PhraseGrid } from 'components/Phrase'
 import { ProfileInfo } from 'components/Profile'
 import { ExpressedSentiments } from './ExpressedSentiments'
 import { Subtle } from 'components/Wrappers'
-import { SimpleModal } from 'components/Modals'
-import { ProfilePublisher } from 'components/Publishers'
+import { Modalize } from 'components/Modals'
+import { ProfilePublisher, SentimentPublisher, PhrasePublisher } from 'components/Publishers'
 
 export default function BasicView () {
   const { account } = useWeb3Context()
   const profile = useProfile(account)
-
-  const [updatingProfile, setUpdatingProfile] = useState(false)
 
   if (profile == null) return <Spinner type="grow" color="secondary" />
 
@@ -24,36 +22,33 @@ export default function BasicView () {
       <Col xs="auto">
         <ProfileInfo _key={ account } />
         <br />
-        <Button onClick={ () => setUpdatingProfile(true) }>
-          <IoMdCreate size={23} />
-        </Button>
-        { updatingProfile &&
-          <SimpleModal
-            isOpen={ updatingProfile }
-            setOpen={ setUpdatingProfile }
-          >
-            <ProfilePublisher />
-          </SimpleModal>
-        }
+        <Modalize content={ <ProfilePublisher /> }>
+          <IoMdCreate className="text-primary" size={23} />
+        </Modalize>
       </Col>
       <Col>
         <div className="border border-light rounded">
           { profile.expressedSentiments.length === 0
-            ? <Subtle>No sentiments have been expressed.</Subtle>
+            ? <Subtle>You have not expressed any sentiments.</Subtle>
             : <>
               <Subtle>
                 -------- <IoIosHeart size={25}/> --------
               </Subtle>
-              <div>
-                <ExpressedSentiments keys={ profile.expressedSentiments } />
-              </div>
             </>
           }
+          <div>
+            <ExpressedSentiments keys={ profile.expressedSentiments } />
+          </div>
+          <Modalize content={ <SentimentPublisher /> }>
+            <div className="text-center">
+              <IoMdAdd className="text-primary" style={{ margin: '10px' }} size={60} />
+            </div>
+          </Modalize>
         </div>
         <br />
         <div className="border border-light rounded">
           { profile.phrases.length === 0
-            ? <Subtle>No phrases have been created.</Subtle>
+            ? <Subtle>You have not created any phrases.</Subtle>
             : <>
               <Subtle>
                 -------- <IoMdHand size={25}/> --------
@@ -63,6 +58,11 @@ export default function BasicView () {
               </div>
             </>
           }
+          <Modalize content={ <PhrasePublisher /> }>
+            <div className="text-center">
+              <IoMdAdd className="text-primary" style={{ margin: '10px' }} size={60} />
+            </div>
+          </Modalize>
         </div>
       </Col>
     </Row>

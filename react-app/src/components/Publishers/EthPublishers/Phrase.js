@@ -1,18 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Spinner } from 'reactstrap'
+import { Spinner, Alert } from 'reactstrap'
 
 import { usePhrasePublisher } from 'hooks/usePublisher'
 
 export default function PhraseEthPublisher ({ formValues, ipfsPath, onDone }) {
   const receipt = usePhrasePublisher(formValues.format, ipfsPath, formValues.beneficiary)
 
-  if (receipt == null) {
+  if (receipt === null) {
     return (
-      <>
-        <p>Publishing phrase to Ethereum.</p>
-        <Spinner size="sm" color="secondary" />
-      </>
+      <Alert color="info">
+        <Spinner size="sm" color="secondary" /> &nbsp;
+        Publishing phrase to Ethereum.
+      </Alert>
     )
   }
 

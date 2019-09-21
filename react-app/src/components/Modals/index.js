@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoIosClose } from 'react-icons/io'
 import PropTypes from 'prop-types'
 import { Modal, ModalBody } from 'reactstrap'
@@ -23,6 +23,21 @@ export function SimpleModal ({ children, isOpen, setOpen }) {
         { children }
       </ModalBody>
     </Modal>
+  )
+}
+
+export function Modalize ({ children, content }) {
+  const [isOpen, setOpen] = useState(false)
+
+  return (
+    <>
+      <div onClick={ () => setOpen(true) } style={{ cursor: 'pointer' }}>
+        { children }
+      </div>
+      <SimpleModal isOpen={ isOpen } setOpen={ setOpen }>
+        { content }
+      </SimpleModal>
+    </>
   )
 }
 

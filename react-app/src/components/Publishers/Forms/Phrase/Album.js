@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { ethers } from 'ethers'
 import { IoMdDisc } from 'react-icons/io'
 import { Label, Form, FormGroup, Input, FormText, Button } from 'reactstrap'
 
@@ -7,7 +8,7 @@ import ImageSelect from 'components/ImageSelect'
 
 const NAME_LENGTH = [4, 64]
 
-export default function AlbumForm ({ onReady }) {
+export default function AlbumForm ({ onDone }) {
   const [name, setName] = useState(null)
   const [cover, setCover] = useState(null)
   const [tracks, setTracks] = useState(null)
@@ -72,7 +73,16 @@ export default function AlbumForm ({ onReady }) {
           Image will be resized to 400x400px.
         </FormText>
       </FormGroup>
-      <Button className={ valid() ? '' : 'd-none' } onClick={ () => { onReady(toDir()) } }>Create</Button>
+      <Button
+        className={ valid() ? '' : 'd-none' }
+        onClick={ () => onDone({
+          format: 'ipfs-album-2019',
+          dir: toDir(),
+          beneficiary: ethers.constants.AddressZero
+        })}
+      >
+        Create
+      </Button>
     </Form>
   )
 }

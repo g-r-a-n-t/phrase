@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Alert } from 'reactstrap'
 
 import IpfsUploader from './IpfsUploader'
 
@@ -6,6 +7,7 @@ export default function Publisher ({ Form, EthPublisher, onDone }) {
   const [formValues, setFormValues] = useState(null)
   const [ipfsPath, setIpfsPath] = useState(null)
   const [ethReceipt, setEthReceipt] = useState(null)
+  const [doneCalled, setDoneCalled] = useState(false)
 
   if (formValues === null) return (
     <Form onDone={ values => setFormValues(values) }/>
@@ -26,7 +28,15 @@ export default function Publisher ({ Form, EthPublisher, onDone }) {
     />
   )
 
-  onDone(formValues, ipfsPath)
+  if (!doneCalled) {
+    onDone(formValues, ipfsPath)
+    setDoneCalled(true)
+  }
 
-  return null
+  // TODO: verify that everything worked correctly.
+  return (
+    <Alert color="success">
+      Success!
+    </Alert>
+  )
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { ethers } from 'ethers'
 import PropTypes from 'prop-types'
 import { IoIosHeart } from 'react-icons/io'
 import { Label, Form, FormGroup, Input, FormText, Button } from 'reactstrap'
@@ -7,7 +8,7 @@ import ImageSelect from 'components/ImageSelect'
 
 const NAME_LENGTH = [4, 32]
 
-export default function StandardForm ({ onReady }) {
+export default function StandardForm ({ onDone }) {
   const [name, setName] = useState(null)
   const [cover, setCover] = useState(null)
 
@@ -61,7 +62,12 @@ export default function StandardForm ({ onReady }) {
       </FormGroup>
       <Button
         className={ valid() ? '' : 'd-none' }
-        onClick={ () => { onReady(toDir()) } }
+        onClick={ () => onDone({
+          format: 'ipfs-standard-2019',
+          token:  ethers.constants.AddressZero,
+          value: ethers.utils.bigNumberify("10000000000000000"),
+          dir: toDir()
+        })}
       >Create</Button>
     </Form>
   )

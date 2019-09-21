@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Spinner } from 'reactstrap'
+import { Spinner, Alert } from 'reactstrap'
 
 import { useSentimentPublisher } from 'hooks/usePublisher'
 
@@ -14,10 +14,10 @@ export default function SentimentEthPublisher ({ formValues, ipfsPath, onDone })
 
   if (receipt === null) {
     return (
-      <>
-        <p>Publishing sentiment to Ethereum.</p>
-        <Spinner size="sm" color="secondary" />
-      </>
+      <Alert color="info">
+        <Spinner size="sm" color="secondary" /> &nbsp;
+        Publishing sentiment to Ethereum.
+      </Alert>
     )
   }
 

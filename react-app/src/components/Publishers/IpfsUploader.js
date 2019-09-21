@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Spinner } from 'reactstrap'
+import { Spinner, Alert } from 'reactstrap'
 
 import { useIpfsFilesUpload } from 'hooks/useIpfs'
 
@@ -9,10 +9,10 @@ export default function IpfsUploader ({ dir, onDone }) {
 
   if (path == null) {
     return (
-      <>
-        <p>Uploading content to IPFS.</p>
-        <Spinner size="sm" color="secondary" />
-      </>
+      <Alert color="info">
+        <Spinner size="sm" color="secondary" /> &nbsp;
+        Creating an IPFS block.
+      </Alert>
     )
   }
 

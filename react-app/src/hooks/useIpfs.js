@@ -149,7 +149,8 @@ async function uploadFilesAsFolder (ipfs, files, setPath) {
   const path = result[result.length - 1].hash
   debug.networkInbound('files uploaded to IPFS', path)
 
-  setPath(path)
+  // TODO: check if it doesnt already have /ipfs/
+  setPath(`/ipfs/${path}`)
 }
 
 function bufToUrl (buf, type) {

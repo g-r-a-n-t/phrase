@@ -1,5 +1,5 @@
 import React from 'react'
-import { Spinner } from 'reactstrap'
+import { Spinner, Alert } from 'reactstrap'
 
 import { useProfilePublisher } from 'hooks/usePublisher'
 
@@ -8,10 +8,10 @@ export default function ProfileEthPublisher ({ formValues, ipfsPath, onDone }) {
 
   if (receipt == null) {
     return (
-      <>
-        <p>Publishing profile to Ethereum.</p>
-        <Spinner size="sm" color="secondary" />
-      </>
+      <Alert color="info">
+        <Spinner size="sm" color="secondary" /> &nbsp;
+        Publishing profile to Ethereum.
+      </Alert>
     )
   }
 

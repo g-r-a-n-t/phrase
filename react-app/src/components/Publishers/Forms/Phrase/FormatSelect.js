@@ -5,12 +5,12 @@ import { IoMdImage, IoMdFilm, IoMdDisc, IoMdSquare } from 'react-icons/io'
 
 import { Thin } from 'components/Wrappers'
 
-export default function FormatSelect ({ onReady }) {
+export default function FormatSelect ({ onDone }) {
   return (
-    <Thin>
+    <>
       <Row>
         <Col lg="6">
-          <Card onClick={() => { onReady('ipfs-plaque-2019') }} style={{ cursor: 'pointer', height: '100%' }}>
+          <Card onClick={() => { onDone('ipfs-plaque-2019') }} style={{ cursor: 'pointer', height: '100%' }}>
             <CardHeader className="text-primary">
               <IoMdSquare size={32}/>
             </CardHeader>
@@ -30,7 +30,7 @@ export default function FormatSelect ({ onReady }) {
           </Card>
         </Col>
         <Col lg="6">
-          <Card onClick={() => { onReady('ipfs-album-2019') }} style={{ cursor: 'pointer', height: '100%' }}>
+          <Card onClick={() => { onDone('ipfs-album-2019') }} style={{ cursor: 'pointer', height: '100%' }}>
             <CardHeader className="text-primary">
               <IoMdDisc size={32}/>
             </CardHeader>
@@ -53,7 +53,7 @@ export default function FormatSelect ({ onReady }) {
       <br/>
       <Row>
         <Col lg="6">
-          <Card onClick={() => { onReady('ipfs-video-2019') }} style={{ cursor: 'pointer', height: '100%' }}>
+          <Card onClick={() => { onDone('ipfs-video-2019') }} style={{ cursor: 'pointer', height: '100%' }}>
             <CardHeader className="text-primary">
               <IoMdFilm size={32}/>
             </CardHeader>
@@ -73,7 +73,7 @@ export default function FormatSelect ({ onReady }) {
           </Card>
         </Col>
         <Col lg="6">
-          <Card onClick={() => { onReady('ipfs-image-2019') }} style={{ cursor: 'pointer', height: '100%' }}>
+          <Card onClick={() => { onDone('ipfs-image-2019') }} style={{ cursor: 'pointer', height: '100%' }}>
             <CardHeader className="text-primary">
               <IoMdImage size={32}/>
             </CardHeader>
@@ -92,7 +92,7 @@ export default function FormatSelect ({ onReady }) {
           </Card>
         </Col>
       </Row>
-    </Thin>
+    </>
   )
 }
 
