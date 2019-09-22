@@ -8,12 +8,9 @@ import { useCreatedSentiments } from 'hooks/useEvents'
 import { useExpressedSentimentPublisher } from 'hooks/usePublisher'
 import { Sentiment } from 'components/Sentiment'
 import { Phrase } from 'components/Phrase'
-import { SimpleModal } from 'components/Modals'
 import debug from 'tools/debug'
 
-export default function ExpressSentimentModal ({ phraseKey, onDone }) {
-  debug.componentRender('ExpressSentimentModal', phraseKey, onDone)
-
+export default function ExpressSentiment ({ phraseKey }) {
   const createdSentiments = useCreatedSentiments()
   const [sentimentKey, setSentimentKey] = useState(null)
 
@@ -21,26 +18,20 @@ export default function ExpressSentimentModal ({ phraseKey, onDone }) {
 
   const sentimentKeys = createdSentiments.map((createdSentiment) => { return createdSentiment.sentiment })
 
-  return (
-    <SimpleModal onDone={ onDone } width="720px">
-      { sentimentKey == null
-        ? <ExpressSentimentGrid
-          keys={ sentimentKeys }
-          onSelect={(key) => { setSentimentKey(key) }}
-        />
-        : <ExpressedSentimentPublisher
-          phraseKey={ phraseKey }
-          sentimentKey={ sentimentKey }
-          onCancel={ () => { setSentimentKey(null) }}
-        />
-      }
-    </SimpleModal>
-  )
+  if (sentimentKey === null) return <ExpressSentimentGrid
+    keys={ sentimentKeys }
+    onSelect={(key) => { setSentimentKey(key) }}
+  />
+
+  return <ExpressedSentimentPublisher
+    phraseKey={ phraseKey }
+    sentimentKey={ sentimentKey }
+    onCancel={ () => { setSentimentKey(null) }}
+  />
 }
 
-ExpressSentimentModal.propTypes = {
-  phraseKey: PropTypes.string.isRequired,
-  onDone: PropTypes.func.isRequired
+ExpressSentiment.propTypes = {
+  phraseKey: PropTypes.string.isRequired
 }
 
 function ExpressedSentimentPublisher ({ phraseKey, sentimentKey, onCancel = () => {} }) {

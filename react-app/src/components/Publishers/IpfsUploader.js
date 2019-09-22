@@ -11,7 +11,7 @@ export default function IpfsUploader ({ dir, onDone }) {
     return (
       <Alert color="info">
         <Spinner size="sm" color="secondary" /> &nbsp;
-        Creating an IPFS block.
+        Uploading to IPFS.
       </Alert>
     )
   }

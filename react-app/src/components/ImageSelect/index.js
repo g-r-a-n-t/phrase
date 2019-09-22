@@ -34,7 +34,7 @@ export default function ImageSelect ({ onReady }) {
     )
   } else if (cropped == null) {
     return (
-      <>
+      <div>
         <ReactCrop
           src={uploadUrl}
           crop={crop}
@@ -44,7 +44,7 @@ export default function ImageSelect ({ onReady }) {
         />
         <br/>
         <Button className="btn-sm" onClick={() => { getCroppedImage(imageRef, crop, setCropped) }}><IoIosCrop size={22}/></Button>
-      </>
+      </div>
     )
   } else if (!complete) {
     const croppedFile = new File([cropped], 'image')

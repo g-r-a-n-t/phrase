@@ -7,6 +7,8 @@ import { Spinner, Button } from 'reactstrap'
 import { usePhrase } from 'hooks/useEntity'
 import { PlaqueFront, PlaqueBack } from './Plaque'
 import { AlbumFront, AlbumBack } from './Album'
+import { SimpleModal } from 'components/Modals'
+import ExpressSentiment from './ExpressSentiment'
 import FlipCard from 'components/FlipCard'
 import debug from 'tools/debug'
 
@@ -43,6 +45,9 @@ export function Phrase ({ _key }) {
         e.stopPropagation()
         setExpressingSentiment(true)
       }}><IoIosHeart size={19}/></Button>
+      <SimpleModal isOpen={ expressingSentiment } setOpen={ setExpressingSentiment }>
+        <ExpressSentiment phraseKey={ _key } />
+      </SimpleModal>
     </>
   )
 

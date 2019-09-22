@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { ethers } from 'ethers'
 import PropTypes from 'prop-types'
-import { IoIosHeart } from 'react-icons/io'
-import { Label, Form, FormGroup, Input, FormText, Button } from 'reactstrap'
+import { Label, Form, FormGroup, Input, FormText, Button, Alert } from 'reactstrap'
 
 import ImageSelect from 'components/ImageSelect'
 
@@ -36,8 +35,12 @@ export default function StandardForm ({ onDone }) {
 
   return (
     <Form>
-      <IoIosHeart className="text-primary" size={32}/>
-      <br/><br/>
+      <Alert color="info">
+        <b>Note:</b> For a sentiment to appear on your profile, you must express
+        it towards a phrase. To do this, flip a phrase over and click the blue
+        heart. You can create new sentiments here, which you may express at a
+        later time.
+      </Alert>
       <FormGroup>
         <Label><b>Sentiment Name:</b></Label>
         <Input

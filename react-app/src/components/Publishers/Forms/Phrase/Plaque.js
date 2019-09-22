@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { ethers } from 'ethers'
-import { IoMdSquare } from 'react-icons/io'
 import { Label, Form, FormGroup, Input, FormText, Button } from 'reactstrap'
 
 import ImageSelect from 'components/ImageSelect'
@@ -45,8 +44,6 @@ export default function PlaqueForm ({ onDone }) {
 
   return (
     <Form>
-      <IoMdSquare className="text-primary" size={32}/>
-      <br/><br/>
       <FormGroup>
         <Label><b>Plaque Name:</b></Label>
         <Input

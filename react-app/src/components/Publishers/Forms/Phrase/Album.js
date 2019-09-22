@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { ethers } from 'ethers'
-import { IoMdDisc } from 'react-icons/io'
 import { Label, Form, FormGroup, Input, FormText, Button } from 'reactstrap'
 
 import ImageSelect from 'components/ImageSelect'
@@ -47,8 +46,6 @@ export default function AlbumForm ({ onDone }) {
 
   return (
     <Form>
-      <IoMdDisc className="text-primary" size={32}/>
-      <br/><br/>
       <FormGroup>
         <Label><b>Album Name:</b></Label>
         <Input
