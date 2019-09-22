@@ -14200,6 +14200,11 @@ react-icons@^3.7.0:
   dependencies:
     camelcase "^5.0.0"
 
+react-identicons@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/react-identicons/-/react-identicons-1.1.7.tgz#8dc8dc98fe3179874d481584cf99e1b3de8264f9"
+  integrity sha512-r+nCigLoQMffpf8gZo6l0we8RaRkgEIeRY6xS1vjp5ANxdTd3QwA2tjBTfmgf+4kFqYnaL2XvJH+iZ4mKqnb8Q==
+
 react-image-crop@^8.2.2:
   version "8.2.2"
   resolved "https://registry.yarnpkg.com/react-image-crop/-/react-image-crop-8.2.2.tgz#ac732da4867fbabbd4243636851442015be10f7a"

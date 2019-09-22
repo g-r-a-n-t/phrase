@@ -41,7 +41,7 @@ export default function BasicView () {
           </div>
           <Modalize content={ <SentimentPublisher /> }>
             <div className="text-center">
-              <IoMdAdd className="text-primary" style={{ margin: '10px' }} size={60} />
+              <IoMdAdd className="text-primary" style={{ margin: '10px' }} size={23} />
             </div>
           </Modalize>
         </div>
@@ -60,7 +60,7 @@ export default function BasicView () {
           }
           <Modalize content={ <PhrasePublisher /> }>
             <div className="text-center">
-              <IoMdAdd className="text-primary" style={{ margin: '10px' }} size={60} />
+              <IoMdAdd className="text-primary" style={{ margin: '10px' }} size={23} />
             </div>
           </Modalize>
         </div>

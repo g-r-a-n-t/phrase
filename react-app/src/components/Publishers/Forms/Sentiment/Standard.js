@@ -36,10 +36,12 @@ export default function StandardForm ({ onDone }) {
   return (
     <Form>
       <Alert color="info">
-        <b>Note:</b> For a sentiment to appear on your profile, you must express
-        it towards a phrase. To do this, flip a phrase over and click the blue
-        heart. You can create new sentiments here, which you may express at a
-        later time.
+        Here you may create a sentiment. A sentiment can be likened to a sticker
+        that one would place on a belonging. To create a sentiment, fill out the
+        form below. Once you have created a sentiment, you can express it
+        towards any phrase by sending the creator the value set below. Once you
+        have done so, the sentiment will be displayed on your profile in
+        association with the phrase.
       </Alert>
       <FormGroup>
         <Label><b>Sentiment Name:</b></Label>

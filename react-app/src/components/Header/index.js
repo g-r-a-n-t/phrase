@@ -1,12 +1,13 @@
 import React from 'react'
+import { useWeb3Context } from 'web3-react'
 import { Link } from 'react-router-dom'
 import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 
-import { useCurrentProfile } from 'hooks/useEntity'
 import { IpfsImage } from 'components/IpfsMedia'
+import { MeDot } from 'components/Profile'
 
 export default function Header () {
-  const profile = useCurrentProfile()
+  const { account } = useWeb3Context()
 
   return (
     <Navbar color="light" light expand="md">
@@ -18,18 +19,14 @@ export default function Header () {
         <NavItem>
           <NavLink tag={Link} to="/about">About</NavLink>
         </NavItem>
-        { profile == null ? (
+        { account == null ? (
           <NavItem>
             <NavLink tag={Link} to="/create/profile">Join</NavLink>
           </NavItem>
         ) : (
           <>
             <NavItem>
-              <NavLink tag={Link} to="/me">
-                <div className="rounded-circle" style={{ overflow: 'hidden' }}>
-                  <IpfsImage type="image/jpeg" path={`${profile.content}/icon.jpg`} width="25px" height="25px"/>
-                </div>
-              </NavLink>
+              <MeDot />
             </NavItem>
           </>
         )}
