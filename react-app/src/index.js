@@ -14,21 +14,15 @@ import { CacheContext, Cache } from './contexts/cache'
 
 function ContextProviders ({ children }) {
   const ipfs = useIpfs()
-  const web3 = useWeb3Context()
-
-  // TODO: remove to fix no-op warning
-  useEffect(() => {
-    web3.setFirstValidConnector(['MetaMask'])
-  })
-
-  if (ipfs == null) return <p>loading ipfs...</p>
 
   return (
-    <CacheContext.Provider value={Cache()}>
-      <IpfsContext.Provider value={ipfs}>
-        { children }
-      </IpfsContext.Provider>
-    </CacheContext.Provider>
+    <Web3Provider connectors={ connectors } libraryName="ethers.js">
+      <CacheContext.Provider value={Cache()}>
+        <IpfsContext.Provider value={ipfs}>
+          { children }
+        </IpfsContext.Provider>
+      </CacheContext.Provider>
+    </Web3Provider>
   )
 }
 
@@ -37,10 +31,8 @@ ContextProviders.propTypes = {
 }
 
 ReactDOM.render(
-  <Web3Provider connectors={connectors} libraryName="ethers.js">
-    <ContextProviders>
-      <App />
-    </ContextProviders>
-  </Web3Provider>,
+  <ContextProviders>
+    <App />
+  </ContextProviders>,
   document.getElementById('root')
 )
