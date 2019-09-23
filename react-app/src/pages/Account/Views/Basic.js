@@ -19,33 +19,31 @@ export default function BasicView ({ _key }) {
         <ProfileInfo _key={ _key } />
       </Col>
       <Col>
-        <div className="border border-light rounded">
-          { profile.expressedSentiments.length === 0
-            ? <Subtle>No sentiments have been expressed.</Subtle>
-            : <>
+        { profile.expressedSentiments.length === 0
+          && profile.phrases.length === 0 &&
+          <Subtle>No Activity :(</Subtle>
+        }
+        { profile.expressedSentiments.length !== 0 && <>
+            <div className="border border-light rounded">
               <Subtle>
                 -------- <IoIosHeart size={25}/> --------
               </Subtle>
               <div>
                 <ExpressedSentiments keys={ profile.expressedSentiments } />
               </div>
-            </>
-          }
-        </div>
-        <br />
-        <div className="border border-light rounded">
-          { profile.phrases.length === 0
-            ? <Subtle>No phrases have been created.</Subtle>
-            : <>
-              <Subtle>
-                -------- <IoMdHand size={25}/> --------
-              </Subtle>
-              <div className="d-flex justify-content-center">
-                <PhraseGrid keys={profile.phrases.slice().reverse()} cols={ 3 } />
-              </div>
-            </>
-          }
-        </div>
+            </div>
+            <br />
+          </>
+        }
+        { profile.phrases.length !== 0 && <div className="border border-light rounded">
+            <Subtle>
+              -------- <IoMdHand size={25}/> --------
+            </Subtle>
+            <div className="d-flex justify-content-center">
+              <PhraseGrid keys={profile.phrases.slice().reverse()} cols={ 3 } />
+            </div>
+          </div>
+        }
       </Col>
     </Row>
   )
