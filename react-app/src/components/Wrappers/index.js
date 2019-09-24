@@ -28,6 +28,20 @@ Subtle.propTypes = {
   children: PropTypes.node.isRequired
 }
 
+export function Medium ({ children }) {
+  return (
+    <Row>
+      <Col lg={{ size: 8, offset: 2 }}>
+        { children }
+      </Col>
+    </Row>
+  )
+}
+
+Thin.propTypes = {
+  children: PropTypes.node.isRequired
+}
+
 export function Thin ({ children }) {
   return (
     <Row>
@@ -39,9 +53,5 @@ export function Thin ({ children }) {
 }
 
 Thin.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.element,
-    PropTypes.string
-  ]).isRequired
+  children: PropTypes.node.isRequired
 }

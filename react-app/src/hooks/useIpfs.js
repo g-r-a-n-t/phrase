@@ -72,9 +72,9 @@ export function useIpfsFilesUpload (file) {
 
 async function startIpfs (setIpfs) {
   console.log('Starting IPFS')
-  const _ipfs = await Ipfs.create({ config: config.ipfs })
-  console.log('Started IPFS: ', _ipfs)
-  setIpfs(_ipfs)
+  const ipfs = await Ipfs.create({ config: config.ipfs })
+  console.log('Started IPFS: ', ipfs)
+  setIpfs(ipfs)
 }
 
 // TODO: these methods should handle failures better.

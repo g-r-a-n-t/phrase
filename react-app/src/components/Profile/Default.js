@@ -27,10 +27,8 @@ export function DefaultMeDot () {
   if (account === null) return null
 
   return (
-    <NavLink tag={ Link } to={ '/me' }>
-      <div className="rounded-circle" style={{ overflow: 'hidden' }}>
-        <Identicon className="border rounded" size={ 25 } string={ account } />
-      </div>
+    <NavLink style={{ padding: '0px', margin: '0px' }} tag={ Link } to={ '/me' }>
+        <Identicon className="rounded-circle border" size={ 25 } string={ account } />
     </NavLink>
   )
 }

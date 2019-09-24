@@ -95,8 +95,8 @@ export function StandardMeDot () {
   if (profile == null) return <Spinner type="grow" color="secondary" />
 
   return (
-    <NavLink tag={ Link } to={ '/me' }>
-      <div className="rounded-circle" style={{ overflow: 'hidden' }}>
+    <NavLink style={{ padding: '0px', margin: '0px' }} tag={ Link } to={ '/me' }>
+      <div className="rounded-circle border" style={{ overflow: 'hidden' }}>
         <IpfsImage type="image/jpeg" path={ `${profile.content}/icon.jpg` } width="25px" height="25px"/>
       </div>
     </NavLink>

@@ -11,24 +11,19 @@ export default function Header () {
 
   return (
     <Navbar color="light" light expand="md">
-      <NavbarBrand tag={Link} to="/">
+      <NavbarBrand style={{ padding: '0px', margin: '0px' }} tag={Link} to="/">
         <img width="25px" height="25px" src="/logo.png" alt="logo"/>
         <span>&nbsp;phrase</span>
       </NavbarBrand>
       <Nav className="ml-auto" navbar>
-        <NavItem>
-          <NavLink tag={Link} to="/about">About</NavLink>
-        </NavItem>
         { account == null ? (
           <NavItem>
             <NavLink tag={Link} to="/create/profile">Join</NavLink>
           </NavItem>
         ) : (
-          <>
-            <NavItem>
-              <MeDot />
-            </NavItem>
-          </>
+          <NavItem>
+            <MeDot />
+          </NavItem>
         )}
       </Nav>
     </Navbar>
