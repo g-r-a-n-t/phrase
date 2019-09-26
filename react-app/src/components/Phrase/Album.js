@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { MdPlayCircleOutline, MdPauseCircleOutline, MdFileDownload } from 'react-icons/md'
-import { Spinner } from 'reactstrap'
+import { Spinner, Row, Col } from 'reactstrap'
 
 import { usePhrase } from 'hooks/useEntity'
 import { useIpfsFileList } from 'hooks/useIpfs'
@@ -50,6 +50,35 @@ export function AlbumBack ({ _key }) {
         />
       </div>
     </div>
+  )
+}
+
+export function AlbumExploded ({ _key }) {
+  const phrase = usePhrase(_key)
+
+  if (phrase == null) return <Spinner type="grow" color="secondary" />
+
+  return (
+    <Row>
+      <Col>
+        <h5><IpfsText path={`${phrase.content}/name.txt`} /></h5>
+        <p>
+          Created by <ProfileName _key={ phrase.creator } />.
+        </p>
+        <Tracks
+          _key={ _key }
+          content={ phrase.content }
+        />
+      </Col>
+      <Col className="text-right">
+        <IpfsImage
+          width="400px"
+          height="400px"
+          path={`${phrase.content}/cover.jpg`}
+          type="image/jpeg"
+        />
+      </Col>
+    </Row>
   )
 }
 

@@ -13,7 +13,7 @@ export default function Header () {
     <Navbar color="light" light expand="md">
       <NavbarBrand style={{ padding: '0px', margin: '0px' }} tag={Link} to="/">
         <img width="25px" height="25px" src="/logo.png" alt="logo"/>
-        &nbsp; Phrase
+        &nbsp; phrase
       </NavbarBrand>
       <Nav className="ml-auto" navbar>
         { account == null ? (

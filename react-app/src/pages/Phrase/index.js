@@ -3,7 +3,7 @@ import { ethers } from 'ethers'
 import { IoIosHeart } from 'react-icons/io'
 import { Container, Row, Col } from 'reactstrap'
 
-import { Phrase } from 'components/Phrase'
+import { PhraseExploded } from 'components/Phrase'
 import ExpressedSentiments from './ExpressedSentiments'
 import { Subtle } from 'components/Wrappers'
 
@@ -15,7 +15,7 @@ export default function PhraseView ({ match }) {
       <Row>
         <Col>
           <div style={{ margin: '5px' }}>
-            <Phrase _key={ key }/>
+            <PhraseExploded _key={ key }/>
           </div>
         </Col>
       </Row>

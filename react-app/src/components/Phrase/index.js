@@ -3,19 +3,17 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { IoIosHeart, IoMdOpen } from 'react-icons/io'
 import { CSSTransitionGroup } from 'react-transition-group'
-import { Spinner, Button } from 'reactstrap'
+import { Spinner, Button, Row, Col } from 'reactstrap'
 
 import { usePhrase } from 'hooks/useEntity'
-import { PlaqueFront, PlaqueBack } from './Plaque'
-import { AlbumFront, AlbumBack } from './Album'
+import { PlaqueFront, PlaqueBack, PlaqueExploded } from './Plaque'
+import { AlbumFront, AlbumBack, AlbumExploded } from './Album'
 import { SimpleModal } from 'components/Modals'
 import ExpressSentiment from './ExpressSentiment'
 import FlipCard from 'components/FlipCard'
 import debug from 'tools/debug'
 
 export function Phrase ({ _key }) {
-  debug.componentRender('Phrase', _key)
-
   const [expressingSentiment, setExpressingSentiment] = useState(false)
 
   const phrase = usePhrase(_key)
@@ -63,6 +61,42 @@ export function Phrase ({ _key }) {
 
 Phrase.propTypes = {
   _key: PropTypes.string.isRequired
+}
+
+export function PhraseExploded ({ _key }) {
+  const [expressingSentiment, setExpressingSentiment] = useState(false)
+  const phrase = usePhrase(_key)
+
+  if (phrase == null) return <Spinner type="grow" color="secondary" />
+
+  const content = (() => {
+      switch (phrase.format) {
+        case 'ipfs-album-2019':
+          return <AlbumExploded _key={ _key } />
+        case 'ipfs-plaque-2019':
+          return <PlaqueExploded _key={ _key } />
+        default:
+          return  null
+    }
+  })()
+
+  return (
+    <>
+      <Row>
+        <Col>{ content }</Col>
+      </Row>
+      <Row>
+        <Col>
+          <Button color="primary" onClick={ () => setExpressingSentiment(true) }>
+            <IoIosHeart size={19} /> <b>Support</b>
+          </Button>
+          <SimpleModal isOpen={ expressingSentiment } setOpen={ setExpressingSentiment }>
+            <ExpressSentiment phraseKey={ _key } />
+          </SimpleModal>
+        </Col>
+      </Row>
+    </>
+  )
 }
 
 export function PhraseGrid ({ keys, cols }) {
