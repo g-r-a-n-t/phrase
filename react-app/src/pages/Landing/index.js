@@ -18,7 +18,7 @@ export default function Landing () {
   return (
     <Container className="bg-light border" style={{ padding: '30px' }}>
       <h3 className="text-dark">Introduction</h3>
-      <div className="text-dark" style={{ fontSize: '18px' }}>
+      <div className="text-secondary" style={{ fontSize: '18px' }}>
         <p>
           Phrase is a content publishing platform that builds a meaningful
           experience around direct funding. It does this by using a novel
@@ -50,7 +50,7 @@ export default function Landing () {
         </>
       }
       <br />
-      <div className="text-dark" style={{ fontSize: '18px' }}>
+      <div className="text-secondary" style={{ fontSize: '18px' }}>
         <p>
           Viewing phrases is free and you won't be pestered by ads here, but, if you
           would like, you can send cryptocurrency directly to the creator by
@@ -68,7 +68,7 @@ export default function Landing () {
         </>
       }
       <br />
-      <div className="text-dark" style={{ fontSize: '18px' }}>
+      <div className="text-secondary" style={{ fontSize: '18px' }}>
         <p>
           The phrases you create and sentiments you express coalesce on your
           profile into something that demonstrates to people what it is you

@@ -42,12 +42,12 @@ export function StandardProfileThumb ({ _key }) {
 
   if (profile == null) return <Spinner type="grow" color="secondary" />
 
-  const size = '120px'
+  const size = 120
 
   return (
     <Link to={ `/${_key}` } style={{ cursor: 'pointer' }}>
       <div
-        className="rounded-circle"
+        className="rounded-circle border"
         style={{ overflow: 'hidden', width: `${size}px`, height: `${size}px` }}
       >
         <IpfsImage

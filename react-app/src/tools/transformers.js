@@ -51,26 +51,27 @@ export function creatorToPhrasesList (createdPhrases) {
   })
 }
 
-export function sentimentToExpressorsMap (expressedSentimentsExt) {
+export function sentimentToExpressersMap (expressedSentimentsExt) {
   const map = {}
 
   expressedSentimentsExt.forEach(es => {
     if (map[es.sentiment] === undefined) {
-      map[es.sentiment] = [es.expressor]
+      map[es.sentiment] = [es.expresser]
     } else {
-      map[es.sentiment].push(es.expressor)
+      map[es.sentiment].push(es.expresser)
+      map[es.sentiment] = unique(map[es.sentiment])
     }
   })
 
   return map
 }
 
-export function sentimentToExpressorsList (expressedSentimentsExt) {
-  const map = sentimentToExpressorsMap(expressedSentimentsExt)
+export function sentimentToExpressersList (expressedSentimentsExt) {
+  const map = sentimentToExpressersMap(expressedSentimentsExt)
   return Object.keys(map).map(key => {
     return {
       sentiment: key,
-      expressors: map[key]
+      expressers: map[key]
     }
   })
 }

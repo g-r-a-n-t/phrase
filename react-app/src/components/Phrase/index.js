@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { IoIosHeart } from 'react-icons/io'
+import { Link } from 'react-router-dom'
+import { IoIosHeart, IoMdOpen } from 'react-icons/io'
 import { CSSTransitionGroup } from 'react-transition-group'
 import { Spinner, Button } from 'reactstrap'
 
@@ -41,7 +42,13 @@ export function Phrase ({ _key }) {
   const back = (
     <>
       { _back }
-      <Button className="btn-sm bg-primary border-light fixed-bottom" onClick={(e) => {
+      <Link
+        style={{ position: 'absolute', top: '5px', right: '5px' }}
+        to={ `/p/${_key}` }
+      >
+        <IoMdOpen size={ 20 }/>
+      </Link>
+      <Button color="primary" className="btn-sm fixed-bottom" onClick={(e) => {
         e.stopPropagation()
         setExpressingSentiment(true)
       }}><IoIosHeart size={19}/></Button>

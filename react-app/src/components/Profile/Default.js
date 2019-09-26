@@ -14,7 +14,21 @@ export function DefaultProfileInfo ({ _key }) {
 }
 
 export function DefaultProfileThumb ({ _key }) {
-  return <>ProfileThumb</>
+  const size = 120
+
+  return (
+    <Link to={ `/${_key}` } style={{ cursor: 'pointer' }}>
+      <div
+        className="rounded-circle border"
+        style={{ overflow: 'hidden', width: `${size}px`, height: `${size}px` }}
+      >
+        <Identicon size={ size } string={ _key } />
+      </div>
+      <div className="small bg-dark text-light text-center border rounded" style={{ width: `${size}px`, padding: '3px' }}>
+        <b>{ shortAddress(_key) }</b>
+      </div>
+    </Link>
+  )
 }
 
 export function DefaultProfileName ({ _key }) {
@@ -28,7 +42,7 @@ export function DefaultMeDot () {
 
   return (
     <NavLink style={{ padding: '0px', margin: '0px' }} tag={ Link } to={ '/me' }>
-        <Identicon className="rounded-circle border" size={ 25 } string={ account } />
+      <Identicon className="rounded-circle border" size={ 25 } string={ account } />
     </NavLink>
   )
 }

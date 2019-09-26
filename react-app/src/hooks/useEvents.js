@@ -52,7 +52,7 @@ export function useExtExpressedSentiments () {
 
   return events.map(e => {
     return {
-      expressor: e.expressor,
+      expresser: e.expresser,
       phrase: entities[e.expressedSentiment].phrase,
       sentiment: entities[e.expressedSentiment].sentiment,
       expressedSentiment: e.expressedSentiment
