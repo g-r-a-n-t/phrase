@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { useRegistryContract } from './useContract'
 import { useCacheContext, cacheId } from 'contexts/cache'
+import { unique } from 'tools/transformers'
 
 export function useExpressedSentiments (keys) {
   const [content, setContent] = useState(null)
@@ -17,12 +18,12 @@ export function useExpressedSentiments (keys) {
 
 // TODO cleanup maybe - this hurts my eyes
 async function fetchExpressedSentiments (cache, registry, keys, setContent) {
-  if (registry == null) return null
+  if (registry == null || keys == null) return null
 
   const content = {}
   const requests = []
 
-  keys.forEach((key) => {
+  unique(keys).forEach(key => { // remove dups
     requests.push(
       new Promise((resolve) => {
         const id = cacheId('expressedSentiment', key)

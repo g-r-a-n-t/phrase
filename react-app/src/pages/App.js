@@ -8,6 +8,7 @@ import Header from 'components/Header'
 import Footer from 'components/Footer'
 import Landing from './Landing'
 import Account from './Account'
+import PhraseView from './Phrase'
 import About from './About'
 import { Row, Col } from 'reactstrap'
 
@@ -42,6 +43,7 @@ export default function App () {
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/about" component={About} />
                 <Route exact strict path="/:account" component={Account} />
+                <Route exact strict path="/p/:key" component={PhraseView} />
               </Switch>
             </Col>
           </Row>

@@ -1,8 +1,12 @@
 
+export function unique (l) {
+  return Array.from(new Set(l))
+}
+
 export function sentimentToPhrasesMap (expressedSentiments) {
   const map = {}
 
-  expressedSentiments.forEach((expressedSentiment) => {
+  expressedSentiments.forEach(expressedSentiment => {
     if (map[expressedSentiment.sentiment] === undefined) {
       map[expressedSentiment.sentiment] = [expressedSentiment.phrase]
     } else {
@@ -15,7 +19,7 @@ export function sentimentToPhrasesMap (expressedSentiments) {
 
 export function sentimentToPhrasesList (expressedSentiments) {
   const map = sentimentToPhrasesMap(expressedSentiments)
-  return Object.keys(map).map((key) => {
+  return Object.keys(map).map(key => {
     return {
       sentiment: key,
       phrases: map[key]
@@ -26,7 +30,7 @@ export function sentimentToPhrasesList (expressedSentiments) {
 export function creatorToPhrasesMap (createdPhrases) {
   const map = {}
 
-  createdPhrases.forEach((createdPhrase) => {
+  createdPhrases.forEach(createdPhrase => {
     if (map[createdPhrase.creator] === undefined) {
       map[createdPhrase.creator] = [createdPhrase.phrase]
     } else {
@@ -39,10 +43,34 @@ export function creatorToPhrasesMap (createdPhrases) {
 
 export function creatorToPhrasesList (createdPhrases) {
   const map = creatorToPhrasesMap(createdPhrases)
-  return Object.keys(map).map((key) => {
+  return Object.keys(map).map(key => {
     return {
       creator: key,
       phrases: map[key]
+    }
+  })
+}
+
+export function sentimentToExpressorsMap (expressedSentimentsExt) {
+  const map = {}
+
+  expressedSentimentsExt.forEach(es => {
+    if (map[es.sentiment] === undefined) {
+      map[es.sentiment] = [es.expressor]
+    } else {
+      map[es.sentiment].push(es.expressor)
+    }
+  })
+
+  return map
+}
+
+export function sentimentToExpressorsList (expressedSentimentsExt) {
+  const map = sentimentToExpressorsMap(expressedSentimentsExt)
+  return Object.keys(map).map(key => {
+    return {
+      sentiment: key,
+      expressors: map[key]
     }
   })
 }

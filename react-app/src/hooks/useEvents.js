@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { ethers } from 'ethers'
 
+import { useExpressedSentiments as useESEntities } from './useEntities'
 import config from 'config'
 
 const MIN_BLOCK = 0
@@ -38,6 +39,25 @@ export function useExpressedSentiments () {
 
 export function useCreatedSentiments () {
   return useEvents(SENTIMENT_CREATED)
+}
+
+export function useExtExpressedSentiments () {
+  const events = useExpressedSentiments()
+  const keys = useMemo(() => {
+    return events ? events.map(e => e.expressedSentiment) : null
+  }, [events]) // useMemo required to prevent endless rerenders
+  const entities = useESEntities(keys)
+
+  if (entities == null) return null
+
+  return events.map(e => {
+    return {
+      expressor: e.expressor,
+      phrase: entities[e.expressedSentiment].phrase,
+      sentiment: entities[e.expressedSentiment].sentiment,
+      expressedSentiment: e.expressedSentiment
+    }
+  })
 }
 
 async function fetchLogs (topic, setEvents) {
