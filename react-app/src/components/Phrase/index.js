@@ -70,13 +70,13 @@ export function PhraseExploded ({ _key }) {
   if (phrase == null) return <Spinner type="grow" color="secondary" />
 
   const content = (() => {
-      switch (phrase.format) {
-        case 'ipfs-album-2019':
-          return <AlbumExploded _key={ _key } />
-        case 'ipfs-plaque-2019':
-          return <PlaqueExploded _key={ _key } />
-        default:
-          return  null
+    switch (phrase.format) {
+      case 'ipfs-album-2019':
+        return <AlbumExploded _key={ _key } />
+      case 'ipfs-plaque-2019':
+        return <PlaqueExploded _key={ _key } />
+      default:
+        return null
     }
   })()
 

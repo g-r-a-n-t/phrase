@@ -7,7 +7,7 @@ export default function FlipCard ({
   back,
   width,
   height,
-  onFlip = ()=>{}
+  onFlip = () => {}
 }) {
   const [flipped, setFlipped] = useState(false)
 

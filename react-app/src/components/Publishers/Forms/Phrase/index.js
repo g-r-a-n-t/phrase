@@ -7,9 +7,11 @@ import FormatSelect from './FormatSelect'
 export default function PhraseForm ({ onDone }) {
   const [format, setFormat] = useState(null)
 
-  if (format === null) return (
-    <FormatSelect onDone={ _format => setFormat(_format) } />
-  )
+  if (format === null) {
+    return (
+      <FormatSelect onDone={ _format => setFormat(_format) } />
+    )
+  }
 
   switch (format) {
     case 'ipfs-plaque-2019':

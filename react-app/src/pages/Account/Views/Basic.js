@@ -19,8 +19,8 @@ export default function BasicView ({ _key }) {
         <ProfileInfo _key={ _key } />
       </Col>
       <Col>
-        { profile.expressedSentiments.length === 0
-          && profile.phrases.length === 0 &&
+        { profile.expressedSentiments.length === 0 &&
+          profile.phrases.length === 0 &&
           <Subtle>No Activity :(</Subtle>
         }
         { profile.expressedSentiments.length !== 0 && <>
@@ -36,13 +36,13 @@ export default function BasicView ({ _key }) {
           </>
         }
         { profile.phrases.length !== 0 && <div className="border border-light rounded">
-            <Subtle>
+          <Subtle>
               -------- <IoMdHand size={25}/> --------
-            </Subtle>
-            <div className="d-flex justify-content-center">
-              <PhraseGrid keys={profile.phrases.slice().reverse()} cols={ 3 } />
-            </div>
+          </Subtle>
+          <div className="d-flex justify-content-center">
+            <PhraseGrid keys={profile.phrases.slice().reverse()} cols={ 3 } />
           </div>
+        </div>
         }
       </Col>
     </Row>

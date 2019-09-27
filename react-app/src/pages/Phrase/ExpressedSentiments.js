@@ -59,7 +59,7 @@ function Sentiments ({ sToE, onSelect }) {
 function Expressers ({ keys }) {
   if (!keys) return null
 
-  console.log('keys',keys)
+  console.log('keys', keys)
 
   const elements = keys.map(key => {
     return (

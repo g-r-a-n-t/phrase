@@ -48,7 +48,6 @@ export function useSentiment (key) {
   return content
 }
 
-
 async function fetchProfile (cache, registry, key, setContent) {
   if (registry == null) return null
 
@@ -58,7 +57,7 @@ async function fetchProfile (cache, registry, key, setContent) {
   // - Phrase created
   // - Sentiment expressed
   // - content/format changed
-  //if (maybeUseCache(cache, id, setContent)) return null
+  // if (maybeUseCache(cache, id, setContent)) return null
 
   const response = await registry.getProfile(key)
 
@@ -115,7 +114,6 @@ async function fetchSentiment (cache, registry, key, setContent) {
 
   setContent(sentiment)
 }
-
 
 function maybeUseCache (cache, id, setContent) {
   const result = cache.get(id)

@@ -13,10 +13,10 @@ export default function StandardForm ({ onDone }) {
 
   function valid () {
     return (
-      name !== null                 &&
+      name !== null &&
       name.length >= NAME_LENGTH[0] &&
       name.length <= NAME_LENGTH[1] &&
-      bio !== null                 &&
+      bio !== null &&
       bio.length >= BIO_LENGTH[0] &&
       bio.length <= BIO_LENGTH[1] &&
       icon !== null
@@ -68,8 +68,8 @@ export default function StandardForm ({ onDone }) {
       <Button
         className={ valid() ? '' : 'd-none' }
         onClick={ () => onDone({
-            format: 'ipfs-standard-2019',
-            dir: toDir()
+          format: 'ipfs-standard-2019',
+          dir: toDir()
         })}
       >Update</Button>
     </Form>

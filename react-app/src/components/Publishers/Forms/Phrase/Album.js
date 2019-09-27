@@ -14,7 +14,7 @@ export default function AlbumForm ({ onDone }) {
 
   function valid () {
     return (
-      name !== null                 &&
+      name !== null &&
       name.length >= NAME_LENGTH[0] &&
       name.length <= NAME_LENGTH[1] &&
       cover !== null &&

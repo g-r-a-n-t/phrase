@@ -15,7 +15,7 @@ export function StandardProfileInfo ({ _key }) {
   if (profile == null) return <Spinner type="grow" color="secondary" />
 
   return (
-    <div style={{width: '180px'}}>
+    <div style={{ width: '180px' }}>
       <div className="border rounded" style={{ overflow: 'hidden' }}>
         <IpfsImage
           width="180px"

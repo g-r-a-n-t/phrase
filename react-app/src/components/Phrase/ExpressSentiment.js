@@ -18,10 +18,12 @@ export default function ExpressSentiment ({ phraseKey }) {
 
   const sentimentKeys = createdSentiments.map((createdSentiment) => { return createdSentiment.sentiment })
 
-  if (sentimentKey === null) return <ExpressSentimentGrid
-    keys={ sentimentKeys }
-    onSelect={(key) => { setSentimentKey(key) }}
-  />
+  if (sentimentKey === null) {
+    return <ExpressSentimentGrid
+      keys={ sentimentKeys }
+      onSelect={(key) => { setSentimentKey(key) }}
+    />
+  }
 
   return <ExpressedSentimentPublisher
     phraseKey={ phraseKey }
@@ -47,7 +49,8 @@ function ExpressedSentimentPublisher ({ phraseKey, sentimentKey, onCancel = () =
     </div>
   )
 
-  if (receipt == null) return (
+  if (receipt == null) {
+    return (
     <>
       { arrow }
       <br/>
@@ -56,7 +59,8 @@ function ExpressedSentimentPublisher ({ phraseKey, sentimentKey, onCancel = () =
         <Button className="btn-cancel" onClick={ onCancel }>cancel</Button>
       </div>
     </>
-  )
+    )
+  }
 
   console.log('receipt', receipt)
   return (

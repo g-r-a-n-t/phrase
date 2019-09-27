@@ -37,7 +37,7 @@ export default function App () {
         <Header />
         <br/>
         <MediaContext.Provider value={[selectedMedia, setSelectedMedia]}>
-          <Row style={{marginBottom: '300px'}}>
+          <Row style={{ marginBottom: '300px' }}>
             <Col lg={{ size: 10, offset: 1 }}>
               <Switch>
                 <Route exact path="/" component={Landing} />

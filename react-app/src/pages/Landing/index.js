@@ -12,8 +12,7 @@ export default function Landing () {
   const createdPhrases = useCreatedPhrases()
   const createdSentiments = useCreatedSentiments()
 
-  if (createdPhrases == null || createdSentiments == null)
-    return <Spinner type="grow" color="secondary" />
+  if (createdPhrases == null || createdSentiments == null) { return <Spinner type="grow" color="secondary" /> }
 
   return (
     <Container className="bg-light border" style={{ padding: '30px' }}>

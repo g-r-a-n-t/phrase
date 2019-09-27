@@ -13,7 +13,7 @@ export default function StandardForm ({ onDone }) {
 
   function valid () {
     return (
-      name !== null                 &&
+      name !== null &&
       name.length >= NAME_LENGTH[0] &&
       name.length <= NAME_LENGTH[1] &&
       cover !== null
@@ -69,8 +69,8 @@ export default function StandardForm ({ onDone }) {
         className={ valid() ? '' : 'd-none' }
         onClick={ () => onDone({
           format: 'ipfs-standard-2019',
-          token:  ethers.constants.AddressZero,
-          value: ethers.utils.bigNumberify("10000000000000000"),
+          token: ethers.constants.AddressZero,
+          value: ethers.utils.bigNumberify('10000000000000000'),
           dir: toDir()
         })}
       >Create</Button>

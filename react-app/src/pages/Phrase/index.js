@@ -14,17 +14,20 @@ export default function PhraseView ({ match }) {
     <Container>
       <Row>
         <Col>
-          <div style={{ margin: '5px' }}>
+          <div className="border border-light rounded" style={{ padding: '5px' }}>
             <PhraseExploded _key={ key }/>
           </div>
         </Col>
       </Row>
       <Row>
         <Col>
-          <Subtle>
-            -------- <IoIosHeart size={25}/> --------
-          </Subtle>
-          <ExpressedSentiments phrase={ key } />
+          <br />
+          <div className="border border-light rounded">
+            <Subtle>
+              -------- <IoIosHeart size={25}/> --------
+            </Subtle>
+            <ExpressedSentiments phrase={ key } />
+          </div>
         </Col>
       </Row>
     </Container>

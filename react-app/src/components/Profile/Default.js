@@ -48,5 +48,5 @@ export function DefaultMeDot () {
 }
 
 function shortAddress (a) {
-  return `${a.slice(0,4)}..${a.slice(-5,-1)}`
+  return `${a.slice(0, 4)}..${a.slice(-5, -1)}`
 }

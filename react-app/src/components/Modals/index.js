@@ -5,12 +5,12 @@ import { Modal, ModalBody } from 'reactstrap'
 
 export function SimpleModal ({ children, isOpen, setOpen }) {
   const close = <button
-      className="close"
-      style={{ position: 'absolute', top: '15px', right: '15px' }}
-      onClick={ () => setOpen(false) }
-    >
-      <IoIosClose size={32}/>
-    </button>
+    className="close"
+    style={{ position: 'absolute', top: '15px', right: '15px' }}
+    onClick={ () => setOpen(false) }
+  >
+    <IoIosClose size={32}/>
+  </button>
 
   return (
     <Modal

@@ -28,7 +28,7 @@ export function Sentiment ({
   />
 
   const back = (
-    <div style={{margin: '3px'}}>
+    <div style={{ margin: '3px' }}>
       <div className="small font-weight-bold">
         <IpfsText path={`${sentiment.content}/name.txt`} />
       </div>
@@ -60,7 +60,7 @@ export function SentimentGrid ({ keys, onFlip = () => {} }) {
     return (
       <div key={ `sentiment-${key}` } style={{ margin: '5px' }}>
         <Sentiment _key={ key } onFlip={isFlipped => {
-          let newFlipped = flipped
+          const newFlipped = flipped
           if (isFlipped) {
             newFlipped.add(key)
           } else {
@@ -73,7 +73,6 @@ export function SentimentGrid ({ keys, onFlip = () => {} }) {
       </div>
     )
   })
-
 
   return (
     <div className="d-flex flex-wrap">
