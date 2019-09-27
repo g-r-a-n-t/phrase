@@ -7,7 +7,7 @@ import ImageSelect from 'components/ImageSelect'
 
 const NAME_LENGTH = [4, 32]
 
-export default function StandardForm ({ onDone }) {
+export default function StandardForm ({ onDone = () => {} }) {
   const [name, setName] = useState(null)
   const [cover, setCover] = useState(null)
 
@@ -79,5 +79,5 @@ export default function StandardForm ({ onDone }) {
 }
 
 StandardForm.propTypes = {
-  onReady: PropTypes.func.isRequired
+  onDone: PropTypes.func.isRequired
 }

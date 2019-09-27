@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { IoIosAdd } from 'react-icons/io'
 import PropTypes from 'prop-types'
 import { MdArrowForward, MdCheck } from 'react-icons/md'
-import { Spinner, Button, Alert } from 'reactstrap'
+import { Spinner, Button } from 'reactstrap'
 
 import { useCreatedSentiments } from 'hooks/useEvents'
 import { useExpressedSentimentPublisher } from 'hooks/usePublisher'
@@ -75,7 +75,8 @@ function ExpressedSentimentPublisher ({ phraseKey, sentimentKey, onCancel = () =
 
 ExpressedSentimentPublisher.propTypes = {
   phraseKey: PropTypes.string.isRequired,
-  sentimentKey: PropTypes.string.isRequired
+  sentimentKey: PropTypes.string.isRequired,
+  onCancel: PropTypes.func
 }
 
 function ExpressSentimentGrid ({ keys, onSelect }) {

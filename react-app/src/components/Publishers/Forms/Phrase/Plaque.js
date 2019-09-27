@@ -8,7 +8,7 @@ import ImageSelect from 'components/ImageSelect'
 const NAME_LENGTH = [4, 32]
 const DESC_LENGTH = [32, 512]
 
-export default function PlaqueForm ({ onDone }) {
+export default function PlaqueForm ({ onDone = () => {} }) {
   const [name, setName] = useState(null)
   const [description, setDescription] = useState(null)
   const [cover, setCover] = useState(null)
@@ -80,5 +80,5 @@ export default function PlaqueForm ({ onDone }) {
 }
 
 PlaqueForm.propTypes = {
-  onReady: PropTypes.func.isRequired
+  onDone: PropTypes.func
 }

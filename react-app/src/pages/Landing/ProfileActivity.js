@@ -1,5 +1,5 @@
 import React from 'react'
-import { IoIosHeart, IoMdHand } from 'react-icons/io'
+import PropTypes from 'prop-types'
 import { Row, Col } from 'reactstrap'
 
 import { ProfileThumb } from 'components/Profile'
@@ -18,4 +18,10 @@ export default function ProfileActivity ({ profile, createdPhrases = [], express
       </Row>
     </div>
   )
+}
+
+ProfileActivity.propTypes = {
+  profile: PropTypes.string.isRequired,
+  createdPhrases: PropTypes.array,
+  expressedSentiments: PropTypes.array
 }

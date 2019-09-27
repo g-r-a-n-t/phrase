@@ -53,6 +53,10 @@ export function AlbumBack ({ _key }) {
   )
 }
 
+AlbumBack.propTypes = {
+  _key: PropTypes.string.isRequired
+}
+
 export function AlbumExploded ({ _key }) {
   const phrase = usePhrase(_key)
 
@@ -82,7 +86,7 @@ export function AlbumExploded ({ _key }) {
   )
 }
 
-AlbumBack.propTypes = {
+AlbumExploded.propTypes = {
   _key: PropTypes.string.isRequired
 }
 

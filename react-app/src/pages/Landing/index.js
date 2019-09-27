@@ -2,11 +2,8 @@ import React from 'react'
 import { Spinner, Button, Container } from 'reactstrap'
 
 import { useCreatedPhrases, useCreatedSentiments } from 'hooks/useEvents'
-import ProfileActivity from './ProfileActivity'
 import { Phrase } from 'components/Phrase'
 import { Sentiment } from 'components/Sentiment'
-import { Subtle, Medium } from 'components/Wrappers'
-import { creatorToPhrasesList } from 'tools/transformers'
 
 export default function Landing () {
   const createdPhrases = useCreatedPhrases()
@@ -43,7 +40,7 @@ export default function Landing () {
       { createdPhrases.length !== 0 &&
         <>
           <p>
-            <i>Here's an example of a phrase:</i>
+            <i>Here&apos;s an example of a phrase:</i>
           </p>
           <Phrase _key={ createdPhrases[0].phrase } />
         </>
@@ -51,7 +48,7 @@ export default function Landing () {
       <br />
       <div className="text-secondary" style={{ fontSize: '18px' }}>
         <p>
-          Viewing phrases is free and you won't be pestered by ads here, but, if you
+          Viewing phrases is free and you won&apos;t be pestered by ads here, but, if you
           would like, you can send cryptocurrency directly to the creator by
           purchasing a sentiment. If you do this, the sentiment will be dispayed
           on your profile in association with the phrase and your profile will be
@@ -61,7 +58,7 @@ export default function Landing () {
       { createdSentiments.length !== 0 &&
         <>
           <p>
-            <i>Here's an example of a sentiment:</i>
+            <i>Here&apos;s an example of a sentiment:</i>
           </p>
           <Sentiment _key={ createdSentiments[0].sentiment } />
         </>

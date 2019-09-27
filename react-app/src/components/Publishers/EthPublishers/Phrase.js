@@ -4,7 +4,7 @@ import { Spinner, Alert } from 'reactstrap'
 
 import { usePhrasePublisher } from 'hooks/usePublisher'
 
-export default function PhraseEthPublisher ({ formValues, ipfsPath, onDone }) {
+export default function PhraseEthPublisher ({ formValues, ipfsPath, onDone = () => {} }) {
   const receipt = usePhrasePublisher(formValues.format, ipfsPath, formValues.beneficiary)
 
   if (receipt === null) {
@@ -22,5 +22,7 @@ export default function PhraseEthPublisher ({ formValues, ipfsPath, onDone }) {
 }
 
 PhraseEthPublisher.propTypes = {
-  onDone: PropTypes.func.isRequired
+  formValues: PropTypes.object.isRequired,
+  ipfsPath: PropTypes.string.isRequired,
+  onDone: PropTypes.func
 }

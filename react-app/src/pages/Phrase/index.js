@@ -1,5 +1,5 @@
 import React from 'react'
-import { ethers } from 'ethers'
+import PropTypes from 'prop-types'
 import { IoIosHeart } from 'react-icons/io'
 import { Container, Row, Col } from 'reactstrap'
 
@@ -32,4 +32,8 @@ export default function PhraseView ({ match }) {
       </Row>
     </Container>
   )
+}
+
+PhraseView.propTypes = {
+  match: PropTypes.object.isRequired
 }

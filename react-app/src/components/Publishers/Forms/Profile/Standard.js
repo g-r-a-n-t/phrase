@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { Form, FormGroup, FormText, Label, Input, Button } from 'reactstrap'
 
 import ImageSelect from 'components/ImageSelect'
@@ -6,7 +7,7 @@ import ImageSelect from 'components/ImageSelect'
 const NAME_LENGTH = [4, 32]
 const BIO_LENGTH = [4, 128]
 
-export default function StandardForm ({ onDone }) {
+export default function StandardForm ({ onDone = () => {} }) {
   const [name, setName] = useState(null)
   const [bio, setDescription] = useState(null)
   const [icon, setIcon] = useState(null)
@@ -74,4 +75,8 @@ export default function StandardForm ({ onDone }) {
       >Update</Button>
     </Form>
   )
+}
+
+StandardForm.propTypes = {
+  onDone: PropTypes.func
 }

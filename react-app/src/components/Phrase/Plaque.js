@@ -77,3 +77,7 @@ export function PlaqueExploded ({ _key }) {
     </Row>
   )
 }
+
+PlaqueExploded.propTypes = {
+  _key: PropTypes.string.isRequired
+}

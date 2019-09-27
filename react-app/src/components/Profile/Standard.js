@@ -32,7 +32,7 @@ export function StandardProfileInfo ({ _key }) {
 }
 
 StandardProfileInfo.propTypes = {
-  account: PropTypes.string.isRequired
+  _key: PropTypes.string.isRequired
 }
 
 export function StandardProfileThumb ({ _key }) {
@@ -65,8 +65,7 @@ export function StandardProfileThumb ({ _key }) {
 }
 
 StandardProfileThumb.propTypes = {
-  _key: PropTypes.string.isRequired,
-  size: PropTypes.number
+  _key: PropTypes.string.isRequired
 }
 
 export function StandardProfileName ({ _key }) {
@@ -84,7 +83,7 @@ export function StandardProfileName ({ _key }) {
 }
 
 StandardProfileName.propTypes = {
-  account: PropTypes.string.isRequired
+  _key: PropTypes.string.isRequired
 }
 
 export function StandardMeDot () {

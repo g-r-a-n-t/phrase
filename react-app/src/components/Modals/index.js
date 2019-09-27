@@ -26,6 +26,12 @@ export function SimpleModal ({ children, isOpen, setOpen }) {
   )
 }
 
+SimpleModal.propTypes = {
+  children: PropTypes.node.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired
+}
+
 export function Modalize ({ children, content }) {
   const [isOpen, setOpen] = useState(false)
 
@@ -41,8 +47,7 @@ export function Modalize ({ children, content }) {
   )
 }
 
-SimpleModal.propTypes = {
-  children: PropTypes.element.isRequired,
-  width: PropTypes.string.isRequired,
-  onDone: PropTypes.func.isRequired
+Modalize.propTypes = {
+  children: PropTypes.node.isRequired,
+  content: PropTypes.node.isRequired
 }

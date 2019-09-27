@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { useProfile, useCurrentProfile } from 'hooks/useEntity'
 import { Spinner } from 'reactstrap'
@@ -22,6 +23,10 @@ export function ProfileInfo ({ _key }) {
   }
 }
 
+ProfileInfo.propTypes = {
+  _key: PropTypes.string.isRequired
+}
+
 export function ProfileThumb ({ _key }) {
   const profile = useProfile(_key)
 
@@ -35,6 +40,10 @@ export function ProfileThumb ({ _key }) {
   }
 }
 
+ProfileThumb.propTypes = {
+  _key: PropTypes.string.isRequired
+}
+
 export function ProfileName ({ _key }) {
   const profile = useProfile(_key)
 
@@ -46,6 +55,10 @@ export function ProfileName ({ _key }) {
     default:
       return <DefaultProfileName _key={ _key } />
   }
+}
+
+ProfileName.propTypes = {
+  _key: PropTypes.string.isRequired
 }
 
 export function MeDot () {

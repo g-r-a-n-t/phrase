@@ -24,7 +24,7 @@ export function Bright ({ children }) {
   )
 }
 
-Subtle.propTypes = {
+Bright.propTypes = {
   children: PropTypes.node.isRequired
 }
 
@@ -38,7 +38,7 @@ export function Medium ({ children }) {
   )
 }
 
-Thin.propTypes = {
+Medium.propTypes = {
   children: PropTypes.node.isRequired
 }
 

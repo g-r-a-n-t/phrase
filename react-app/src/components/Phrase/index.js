@@ -99,7 +99,11 @@ export function PhraseExploded ({ _key }) {
   )
 }
 
-export function PhraseGrid ({ keys, cols }) {
+PhraseExploded.propTypes = {
+  _key: PropTypes.string.isRequired
+}
+
+export function PhraseGrid ({ keys, cols = 3 }) {
   debug.componentRender('PhraseGrid', keys)
 
   const WIDTH = 410
@@ -127,5 +131,5 @@ export function PhraseGrid ({ keys, cols }) {
 
 PhraseGrid.propTypes = {
   keys: PropTypes.array.isRequired,
-  width: PropTypes.string.isRequired
+  cols: PropTypes.number
 }

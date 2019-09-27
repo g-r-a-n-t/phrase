@@ -24,7 +24,7 @@ export default function App () {
 
   useEffect(() => {
     web3.setFirstValidConnector(['MetaMask', 'Infura'])
-  }, [])
+  }, [web3])
 
   if (ipfs == null) return <Loading>Loading IPFS...</Loading>
 

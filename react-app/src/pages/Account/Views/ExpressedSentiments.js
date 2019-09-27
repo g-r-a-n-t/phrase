@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { IoMdHand } from 'react-icons/io'
 import PropTypes from 'prop-types'
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md'
 import { Spinner, Collapse } from 'reactstrap'
 
 import { useExpressedSentiments } from 'hooks/useEntities'
-import { Sentiment, SentimentGrid } from 'components/Sentiment'
+import { SentimentGrid } from 'components/Sentiment'
 import { PhraseGrid } from 'components/Phrase'
 import { sentimentToPhrasesMap } from 'tools/transformers'
 import debug from 'tools/debug'

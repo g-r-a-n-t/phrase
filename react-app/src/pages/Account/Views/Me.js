@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useWeb3Context } from 'web3-react'
 import { IoIosHeart, IoMdHand, IoMdCreate, IoMdAdd } from 'react-icons/io'
-import { Row, Col, Spinner, Button, Alert } from 'reactstrap'
+import { Row, Col, Spinner } from 'reactstrap'
 
 import { useProfile } from 'hooks/useEntity'
 import { PhraseGrid } from 'components/Phrase'

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 import { useExtExpressedSentiments } from 'hooks/useEvents'
 import { Sentiment } from 'components/Sentiment'
@@ -12,10 +13,8 @@ export default function ExpressedSentiments ({ phrase }) {
 
   if (events == null) return null
 
-  console.log('es', events)
-
   const sentimentToExpressers = sentimentToExpressersMap(
-    events.filter(e => e.phrase == phrase)
+    events.filter(e => e.phrase === phrase)
   )
 
   return (
@@ -34,10 +33,12 @@ export default function ExpressedSentiments ({ phrase }) {
   )
 }
 
+ExpressedSentiments.propTypes = {
+  phrase: PropTypes.string.isRequired
+}
+
 function Sentiments ({ sToE, onSelect }) {
   const elements = Object.keys(sToE).map(key => {
-    const selectText = <></>
-
     return (
       <div key={ `sentiment-phraseview-${key}` } style={{ margin: '5px' }}>
         <Sentiment
@@ -56,14 +57,17 @@ function Sentiments ({ sToE, onSelect }) {
   )
 }
 
+Sentiments.propTypes = {
+  sToE: PropTypes.object.isRequired,
+  onSelect: PropTypes.func.isRequired
+}
+
 function Expressers ({ keys }) {
   if (!keys) return null
 
-  console.log('keys', keys)
-
   const elements = keys.map(key => {
     return (
-      <div style={{ margin: '5px' }}>
+      <div key={`expresser-${key}`} style={{ margin: '5px' }}>
         <ProfileThumb _key={ key }/>
       </div>
     )
@@ -74,4 +78,8 @@ function Expressers ({ keys }) {
       { elements }
     </div>
   )
+}
+
+Expressers.propTypes = {
+  keys: PropTypes.array.isRequired
 }

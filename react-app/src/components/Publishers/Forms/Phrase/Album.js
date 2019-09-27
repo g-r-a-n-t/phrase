@@ -7,7 +7,7 @@ import ImageSelect from 'components/ImageSelect'
 
 const NAME_LENGTH = [4, 64]
 
-export default function AlbumForm ({ onDone }) {
+export default function AlbumForm ({ onDone = () => {} }) {
   const [name, setName] = useState(null)
   const [cover, setCover] = useState(null)
   const [tracks, setTracks] = useState(null)
@@ -59,8 +59,8 @@ export default function AlbumForm ({ onDone }) {
         <Input type="file" multiple onChange={ (e) => { setTracks(e.target.files) } } />
         <FormText color="muted">
           The name of each track being uploaded should follow this pattern:
-          "<b>[Number] [Name].mp3</b>" e.g. "<b>06 I Am the Walrus.mp3</b>",
-          "<b>05 Your Mother Should Know.mp3</b>".
+          &quot;<b>[Number] [Name].mp3</b>&quot; e.g. &quot;<b>06 I Am the Walrus.mp3</b>&quot;,
+          &quot;<b>05 Your Mother Should Know.mp3</b>&quot;.
         </FormText>
       </FormGroup>
       <FormGroup>
@@ -85,5 +85,5 @@ export default function AlbumForm ({ onDone }) {
 }
 
 AlbumForm.propTypes = {
-  onReady: PropTypes.func.isRequired
+  onDone: PropTypes.func
 }

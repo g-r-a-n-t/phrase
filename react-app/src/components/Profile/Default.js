@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useWeb3Context } from 'web3-react'
 import Identicon from 'react-identicons'
 import { Link } from 'react-router-dom'
@@ -11,6 +12,10 @@ export function DefaultProfileInfo ({ _key }) {
       <h5>{ shortAddress(_key) }</h5>
     </div>
   )
+}
+
+DefaultProfileInfo.propTypes = {
+  _key: PropTypes.string.isRequired
 }
 
 export function DefaultProfileThumb ({ _key }) {
@@ -31,8 +36,20 @@ export function DefaultProfileThumb ({ _key }) {
   )
 }
 
+DefaultProfileThumb.propTypes = {
+  _key: PropTypes.string.isRequired
+}
+
 export function DefaultProfileName ({ _key }) {
-  return <>ProfileName</>
+  return (
+    <Link to={`/${_key}`}>
+      { shortAddress(_key) }
+    </Link>
+  )
+}
+
+DefaultProfileName.propTypes = {
+  _key: PropTypes.string.isRequired
 }
 
 export function DefaultMeDot () {

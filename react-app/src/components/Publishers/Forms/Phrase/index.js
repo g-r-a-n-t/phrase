@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 import AlbumForm from './Album'
 import PlaqueForm from './Plaque'
 import FormatSelect from './FormatSelect'
 
-export default function PhraseForm ({ onDone }) {
+export default function PhraseForm ({ onDone = () => {} }) {
   const [format, setFormat] = useState(null)
 
   if (format === null) {
@@ -21,4 +22,8 @@ export default function PhraseForm ({ onDone }) {
     default:
       return <>Something went wrong.</>
   }
+}
+
+PhraseForm.propTypes = {
+  onDone: PropTypes.func
 }

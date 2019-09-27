@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 import { Card, CardBody, CardHeader, CardTitle, CardText, Row, Col } from 'reactstrap'
 import { IoMdImage, IoMdFilm, IoMdDisc, IoMdSquare } from 'react-icons/io'
 
-import { Thin } from 'components/Wrappers'
-
-export default function FormatSelect ({ onDone }) {
+export default function FormatSelect ({ onDone = () => {} }) {
   return (
     <>
       <Row>
@@ -97,5 +95,5 @@ export default function FormatSelect ({ onDone }) {
 }
 
 FormatSelect.propTypes = {
-  onReady: PropTypes.func.isRequired
+  onDone: PropTypes.func
 }

@@ -3,7 +3,6 @@ import { useWeb3Context } from 'web3-react'
 import { Link } from 'react-router-dom'
 import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 
-import { IpfsImage } from 'components/IpfsMedia'
 import { MeDot } from 'components/Profile'
 
 export default function Header () {

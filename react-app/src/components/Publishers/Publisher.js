@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { Alert } from 'reactstrap'
 
 import IpfsUploader from './IpfsUploader'
@@ -45,4 +46,10 @@ export default function Publisher ({ Form, EthPublisher, onDone }) {
       Success!
     </Alert>
   )
+}
+
+Publisher.propTypes = {
+  Form: PropTypes.elementType.isRequired,
+  EthPublisher: PropTypes.elementType.isRequired,
+  onDone: PropTypes.func
 }

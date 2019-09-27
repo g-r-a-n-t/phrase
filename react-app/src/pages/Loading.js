@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Row, Col, Alert, Spinner } from 'reactstrap'
 
 export default function Loading ({ children }) {
@@ -14,4 +15,8 @@ export default function Loading ({ children }) {
       </Col>
     </Row>
   )
+}
+
+Loading.propTypes = {
+  children: PropTypes.node.isRequired
 }

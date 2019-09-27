@@ -49,6 +49,7 @@ export function Sentiment ({
 
 Sentiment.propTypes = {
   _key: PropTypes.string.isRequired,
+  onFlip: PropTypes.func,
   onSelect: PropTypes.func,
   selectText: PropTypes.node
 }
@@ -79,4 +80,9 @@ export function SentimentGrid ({ keys, onFlip = () => {} }) {
       { elements }
     </div>
   )
+}
+
+SentimentGrid.propTypes = {
+  keys: PropTypes.array.isRequired,
+  onFlip: PropTypes.func
 }

@@ -4,7 +4,7 @@ import { Spinner, Alert } from 'reactstrap'
 
 import { useIpfsFilesUpload } from 'hooks/useIpfs'
 
-export default function IpfsUploader ({ dir, onDone }) {
+export default function IpfsUploader ({ dir, onDone = () => {} }) {
   const path = useIpfsFilesUpload(dir)
 
   if (path == null) {
@@ -22,6 +22,6 @@ export default function IpfsUploader ({ dir, onDone }) {
 }
 
 IpfsUploader.propTypes = {
-  files: PropTypes.array.isRequired,
-  onComplete: PropTypes.func.isRequired
+  dir: PropTypes.array.isRequired,
+  onDone: PropTypes.func
 }

@@ -4,7 +4,7 @@ import { Spinner, Alert } from 'reactstrap'
 
 import { useSentimentPublisher } from 'hooks/usePublisher'
 
-export default function SentimentEthPublisher ({ formValues, ipfsPath, onDone }) {
+export default function SentimentEthPublisher ({ formValues, ipfsPath, onDone = () => {} }) {
   const receipt = useSentimentPublisher(
     formValues.format,
     ipfsPath,
@@ -27,5 +27,7 @@ export default function SentimentEthPublisher ({ formValues, ipfsPath, onDone })
 }
 
 SentimentEthPublisher.propTypes = {
-  onDone: PropTypes.func.isRequired
+  formValues: PropTypes.object.isRequired,
+  ipfsPath: PropTypes.string.isRequired,
+  onDone: PropTypes.func
 }

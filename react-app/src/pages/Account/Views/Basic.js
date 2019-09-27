@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { IoIosHeart, IoMdHand } from 'react-icons/io'
 import { Row, Col, Spinner } from 'reactstrap'
 
@@ -47,4 +48,8 @@ export default function BasicView ({ _key }) {
       </Col>
     </Row>
   )
+}
+
+BasicView.propTypes = {
+  _key: PropTypes.string.isRequired
 }
