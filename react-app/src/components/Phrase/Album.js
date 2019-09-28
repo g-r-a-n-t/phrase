@@ -136,7 +136,7 @@ export function Track ({ selection }) {
     return (
       <div
         className="small bg-white border"
-        style={{ padding: '1px', marginBottom: '1px' }}
+        style={{ padding: '1px', marginBottom: '1px', cursor: 'pointer' }}
         onClick={e => {
           e.stopPropagation()
           setMedia(Media(selection))
@@ -153,7 +153,7 @@ export function Track ({ selection }) {
       return (
         <div
           className="small bg-light border"
-          style={{ padding: '1px', marginBottom: '1px' }}
+          style={{ padding: '1px', marginBottom: '1px', cursor: 'pointer' }}
           onClick={e => {
             e.stopPropagation()
             setMedia(paused(media))
@@ -167,7 +167,7 @@ export function Track ({ selection }) {
       return (
         <div
           className="small bg-light border"
-          style={{ padding: '1px', marginBottom: '1px' }}
+          style={{ padding: '1px', marginBottom: '1px', cursor: 'pointer' }}
           onClick={e => {
             e.stopPropagation()
             setMedia(playing(media))
@@ -181,7 +181,7 @@ export function Track ({ selection }) {
       return (
         <div
           className="small bg-light border"
-          style={{ padding: '1px', marginBottom: '1px' }}
+          style={{ padding: '1px', marginBottom: '1px', cursor: 'pointer' }}
           onClick={e => {
             e.stopPropagation()
           }}

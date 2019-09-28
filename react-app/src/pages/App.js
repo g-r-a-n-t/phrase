@@ -32,7 +32,7 @@ export default function App () {
   else if (web3.error) return <p>error loading web3</p>
 
   return (
-    <div className="App" style={{ overflowX: 'hidden' }}>
+    <div className="App text-dark" style={{ overflowX: 'hidden' }}>
       <BrowserRouter>
         <Header />
         <br/>

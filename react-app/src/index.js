@@ -5,8 +5,8 @@ import connectors from './connectors.js'
 import Web3Provider from 'web3-react'
 import PropTypes from 'prop-types'
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'styles.css'
+import 'styles/transitions.css'
+import 'styles/bootstrap.custom.scss'
 
 import { useIpfs } from './hooks/useIpfs'
 import { IpfsContext } from './contexts/ipfs'

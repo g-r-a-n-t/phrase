@@ -88,7 +88,7 @@ export function PhraseExploded ({ _key }) {
       <Row>
         <Col>
           <Button color="primary" onClick={ () => setExpressingSentiment(true) }>
-            <IoIosHeart size={19} /> <b>Support</b>
+            <IoIosHeart size={19} /> <b>Express Sentiment</b>
           </Button>
           <SimpleModal isOpen={ expressingSentiment } setOpen={ setExpressingSentiment }>
             <ExpressSentiment phraseKey={ _key } />

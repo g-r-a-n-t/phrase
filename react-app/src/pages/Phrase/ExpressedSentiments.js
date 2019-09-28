@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { IoIosHeart } from 'react-icons/io'
 
 import { useExtExpressedSentiments } from 'hooks/useEvents'
 import { Sentiment } from 'components/Sentiment'
 import { ProfileThumb } from 'components/Profile'
 import { sentimentToExpressersMap } from 'tools/transformers'
 import { SimpleModal } from 'components/Modals'
+import { Subtle } from 'components/Wrappers'
 
 export default function ExpressedSentiments ({ phrase }) {
   const [selection, setSelection] = useState(null)
@@ -17,8 +19,21 @@ export default function ExpressedSentiments ({ phrase }) {
     events.filter(e => e.phrase === phrase)
   )
 
+  if (Object.keys(sentimentToExpressers).length === 0) {
+    return (
+      <Subtle>
+        <br/>
+        Be the first to express sentiment!
+        <br/><br />
+      </Subtle>
+    )
+  }
+
   return (
     <>
+      <Subtle>
+        -------- <IoIosHeart size={25}/> --------
+      </Subtle>
       <Sentiments
         sToE={ sentimentToExpressers }
         onSelect={ setSelection }
