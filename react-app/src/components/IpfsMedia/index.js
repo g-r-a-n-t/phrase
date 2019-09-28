@@ -8,7 +8,7 @@ import debug from 'tools/debug'
 export function IpfsImage ({ width, height, path, type }) {
   debug.componentRender('IpfsImage', path, type)
 
-  const url = useIpfsFileUrl(path)
+  const url = useIpfsFileUrl(path, 'image/jpeg')
 
   if (url == null) return <Spinner type="grow" color="secondary" />
 

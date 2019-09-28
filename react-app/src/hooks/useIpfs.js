@@ -79,43 +79,43 @@ async function startIpfs (setIpfs) {
 
 // TODO: these methods should handle failures better.
 async function fetchBuf (cache, ipfs, path, setBuf) {
-  if (ipfs == null) return null
-
   const id = cacheId('ipfsBuf', path)
 
-  if (maybeUseCache(cache, id, setBuf)) return null
+  cache.merge(
+    id,
+    done => {
+      debug.networkOutbound('read IPFS file buffer', path)
 
-  debug.networkOutbound('read IPFS file buffer', path)
-  const buf = await ipfs.cat(path)
-  debug.networkInbound(`read IPFS file buffer for ${path}`, buf)
-
-  cache.set(id, buf)
-
-  setBuf(buf)
+      ipfs.cat(path).then(buf => {
+        debug.networkInbound(`read IPFS file buffer for ${path}`, buf)
+        done(buf)
+      })
+    },
+    url => setBuf(url)
+  )
 }
 
 // TODO: these methods should handle failures better.
 // Some duplicate code here to avoid passing around large file buffers
 async function fetchUrl (cache, ipfs, path, type, setUrl) {
-  if (ipfs == null) return null
-
   const id = cacheId('ipfsUrl', path, type)
 
-  if (maybeUseCache(cache, id, setUrl)) return null
+  cache.merge(
+    id,
+    done => {
+      debug.networkOutbound('create IPFS file url', path)
 
-  debug.networkOutbound('create IPFS file url', path)
-  const buf = await ipfs.cat(path)
-  const url = bufToUrl(buf, type)
-  debug.networkInbound(`created IPFS file url for ${path}`, url)
-
-  cache.set(id, url)
-
-  setUrl(url)
+      ipfs.cat(path).then(buf => {
+        const url = bufToUrl(buf, type)
+        debug.networkInbound(`created IPFS file url for ${path}`, url)
+        done(url)
+      })
+    },
+    url => setUrl(url)
+  )
 }
 
 async function fetchFileList (cache, ipfs, path, setFiles) {
-  if (ipfs == null) return null
-
   const id = cacheId('ipfsFileList', path)
 
   if (maybeUseCache(cache, id, setFiles)) return null
@@ -142,8 +142,6 @@ function maybeUseCache (cache, id, setValue) {
 }
 
 async function uploadFilesAsFolder (ipfs, files, setPath) {
-  if (ipfs == null) return null
-
   debug.networkOutbound('uploading files to IPFS', files)
   const result = await ipfs.add(files, { wrapWithDirectory: true })
   const path = result[result.length - 1].hash

@@ -4,7 +4,7 @@ import { MdPlayCircleOutline, MdPauseCircleOutline, MdFileDownload } from 'react
 import { Spinner, Row, Col } from 'reactstrap'
 
 import { usePhrase } from 'hooks/useEntity'
-import { useIpfsFileList } from 'hooks/useIpfs'
+import { useIpfsFileList, useIpfsFileUrl } from 'hooks/useIpfs'
 import { useMediaContext, TrackSelection, PlayStatus, Media, linkSelections, paused, playing } from 'contexts/media'
 import { IpfsImage, IpfsText } from 'components/IpfsMedia'
 import { ProfileName } from 'components/Profile'
@@ -128,6 +128,7 @@ export function Track ({ selection }) {
   debug.componentRender('IpfsTrack', selection)
 
   const [media, setMedia] = useMediaContext()
+  useIpfsFileUrl(selection.content, 'audio/mpeg3') // load all tracks preemtively
 
   const track = decomposeTrack(selection.content)
 

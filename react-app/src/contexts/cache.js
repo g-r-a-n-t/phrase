@@ -8,6 +8,7 @@ import debug from 'tools/debug'
 // const id = cacheId(some, unique, details)
 // cache.set(id, val, lifetime<seconds> = ONE_YEAR)
 // cache.get(id, force = false) -> {val, expired} -- force indicates that the cache should be pulled even if it's expired.
+// cache.merge(id, getVal<Promise>, setVal<func(result)>, lifetime) -- merges mutliple sets and gets so that the promise is only called once for a given id
 // cache.evict(id)
 //
 // note: this implementation may not be conventional
@@ -51,6 +52,25 @@ export function Cache () {
     cache[id] = null
   }
 
+  // id => [setVals]
+  const pending = {}
+
+  const merge = (id, getVal, setVal, lifetime = ONE_YEAR) => {
+    if (get(id) !== null) { // cache is already set
+      setVal(get(id).val)
+    } else if (pending[id] === null || pending[id] === undefined) { // cache not set or pending
+      pending[id] = [setVal]
+
+      getVal(val => {
+        pending[id].forEach(_setVal => _setVal(val))
+        set(id, val, lifetime)
+        pending[id] = null
+      })
+    } else { // cache is pending
+      pending[id].push(setVal)
+    }
+  }
+
   function now () {
     return Date.now() / 1000
   }
@@ -58,6 +78,7 @@ export function Cache () {
   return {
     set: set,
     get: get,
-    evict: evict
+    evict: evict,
+    merge: merge
   }
 }
