@@ -36,12 +36,8 @@ export default function StandardForm ({ onDone = () => {} }) {
   return (
     <Form>
       <Alert color="info">
-        Here you may create a sentiment. A sentiment can be likened to a sticker
-        that one would place on a belonging. To create a sentiment, fill out the
-        form below. Once you have created a sentiment, you can express it
-        towards any phrase by sending the creator the value set below. Once you
-        have done so, the sentiment will be displayed on your profile in
-        association with the phrase.
+        Create a new sentiment here. Once created, you can express it towards
+        phrases. After doing so, it will appear on your profile.
       </Alert>
       <FormGroup>
         <Label><b>Sentiment Name:</b></Label>
