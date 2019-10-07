@@ -72,7 +72,7 @@ export default function PlaqueForm ({ onDone = () => {} }) {
         onClick={ () => onDone({
           format: 'ipfs-plaque-2019',
           dir: toDir(),
-          beneficiary: ethers.constant.AddressZero
+          beneficiary: ethers.constants.AddressZero
         })}
       >Create</Button>
     </Form>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Ipfs from 'ipfs'
+import ipfsClient from 'ipfs-http-client'
 
 import config from 'config'
 import debug from 'tools/debug'
@@ -8,18 +9,20 @@ import { useCacheContext, cacheId } from 'contexts/cache'
 
 // This should only be called once (when initializing the ipfs context)
 export function useIpfs () {
-  const [ipfs, setIpfs] = useState(null)
+  const [local, setLocal] = useState(null)
 
   useEffect(() => {
-    startIpfs(setIpfs)
+    startIpfs(setLocal)
   }, [])
 
-  return ipfs
+  if (local === null) return null
+
+  return { local: local, remote: ipfsClient(config.ipfs.remote.host) }
 }
 
 export function useIpfsFileBuffer (path) {
   const [buf, setBuf] = useState(null)
-  const ipfs = useIpfsContext()
+  const ipfs = useIpfsContext().local
   const cache = useCacheContext()
 
   useEffect(() => {
@@ -37,7 +40,7 @@ export function useIpfsString (path) {
 
 export function useIpfsFileUrl (path, type) {
   const [url, setUrl] = useState(null)
-  const ipfs = useIpfsContext()
+  const ipfs = useIpfsContext().local
   const cache = useCacheContext()
 
   useEffect(() => {
@@ -49,7 +52,7 @@ export function useIpfsFileUrl (path, type) {
 
 export function useIpfsFileList (path) {
   const [files, setFiles] = useState(null)
-  const ipfs = useIpfsContext()
+  const ipfs = useIpfsContext().local
   const cache = useCacheContext()
 
   useEffect(() => {
@@ -59,20 +62,20 @@ export function useIpfsFileList (path) {
   return files
 }
 
-export function useIpfsFilesUpload (file) {
+export function useIpfsFilesUpload (files) {
   const [path, setPath] = useState(null)
-  const ipfs = useIpfsContext()
+  const ipfs = useIpfsContext().remote
 
   useEffect(() => {
-    uploadFilesAsFolder(ipfs, file, setPath)
-  }, [ipfs, file])
+    uploadFilesAsFolder(ipfs, files, setPath)
+  }, [ipfs, files])
 
   return path
 }
 
 async function startIpfs (setIpfs) {
   console.log('Starting IPFS')
-  const ipfs = await Ipfs.create({ config: config.ipfs })
+  const ipfs = await Ipfs.create({ config: config.ipfs.local })
   console.log('Started IPFS: ', ipfs)
   setIpfs(ipfs)
 }
