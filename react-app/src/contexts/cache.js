@@ -5,13 +5,11 @@ import debug from 'tools/debug'
 // # Usage
 //
 // const cache = useCacheContext()
-// const id = cacheId(some, unique, details)
+// const id = cacheId([stringable]...)
 // cache.set(id, val, lifetime<seconds> = ONE_YEAR)
 // cache.get(id, force = false) -> {val, expired} -- force indicates that the cache should be pulled even if it's expired.
-// cache.merge(id, getVal<Promise>, setVal<func(result)>, lifetime) -- merges mutliple sets and gets so that the promise is only called once for a given id
+// cache.merge(id, getVal<func(done)>, setVal<func(result)>, lifetime) -- merges mutliple sets and gets so that the promise is only called once for a given id
 // cache.evict(id)
-//
-// note: this implementation may not be conventional
 
 export const CacheContext = createContext()
 

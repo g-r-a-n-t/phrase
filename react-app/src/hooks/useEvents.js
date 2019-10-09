@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from 'react'
 import { ethers } from 'ethers'
+import { useWeb3Context } from 'web3-react'
 
 import { useExpressedSentiments as useESEntities } from './useEntities'
 import config from 'config'
@@ -10,17 +11,14 @@ const PHRASE_CREATED = ethers.utils.id('PhraseCreated(address,bytes32)')
 const SENTIMENT_EXPRESSED = ethers.utils.id('SentimentExpressed(address,bytes32)')
 const SENTIMENT_CREATED = ethers.utils.id('SentimentCreated(address,bytes32)')
 
-// TODO refactor so that you can easily switch between providers based on config
-const provider = new ethers.providers.JsonRpcProvider('http://localhost:7545')
-const registryInterface = new ethers.utils.Interface(config.registry.abi)
-
 // TODO use caching here. each subsequent call with new blocks should build on cache
 export function useEvents (topic) {
+  const { library } = useWeb3Context()
   const [events, setEvents] = useState(null)
 
   useEffect(() => {
-    fetchLogs(topic, setEvents)
-  }, [topic])
+    fetchLogs(library, topic, setEvents)
+  }, [library, topic])
 
   return events
 }
@@ -60,7 +58,9 @@ export function useExtExpressedSentiments () {
   })
 }
 
-async function fetchLogs (topic, setEvents) {
+async function fetchLogs (library, topic, setEvents) {
+  const registryInterface = new ethers.utils.Interface(config.registry.abi)
+
   const filter = {
     address: config.registry.address,
     fromBlock: MIN_BLOCK,
@@ -68,7 +68,7 @@ async function fetchLogs (topic, setEvents) {
     topics: [topic]
   }
 
-  const logs = await provider.getLogs(filter)
+  const logs = await library.getLogs(filter)
   const events = logs.map(log =>
     registryInterface.parseLog(log).values
   ).reverse()
