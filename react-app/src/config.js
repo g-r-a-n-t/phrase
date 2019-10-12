@@ -11,14 +11,14 @@ export default {
       Bootstrap: [
         {
           dev:  '/ip4/127.0.0.1/tcp/4003/ws/ipfs/QmPvEgzKziX8HkvveB2w51DmuHFANM2HLmjXrbf22aLMnr',
-          test: '/ip4/34.73.155.236/tcp/4003/ws/ipfs/QmfXZ3QnwguQZA5z4Z2Nm5AaQSiGf56Y8hikiSjLs7BSXD'
+          test: '/ip4/35.243.172.39/tcp/4003/ws/ipfs/QmfXZ3QnwguQZA5z4Z2Nm5AaQSiGf56Y8hikiSjLs7BSXD'
         }[NODE_ENV]
       ]
     },
     remote: {
       host: {
         dev:  '/ip4/127.0.0.1/tcp/5002',
-        test: '/ip4/34.73.155.236/tcp/4002'
+        test: '/ip4/35.243.172.39/tcp/5002'
       }[NODE_ENV]
     }
   },
