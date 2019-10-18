@@ -1,6 +1,8 @@
 # Phrase
 
-Phrase is a content publishing and distribution platform that uses value-backed sentiment as a means of support for public work.
+Phrase is a decentralized registry for digital content. It establishes formats for content residing on content-addressable networks and provides a novel funding scheme for creators of content that does not depend on advertising or subscriptions.
+
+## Overview
 
 In the context of Phrase, phrases represent things that a person may find meaningful. This could be anything ranging from political action to cultural production. Sentiments on the other hand, represent how a person may feel about phrases.
 
@@ -16,3 +18,9 @@ The interactions discussed above are facilitated by a registry contract. Its res
 For more information about the registry contract design, read [this](./docs/registry-contract-design.md).
 
 Each of the three entities discussed above has content associated with them, some formats can be found [here](./docs/content-formats.md).
+
+For the sake of tangibility, there is react app in this repository that connects to the registry contract and loads data from IPFS.
+
+## Running Locally
+
+_coming soon_
