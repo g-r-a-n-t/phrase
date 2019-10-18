@@ -8,8 +8,6 @@ In the context of Phrase, phrases represent things that a person may find meanin
 
 The creation of phrases and sentiments is open; meaning anyone can create a sentiment or phrase. Each sentiment is given a fixed value by the creator. For someone to express sentiment towards a phrase, they must purchase it for the specified value, with all proceeds going to the creator of the phrase. The expression of sentiment is public and used to create identities for both users and phrases.
 
-## Technical Overview
-
 The interactions discussed above are facilitated by a registry contract. Its responsibilities are listed below:
 
 - Creation of phrases, sentiments, and profiles.
