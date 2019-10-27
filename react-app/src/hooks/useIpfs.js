@@ -148,7 +148,8 @@ async function uploadFilesAsFolder (ipfs, files, setPath) {
   debug.networkOutbound('uploading files to IPFS', files)
   const result = await ipfs.add(files, {
     wrapWithDirectory: true,
-    progress: p => { console.log('progress: ', p) }
+    progress: p => { console.log('progress: ', p) },
+    timeout: 5000000
   })
   const path = result[result.length - 1].hash
   debug.networkInbound('files uploaded to IPFS', path)

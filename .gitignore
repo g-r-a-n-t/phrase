@@ -1,2 +1,3 @@
 node_modules/
 **/time
+solidity-contracts/.secret

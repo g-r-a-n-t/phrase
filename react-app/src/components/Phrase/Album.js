@@ -128,7 +128,6 @@ export function Track ({ selection }) {
   debug.componentRender('IpfsTrack', selection)
 
   const [media, setMedia] = useMediaContext()
-  useIpfsFileUrl(selection.content, 'audio/mpeg3') // load all tracks preemtively
 
   const track = decomposeTrack(selection.content)
 

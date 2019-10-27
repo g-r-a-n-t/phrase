@@ -1,0 +1,24 @@
+   Deploying 'Registry'
+   --------------------
+   > transaction hash:    0x5cda0288e27435d3150769b66ddf02fcc73e8028c5aa6874d53f0702b5ed5269
+   > Blocks: 3            Seconds: 30
+   > contract address:    0x9E64Cacf399D28A6f8eF2bED53DD012E01E6D903
+   > block number:        6630199
+   > block timestamp:     1571843325
+   > account:             0x39cBD3814757Be997040E51921e8D54618278A08
+   > balance:             0.85251634
+   > gas used:            2108515
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.0421703 ETH
+
+   Pausing for 2 confirmations...
+   ------------------------------
+   > confirmation number: 1 (block: 6630202)
+   > confirmation number: 2 (block: 6630203)
+
+   ⠴ Saving migration to chain.   > confirmation number: 3 (block: 6630204)
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:           0.0421703 ETH

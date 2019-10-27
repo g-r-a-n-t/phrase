@@ -6,6 +6,7 @@ import { CSSTransitionGroup } from 'react-transition-group'
 import { Spinner, Button, Row, Col } from 'reactstrap'
 
 import { usePhrase } from 'hooks/useEntity'
+import { useIpfsContext } from 'contexts/ipfs'
 import { PlaqueFront, PlaqueBack, PlaqueExploded } from './Plaque'
 import { AlbumFront, AlbumBack, AlbumExploded } from './Album'
 import { SimpleModal } from 'components/Modals'
@@ -15,10 +16,12 @@ import debug from 'tools/debug'
 
 export function Phrase ({ _key }) {
   const [expressingSentiment, setExpressingSentiment] = useState(false)
-
   const phrase = usePhrase(_key)
+  const ipfs = useIpfsContext().local
 
   if (phrase == null) return <Spinner type="grow" color="secondary" />
+
+  ipfs.get(phrase.content) // get entire phrase
 
   const [front, _back] = (() => {
     switch (phrase.format) {

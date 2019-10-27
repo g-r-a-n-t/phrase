@@ -23,7 +23,7 @@ export default function App () {
   const ipfs = useIpfsContext()
 
   useEffect(() => {
-    web3.setFirstValidConnector(['MetaMask', 'Infura'])
+    web3.setFirstValidConnector(['MetaMask'])
   }, [web3])
 
   if (ipfs == null) return <Loading>Loading IPFS...</Loading>
