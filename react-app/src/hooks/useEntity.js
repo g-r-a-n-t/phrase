@@ -4,7 +4,7 @@ import { useWeb3Context } from 'web3-react'
 import { useCacheContext, cacheId } from 'contexts/cache'
 import { useRegistryContract } from './useContract'
 
-const PROFILE_CACHE_LIFETIME = 60 * 10
+const PROFILE_CACHE_LIFETIME = 60 * 2
 
 export function useProfile (key) {
   const [content, setContent] = useState(null)
@@ -57,7 +57,7 @@ async function fetchProfile (cache, registry, key, setContent) {
   // - Phrase created
   // - Sentiment expressed
   // - content/format changed
-  // if (maybeUseCache(cache, id, setContent)) return null
+  if (maybeUseCache(cache, id, setContent)) return null
 
   const response = await registry.getProfile(key)
 

@@ -1,12 +1,8 @@
-import process from 'process'
-
 import REGISTRY from './deployedContracts/Registry'
 
-
 // dev, test
-const NODE_ENV = process.env.NODE_ENV || 'test'
-
-console.log('env', NODE_ENV)
+// TODO: load from the environment
+const NODE_ENV = 'dev'
 
 export default {
   ipfs: {
