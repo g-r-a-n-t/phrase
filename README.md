@@ -37,4 +37,10 @@ For the sake of tangibility, there is react app in this repository that connects
 
 ### Running Locally
 
-_coming soon_
+Development chain: `ganache-cli --networkId 5777 -p 7545`
+
+IPFS: `ipfs daemon`
+
+Contract deployment: `cd solidity-contracts && truffle deploy`
+
+Webapp: `cd react-app && yarn start`
