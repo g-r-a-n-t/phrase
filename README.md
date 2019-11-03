@@ -11,7 +11,7 @@ A phrase is a discrete unit of digital content that is also payable. The root of
 For example, in React's terms:
 
 ```html
-<Phrase _key="/phrase/ABC...123" />
+<Phrase _key="ABC...123" />
 ```
 
 May render something like this:
