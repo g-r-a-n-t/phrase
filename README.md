@@ -24,6 +24,14 @@ This content is also payable, as mentioned above. All this means is that there i
 
 You can send money directly to the beneficiary, if you would like, but that's pretty boring. Instead, you can purchase something called _value-backed sentiment_. A value-backed sentiment is something that represents how you feel about something else, and when you purchase it, you are funding the phrase's beneficiary. Think of it as cryptographic sticker for your Ethereum address.
 
+This is what a sentiment looks like:
+
+```html
+<Sentiment _key="ABC...123" />
+```
+
+![Windows96 Album](images/sentiment.gif)
+
 The interactions discussed above are facilitated by a registry contract. Its responsibilities are as follows:
 
 - Creation of phrases, sentiments, and profiles.
