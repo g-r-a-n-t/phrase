@@ -18,7 +18,7 @@ You can render the content of the phrase:
 
 ![Windows96 Album](images/phrase.gif)
 
-In this case, it's an album.
+In this case, it's an [album](https://windows96.bandcamp.com/album/enchanted-instrumentals-and-whispers).
 
 This content is also payable, as mentioned above. All this means is that there is a beneficiary address stored in the registry along with the content. By default the creator is the beneficiary.
 
@@ -30,7 +30,7 @@ This is what a sentiment looks like:
 <Sentiment _key="ABC...123" />
 ```
 
-![Windows96 Album](images/sentiment.gif)
+![That's Vape](images/sentiment.gif)
 
 The interactions discussed above are facilitated by a registry contract. Its responsibilities are as follows:
 
