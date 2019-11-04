@@ -12,7 +12,7 @@ _ipfs-standard-2019_
 
 ## Phrases
 
-_ipfs-plaque-2019_
+_action-fund-2019_
 
 ```
 /name.txt
@@ -30,25 +30,6 @@ _ipfs-album-2019_
 /02 Track Name.mp3
 ...
 /?? Track Name.mp3
-```
-
-_ipfs-image-2019_
-
-```
-/collection.txt
-/name.txt
-/description.txt
-/image.jpg
-```
-
-_ipfs-video-2019_
-
-```
-/collection.txt
-/name.txt
-/description.txt
-/thumb.jpg (120x120px)
-/video.mp4
 ```
 
 ## Sentiments
