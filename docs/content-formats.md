@@ -12,7 +12,7 @@ _ipfs-standard-2019_
 
 ## Phrases
 
-_action-fund-2019_
+_ipfs-action-fund-2019_
 
 ```
 /name.txt
