@@ -1,4 +1,3 @@
-- content created on the local jsipfs node should be duplicated on the dedicated node
 - Sharable links with suggested sentiment towards a phrase
 - image uploader should handle more than jpg and resize to desired dims
 - image uploader doesnt seem to work on chomium

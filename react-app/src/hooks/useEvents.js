@@ -64,7 +64,6 @@ async function fetchLogs (library, topic, setEvents) {
   const filter = {
     address: config.registry.address,
     fromBlock: MIN_BLOCK,
-    toBlock: 1000,
     topics: [topic]
   }
 
