@@ -1,6 +1,6 @@
 # Registry Contract Design
 
-The registry contract is responsible for the creation of entities and expression of sentiment.
+The registry contract is responsible for the creation of entities and pinning of sentiment.
 
 ## Data Structures
 
@@ -22,7 +22,7 @@ The registry contract is responsible for the creation of entities and expression
 | token   | `address` |
 | value   | `uint256` |
 
-### ExpressedSentiment
+### PinnedSentiment
 
 | value     | type      |
 |:----------|:----------|
@@ -31,28 +31,28 @@ The registry contract is responsible for the creation of entities and expression
 
 ### Profile
 
-| value               | type        |
-|:--------------------|:------------|
-| format              | `string`    |
-| content             | `string`    |
-| phrases             | `bytes32[]` |
-| expressedSentiments | `bytes32[]` |
+| value            | type        |
+|:-----------------|:------------|
+| format           | `string`    |
+| content          | `string`    |
+| phrases          | `bytes32[]` |
+| pinnedSentiments | `bytes32[]` |
 
 ## Globals
 
-| value               | type                            |
-|:--------------------|:--------------------------------|
-| profiles            | `address -> Profile`            |
-| phrases             | `bytes32 -> Phrase`             |
-| sentiments          | `bytes32 -> Sentiment`          |
-| expressedSentiments | `bytes32 -> ExpressedSentiment` |
+| value            | type                            |
+|:-----------------|:--------------------------------|
+| profiles         | `address -> Profile`            |
+| phrases          | `bytes32 -> Phrase`             |
+| sentiments       | `bytes32 -> Sentiment`          |
+| pinnedSentiments | `bytes32 -> PinnedSentiment` |
 
 ## Public Methods
 
 - `updateProfile(format, content)`
 - `createPhrase(format, content, beneficiary)`
 - `createSentiment(format, content, token, value)`
-- `expressSentiment(phrase, sentiment)`
+- `pinSentiment(phrase, sentiment)`
 
 ## Hashing
 

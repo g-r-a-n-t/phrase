@@ -1,8 +1,8 @@
 ## Phrase
 
-Phrase is a decentralized registry for digital content. It establishes formats for content residing on content-addressable networks and provides a novel funding scheme for creators of content.
+Phrase is a decentralized registry for discrete digital content. It establishes formats for content residing on content-addressable networks and provides a novel funding scheme for creators of content.
 
-_Why phrase? The term phrase generally means a collection of symbols or patterns that form meaning. You can have phrases in virtually every type of expression, whether it be speech, music, or visuals. Use of the term here is just and extension of its meaning over files._
+_Why phrase? The term phrase generally means a collection of symbols or patterns that form a distinct meaning. You can have phrases in virtually every type of expression, whether it be speech, music, or visuals. Use of the term here is just and extension of its meaning over files._
 
 ### Overview
 
@@ -18,11 +18,11 @@ For example, you can render a phrase in React like so:
 
 _In this case, it's an [album](https://windows96.bandcamp.com/album/enchanted-instrumentals-and-whispers)._
 
-The phrase is discrete in the sense that everything you need to interact with it is stored behind a registry key. This design is advantageous in an internet where many applications share the same state and data context. 
+The phrase is discrete in the sense that everything you need to interact with it is stored behind a registry key. This design is advantageous in an internet where many applications share the same state and data context.
 
 This content is also payable. All this means is that there is a beneficiary address stored in the registry along with the content. By default, the creator is the beneficiary.
 
-You can send money directly to the beneficiary, if you would like, but that's pretty boring. Instead, you can pin a _value-backed sentiment_ to the phrase. A value-backed sentiment is something that represents how you feel about something else. To pin a sentiment, you must transfer a fixed amount of tokens to the phrase's beneficiary. Think of it as cryptographic sticker for your Ethereum address.
+If you would like, you can send money directly to the beneficiary, but that's pretty boring. Instead, you can pin a _value-backed sentiment_ to the phrase. A value-backed sentiment is something that represents how you feel about something else. To pin a sentiment, you must transfer a fixed amount of tokens to the phrase's beneficiary. Think of it as cryptographic sticker for your Ethereum address.
 
 This value transfer is meant to accomplish two things:
 
@@ -37,13 +37,12 @@ This is what a sentiment looks like:
 
 ![That's Vape](images/sentiment.gif)
 
-
 ### Technical Details
 
 The interactions discussed above are facilitated by a registry contract. Its responsibilities are as follows:
 
 - Creation of phrases, sentiments, and profiles.
-- Expression of sentiment from a profile to a phrase.
+- Pinning of sentiment from an address to a phrase.
 
 For more information about the registry contract design, read [this](./docs/registry-contract-design.md).
 
