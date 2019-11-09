@@ -1,15 +1,16 @@
 ## Phrase
 
-Phrase is a decentralized registry for discrete digital content. It establishes formats for content residing on content-addressable networks and provides a novel funding scheme for creators of content.
+Phrase is a decentralized registry and fan-funding system for digital content, built on Ethereum and content-addressable networks like IPFS. There's a prototype app built with React.
 
-_Why phrase? The term phrase generally means a collection of symbols or patterns that form a distinct meaning. You can have phrases in virtually every type of expression, whether it be speech, music, or visuals. Use of the term here is just and extension of its meaning over files._
+Phrase allows content creators to register digital content along with the metadata required to view, listen to, or otherwise experience the content, and make the content available to others via a content-addressable network (IPFS). Users can then interact with the content, and express their appreciation via a novel funding scheme.
+
+_Why 'phrase'? A 'phrase' is a collection of words, symbols, or patterns that form a unit with some greater meaning. There are phrases in virtually every type of expression, like speech, music, or visuals. Use of the term here is an extension of this concept to files and other digital artifacts._
 
 ### Overview
 
-A phrase is a discrete unit of digital content. The root of its content and its format is stored in a registry contract. This means that you can render the content by referencing the phrase's key.
+A phrase is a discrete unit of digital content, like an album, a painting, or a zine. The root address of the content and its format are stored in a registry contract. This means that you can view the content by referencing the phrase's key.
 
-For example, you can render a phrase in React like so:
-
+In React, a phrase can be rendered like so:
 ```html
 <Phrase _key="ABC...123" />
 ```
@@ -18,24 +19,23 @@ For example, you can render a phrase in React like so:
 
 _In this case, it's an [album](https://windows96.bandcamp.com/album/enchanted-instrumentals-and-whispers)._
 
-The phrase is discrete in the sense that everything you need to interact with it is stored behind a registry key. This design is advantageous in an internet where many applications share the same state and data context.
-
-This content is also payable. All this means is that there is a beneficiary address stored in the registry along with the content. By default, the creator is the beneficiary.
+It's also possible to support a phrase; there's a beneficiary Ethereum wallet address stored in the registry alongside the content address. By default, the creator of the phrase is the beneficiary.
 
 If you would like, you can send money directly to the beneficiary, but that's pretty boring. Instead, you can pin a _value-backed sentiment_ to the phrase. A value-backed sentiment is something that represents how you feel about something else. To pin a sentiment, you must transfer a fixed amount of tokens to the phrase's beneficiary. Think of it as cryptographic sticker for your Ethereum address.
 
 This value transfer is meant to accomplish two things:
 
-1. Subsidize the work required to create phrases.
+1. Support the work required to create phrases.
 2. Establish a public relationship between the phrase and person funding it.
 
 This is what a sentiment looks like:
 
-```html
-<Sentiment _key="ABC...123" />
-```
-
 ![That's Vape](images/sentiment.gif)
+
+In React, this is:
+```html
+<Sentiment _key="DEF...456" />
+```
 
 ### Technical Details
 
@@ -48,7 +48,7 @@ For more information about the registry contract design, read [this](./docs/regi
 
 Each of the three entities discussed above has content associated with them, some formats can be found [here](./docs/content-formats.md).
 
-For the sake of tangibility, there is react app in this repository that connects to the registry contract and loads data from IPFS.
+For the sake of tangibility, there is a react app in this repository that connects to the registry contract and loads data from IPFS.
 
 ### Running Locally
 
