@@ -1,18 +1,10 @@
-# Content Formats
+## Content Formats
 
-## Profiles
+### Phrases
 
-_ipfs-standard-2019_
+#### Funding
 
-```
-/name.txt
-/bio.txt
-/icon.jpg (120x120px)
-```
-
-## Phrases
-
-_ipfs-action-fund-2019_
+**ipfs-action-fund-2019**
 
 ```
 /name.txt
@@ -20,7 +12,9 @@ _ipfs-action-fund-2019_
 /cover.jpg (400x400px)
 ```
 
-_ipfs-album-2019_
+#### Media
+
+**ipfs-album-2019**
 
 ```
 /name.txt
@@ -32,9 +26,9 @@ _ipfs-album-2019_
 /?? Track Name.mp3
 ```
 
-## Sentiments
+### Sentiments
 
-_ipfs-standard-2019_
+**ipfs-standard-2019**
 
 ```
 /name.txt

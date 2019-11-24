@@ -1,4 +1,0 @@
-- Sharable links with suggested sentiment towards a phrase
-- image uploader should handle more than jpg and resize to desired dims
-- image uploader doesnt seem to work on chomium
-- should have a web3 connector fallback to metamask
