@@ -3,16 +3,16 @@ pragma solidity >=0.5.0;
 import "./ERC20Interface.sol";
 
 contract Registry {
-  event PhraseCreated(address creator, bytes32 phrase);
-  event SentimentCreated(address creator, bytes32 sentiment);
-  event SentimentExpressed(address expresser, bytes32 expressedSentiment);
-  event ProfileCreated(address creator);
+  event PhraseCreated(address creator, bytes20 phrase);
+  event SentimentCreated(address creator, bytes20 sentiment);
+  event SentimentPinned(address expresser, bytes20 phrase, bytes20 sentiment);
 
   struct Phrase {
     string format;
     string content;
     address payable creator;
     address payable beneficiary;
+    mapping(bytes20 => address[]) pinned;
   }
 
   struct Sentiment {
@@ -22,35 +22,8 @@ contract Registry {
     uint256 value;
   }
 
-  struct ExpressedSentiment {
-    bytes32 phrase;
-    bytes32 sentiment;
-  }
-
-  struct Profile {
-    string format;
-    string content;
-    bytes32[] phrases;
-    bytes32[] expressedSentiments;
-  }
-
-  mapping(address => Profile) profiles; // Accessed by a getted due to limitations with returing lists.
-  mapping(bytes32 => Phrase) public phrases;
-  mapping(bytes32 => Sentiment) public sentiments;
-  mapping(bytes32 => ExpressedSentiment) public expressedSentiments;
-
-  function updateProfile(
-    string memory format,
-    string memory content
-  )
-    public
-  {
-    // Update the profile's format and content.
-    profiles[msg.sender].format = format;
-    profiles[msg.sender].content = content;
-
-    emit ProfileCreated(msg.sender);
-  }
+  mapping(bytes20 => Phrase) public phrases;
+  mapping(bytes20 => Sentiment) public sentiments;
 
   function createPhrase(
     string memory format,
@@ -68,9 +41,8 @@ contract Registry {
     );
 
     // Create a unique key for the phrase and store it in the global map.
-    bytes32 key = hashPhrase(phrase);
+    bytes20 key = phraseKey(phrase);
     phrases[key] = phrase;
-    profiles[msg.sender].phrases.push(key);
 
     emit PhraseCreated(msg.sender, key);
   }
@@ -92,15 +64,15 @@ contract Registry {
     );
 
     // Create a unique key for the sentiment and store it in the global map.
-    bytes32 key = hashSentiment(sentiment);
+    bytes20 key = sentimentKey(sentiment);
     sentiments[key] = sentiment;
 
     emit SentimentCreated(msg.sender, key);
   }
 
-  function expressSentiment(
-    bytes32 phraseKey,
-    bytes32 sentimentKey
+  function pinSentiment(
+    bytes20 phraseKey,
+    bytes20 sentimentKey
   )
     public
     payable
@@ -115,18 +87,6 @@ contract Registry {
       "Sentiment should exist for the given key."
     );
 
-    // Create a new expressed sentiment
-    ExpressedSentiment memory expressedSentiment = ExpressedSentiment(
-      phraseKey,
-      sentimentKey
-    );
-
-    // Store the expressed sentiment in the global map, if it isn't already.
-    bytes32 expressedSentimentKey = hashExpressedSentiment(expressedSentiment);
-    if(!expressedSentimentExists(expressedSentimentKey)) {
-      expressedSentiments[expressedSentimentKey] = expressedSentiment;
-    }
-
     // Transfer the sentiment's value to the phrases's creator or beneficiary.
     Phrase memory phrase = phrases[phraseKey];
     Sentiment memory sentiment = sentiments[sentimentKey];
@@ -136,10 +96,10 @@ contract Registry {
       transfer(phrase.beneficiary, sentiment.token, sentiment.value);
     }
 
-    // Associate the expressed sentiment with the profile.
-    profiles[msg.sender].expressedSentiments.push(expressedSentimentKey);
+    // Pin the sentiment to a phrase under the msg.sender.
+    phrases[phraseKey].pinned[sentimentKey].push(msg.sender);
 
-    emit SentimentExpressed(msg.sender, expressedSentimentKey);
+    emit SentimentPinned(msg.sender, phraseKey, sentimentKey);
   }
 
   function transfer(
@@ -156,87 +116,38 @@ contract Registry {
     }
   }
 
-  function getProfile(
-    address owner
-  )
-    public
-    view
-    returns (
-      string memory,
-      string memory,
-      bytes32[] memory,
-      bytes32[] memory
-    )
-  {
-    return (
-      profiles[owner].format,
-      profiles[owner].content,
-      profiles[owner].phrases,
-      profiles[owner].expressedSentiments
-    );
-  }
-
-  function hashPhrase(
+  function phraseKey(
     Phrase memory phrase
   )
     internal
     pure
-    returns (bytes32)
+    returns (bytes20)
   {
-    return sha256(
-      abi.encodePacked(
-        phrase.format, "-",
-        phrase.content, "-",
-        phrase.creator, "-",
-        phrase.beneficiary
-      )
-    );
+    return bytes20(sha256(abi.encodePacked(
+      phrase.format, "-",
+      phrase.content, "-",
+      phrase.creator, "-",
+      phrase.beneficiary
+    )));
   }
 
-  function hashSentiment(
+  function sentimentKey(
     Sentiment memory sentiment
   )
     internal
     pure
-    returns (bytes32)
+    returns (bytes20)
   {
-    return sha256(
-      abi.encodePacked(
-        sentiment.format, "-",
-        sentiment.content, "-",
-        sentiment.token, "-",
-        sentiment.value
-      )
-    );
-  }
-
-  function hashExpressedSentiment(
-    ExpressedSentiment memory expressedSentiment
-  )
-    internal
-    pure
-    returns (bytes32)
-  {
-    return sha256(
-      abi.encodePacked(
-        expressedSentiment.phrase, "-",
-        expressedSentiment.sentiment
-      )
-    );
-  }
-
-  function profileExists(
-    address owner
-  )
-    internal
-    view
-    returns (bool)
-  {
-    return bytes(profiles[owner].content).length != 0;
+    return bytes20(sha256(abi.encodePacked(
+      sentiment.format, "-",
+      sentiment.content, "-",
+      sentiment.token, "-",
+      sentiment.value
+    )));
   }
 
   function phraseExists(
-    bytes32 key
+    bytes20 key
   )
     internal
     view
@@ -246,22 +157,12 @@ contract Registry {
   }
 
   function sentimentExists(
-    bytes32 key
+    bytes20 key
   )
     internal
     view
     returns (bool)
   {
     return bytes(sentiments[key].content).length != 0;
-  }
-
-  function expressedSentimentExists(
-    bytes32 key
-  )
-    internal
-    view
-    returns (bool)
-  {
-    return expressedSentiments[key].phrase != "" && expressedSentiments[key].sentiment != "";
   }
 }
