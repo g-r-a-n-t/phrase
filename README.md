@@ -18,7 +18,7 @@ A phrase is a discrete unit of digital content. The root address of the content 
 
 In React, a phrase can be rendered like so:
 ```html
-<Phrase _key="ABC...123" />
+<Phrase _key="0xabc...123" />
 ```
 
 ![Windows96 Album](docs/images/phrase.gif)
@@ -40,7 +40,7 @@ This is what a sentiment looks like:
 
 In React, this is:
 ```html
-<Sentiment _key="DEF...456" />
+<Sentiment _key="0xdef...456" />
 ```
 
 ### Technical Details

@@ -9,22 +9,32 @@
 
 const ONE_YEAR = 60 * 60 * 24 * 365
 
+/** Creates an id for some item with the given stringable parameters. */
 export function cacheId (...vals) {
   return vals.join('-')
 }
 
+/** The current time in seconds. */
+function now () {
+  return Date.now() / 1000
+}
+
 /** A general cache. */
-export function Cache () {
-  /** An object that holds cached values. id => value, expiration */
-  const cache = {}
+export class Cache {
+  constructor () {
+    /** An object that holds cached values. id => value, expiration */
+    cache = {}
+    /** Collection of promise resolves and rejects that are pending the result of some id. */
+    pending = {}
+  }
 
   /** Set a cached value for some id. */
-  const set = (id, val, lifetime = ONE_YEAR) => {
+  set (id, val, lifetime = ONE_YEAR) {
     cache[id] = { val: val, expiration: now() + lifetime }
   }
 
   /** Get a cached value with an id. */
-  const get = (id, force = false) => {
+  get (id, force = false) {
     if (cache[id] === undefined || cache[id] === null) return null
 
     const expired = now() > cache[id].expiration
@@ -38,18 +48,15 @@ export function Cache () {
   }
 
   /** Evict some cached item. */
-  const evict = (id) => {
+  evict (id) {
     cache[id] = null
   }
-
-  /** Collection of promise resolves and rejects that are pending the result of some id. */
-  const pending = {}
 
   /**
     * Returns a promise that merges multiple calls under one id.
     * This prevents multiple requests for the same resource being made.
     */
-  const promise = (id, getPromise, lifetime = ONE_YEAR) => {
+  promise (id, getPromise, lifetime = ONE_YEAR) {
     return new Promise(function(resolve, reject) {
       if (get(id) !== null) {
         // cache is already set
@@ -71,17 +78,5 @@ export function Cache () {
         pending[id].push({ resolve: resolve, reject: reject })
       }
     })
-  }
-
-  /** The current time in seconds. */
-  function now () {
-    return Date.now() / 1000
-  }
-
-  return {
-    set: set,
-    get: get,
-    evict: evict,
-    promise: promise
   }
 }

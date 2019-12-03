@@ -1,70 +1,46 @@
 /** A number of IPFS network functions that leverage a cache. */
-import { Cache, cacheId } from 'cache'
+import { Cache, cacheId } from '../cache.js'
 
-async function fetchBuf (cache, ipfs, path) {
-  const id = cacheId('ipfsBuf', path)
-
-  return cache.promise(
-    id,
-    () => { return ipfs.cat(path) }
-  )
-}
-
-async function fetchUrl (cache, ipfs, path, type) {
-  const id = cacheId('ipfsUrl', path, type)
-
-  return cache.promise(
-    id,
-    () => {
-      return new Promise((resolve, reject) => {
-        ipfs.cat(path).then(buf => {
-          const url = bufToUrl(buf, type)
-          resolve(url)
-        }, err => {
-          reject(err)
-        })
-      })
-    }
-  )
-}
-
-async function fetchFileList (cache, ipfs, path) {
-  return Promise(function (resolve) {
-    const id = cacheId('ipfsFileList', path)
-
-    if (maybeUseCache(cache, id, resolve)) return null
-
-    const files = await ipfs.files.ls(path)
-    const names = files.map(file => file.name)
-
-    cache.set(id, names)
-
-    resolve(names)
-  })
-}
-
-function maybeUseCache (cache, id, setValue) {
-  const result = cache.get(id)
-
-  if (result !== null) {
-    setValue(result.val)
-    return true
+export class Ipfs {
+  constructor (ipfs) {
+    this.ipfs = ipfs
+    this.cache = Cache()
   }
 
-  return false
-}
+  fetchText (path) {
+    return this.cache.promise(
+      cacheId('ipfsBuf', path),
+      () => this.ipfs.cat(path).then(buf => buf.toString('utf8'))
+    )
+  }
 
-async function uploadFilesAsFolder (ipfs, files) {
-  return Promise (function(resolve) {
-    const result = await ipfs.add(files, {
+  fetchUrl (path, type) {
+    return this.cache.promise(
+      cacheId('ipfsUrl', path, type),
+      () => this.ipfs.cat(path).then(buf => bufToUrl(buf, type))
+    )
+  }
+
+  fetchExt (ext, path) {
+    return {
+      txt: fetchText(path),
+      jpg: fetchUrl(path, 'image/jpeg'),
+      mp3: fetchUrl(path, 'audio/mpeg3')
+    }[ext]
+  }
+
+  fetchFileList (path) {
+    return this.cache.promise(
+      cacheId('ipfsFileList', path),
+      () => this.ipfs.files.ls(path).then(files => files.map(file => file.name))
+    )
+  }
+
+  uploadFilesAsFolder (files) {
+    return this.ipfs.add(files, {
       wrapWithDirectory: true,
-      progress: p => { console.log('progress: ', p) },
       timeout: 5000000
-    })
-    const path = result[result.length - 1].hash
-
-    // TODO: check if it doesnt already have /ipfs/
-    resolve(`/ipfs/${path}`)
+    }).then(result => result[result.length - 1].hash)
   }
 }
 

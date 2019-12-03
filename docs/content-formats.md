@@ -19,7 +19,6 @@
 ```
 /name.txt
 /cover.jpg (400x400px)
-/back.jpg (400x400px)
 /01 Track Name.mp3
 /02 Track Name.mp3
 ...
