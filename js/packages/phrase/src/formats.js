@@ -1,4 +1,4 @@
-export const phrases = {
+exports.phrases = {
   'ipfs-album-2019': {
     name: 'name.txt',
     cover: 'cover.jpg',
@@ -11,7 +11,7 @@ export const phrases = {
   }
 }
 
-export const sentiments = {
+exports.sentiments = {
   'ipfs-standard-2019': {
     name: 'name.txt',
     cover: 'cover.jpg'

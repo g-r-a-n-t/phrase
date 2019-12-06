@@ -1,8 +1,12 @@
-import { Cache, cacheId } from '../cache.js'
+const { Cache, cachId } = require('../cache.js')
+const ethers = require('ethers')
+const DEP = require('../Registry.json')
 
-export class Registry {
-  constructor (web3) {
-    this.contract = null
+exports.Registry = class {
+  constructor (provider) {
+    console.log(DEP)
+    const address = null
+    this.contract = new ethers.Contract(DEP.networks[5777].address, DEP.abi, provider)
     this.cache = new Cache()
   }
 

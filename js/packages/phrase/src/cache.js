@@ -10,7 +10,7 @@
 const ONE_YEAR = 60 * 60 * 24 * 365
 
 /** Creates an id for some item with the given stringable parameters. */
-export function cacheId (...vals) {
+exports.cacheId = function (...vals) {
   return vals.join('-')
 }
 
@@ -20,12 +20,12 @@ function now () {
 }
 
 /** A general cache. */
-export class Cache {
+exports.Cache = class {
   constructor () {
     /** An object that holds cached values. id => value, expiration */
-    cache = {}
+    this.cache = {}
     /** Collection of promise resolves and rejects that are pending the result of some id. */
-    pending = {}
+    this.pending = {}
   }
 
   /** Set a cached value for some id. */

@@ -1,10 +1,10 @@
 /** A number of IPFS network functions that leverage a cache. */
-import { Cache, cacheId } from '../cache.js'
+const { Cache, cacheId } = require('../cache.js')
 
-export class Ipfs {
+exports.Ipfs = class {
   constructor (ipfs) {
     this.ipfs = ipfs
-    this.cache = Cache()
+    this.cache = new Cache()
   }
 
   fetchText (path) {

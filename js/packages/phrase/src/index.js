@@ -1,17 +1,18 @@
-import { Registry } from './network/registry.js'
-import { Ipfs } from './network/ipfs.js'
-import { phrases, sentiments } from './formats.js'
+const { Registry } = require('./network/registry.js')
+const { Ipfs } = require('./network/ipfs.js')
+const { phrases, sentiments } = require('./formats.js')
+const assert = require('assert')
 
 /** Ties together data from the phrase registry and IPFS. */
-export default class Phrase {
-  constructor (ipfs, web3) {
+exports.Reader = class {
+  constructor (ipfs, provider) {
     this.ipfs = new Ipfs(ipfs)
-    this.registry = new Registry(web3)
+    this.registry = new Registry(provider)
   }
 
   /** Get a phrase using its key. */
   phrase (key) {
-    this.registry.getPhrase(key).then(phrase => {
+    return this.registry.getPhrase(key).then(phrase => {
       return fill(
         f => ({
           filename: f,
@@ -31,7 +32,9 @@ export default class Phrase {
       amount: 'amount'
     }
   }
+}
 
+exports.Writer = class {
   /** Create a new phrase. */
   createPhrase (format, content, creator, beneficiary) {
     return 'key'
@@ -49,18 +52,27 @@ export default class Phrase {
 }
 
 function fit (format, files) {
-  let expanded = {}
+  let fitted = {}
 
   for (let [k, v] of Object.entries(format)) {
     if (typeof(v) == 'string') {
-      expanded[k] = v
+      fitted[k] = v
     } else {
-      expanded[k] = files.filter(f => f.match(v))
+      fitted[k] = files.filter(f => f.match(v))
     }
   }
 
-  return expanded
+  return fitted
 }
+
+assert.deepEqual(fit(
+  phrases['ipfs-album-2019'],
+  ['name.txt', 'cover.jpg', '01 Song 1.mp3', '02 Song 2.mp3', 'Song 3.mp3']
+), {
+  name: 'name.txt',
+  cover: 'cover.jpg',
+  tracks: ['01 Song 1.mp3', '02 Song 2.mp3']
+})
 
 function fill (map, obj) {
   let filled = {}
@@ -76,10 +88,24 @@ function fill (map, obj) {
   return filled
 }
 
+assert.deepEqual(fill(s => s.length, {
+  name: 'name.txt',
+  cover: 'cover.jpg',
+  tracks: ['01 Song 1.mp3', '02 Song 2.mp3']
+}), {
+  name: 8,
+  cover: 9,
+  tracks: [13, 13]
+})
+
 function ext (file) {
   const a = file.split('.')
   return a[a.length - 1]
 }
+
+assert.equal(ext('my-diary.txt'), 'txt')
+assert.equal(ext('james-bond.mov'), 'mov')
+assert.equal(ext('txt.mp3'), 'mp3')
 
 function path (root, ...ss) {
   root = `/ipfs/${root.replace(/\//g, '').replace('ipfs', '')}`
@@ -87,36 +113,6 @@ function path (root, ...ss) {
   return `${root}/${ss.join('/')}`
 }
 
-import chai from 'chai'
-const expect = chai.expect
-
-// ext
-expect(ext('my-diary.txt')).to.equal('txt')
-expect(ext('james-bond.mov')).to.equal('mov')
-expect(ext('txt.mp3')).to.equal('mp3')
-
-// path
-expect(path('ipfs/asdf1234', 'file', 'path', 'info.txt')).to.equal('/ipfs/asdf1234/file/path/info.txt')
-expect(path('asdf1234', 'file/', 'path', 'info.txt')).to.equal('/ipfs/asdf1234/file/path/info.txt')
-expect(path('/ipfs/asdf1234/', '/info.txt/')).to.equal('/ipfs/asdf1234/info.txt')
-
-// fit
-expect(fit(
-  phrases['ipfs-album-2019'],
-  ['name.txt', 'cover.jpg', '01 Song 1.mp3', '02 Song 2.mp3', 'Song 3.mp3']
-)).to.deep.equal({
-  name: 'name.txt',
-  cover: 'cover.jpg',
-  tracks: ['01 Song 1.mp3', '02 Song 2.mp3']
-})
-
-// fill
-expect(fill(s => s.length, {
-  name: 'name.txt',
-  cover: 'cover.jpg',
-  tracks: ['01 Song 1.mp3', '02 Song 2.mp3']
-})).to.deep.equal({
-  name: 8,
-  cover: 9,
-  tracks: [13, 13]
-})
+assert.equal(path('ipfs/asdf1234', 'file', 'path', 'info.txt'), '/ipfs/asdf1234/file/path/info.txt')
+assert.equal(path('asdf1234', 'file/', 'path', 'info.txt'), '/ipfs/asdf1234/file/path/info.txt')
+assert.equal(path('/ipfs/asdf1234/', '/info.txt/'), '/ipfs/asdf1234/info.txt')
