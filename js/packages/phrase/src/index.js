@@ -11,8 +11,8 @@ exports.Reader = class {
   }
 
   /** Get a phrase using its key. */
-  phrase (key) {
-    return this.registry.getPhrase(key).then(phrase => {
+  readPhrase (key) {
+    return this.registry.fetchPhrase(key).then(phrase => {
       return fill(
         f => ({
           filename: f,
@@ -24,7 +24,7 @@ exports.Reader = class {
   }
 
   /** Get a sentiment using its key. */
-  sentiment (key) {
+  readSentiment (key) {
     return {
       format: 'content',
       content: {},
@@ -35,13 +35,18 @@ exports.Reader = class {
 }
 
 exports.Writer = class {
+  constructor (ipfs, signer) {
+    this.ipfs = new Ipfs(ipfs)
+    this.registry = new Registry(signer)
+  }
+
   /** Create a new phrase. */
-  createPhrase (format, content, creator, beneficiary) {
+  writePhrase (format, content, creator, beneficiary) {
     return 'key'
   }
 
   /** Create a new sentiment. */
-  createSentiment (format, content, token, amount) {
+  writeSentiment (format, content, token, amount) {
     return 'key'
   }
 

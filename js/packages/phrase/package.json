@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "babel src -d lib",
-    "test": "mocha test/test.js"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "babel-preset-env": "^1.7.0",
     "chai": "^4.2.0",
     "ethers": "^4.0.40",
+    "ipfs": "^0.40.0",
     "mocha": "^6.2.2"
   }
 }

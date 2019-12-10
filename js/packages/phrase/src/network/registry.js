@@ -1,10 +1,9 @@
-const { Cache, cachId } = require('../cache.js')
+const { Cache, cacheId } = require('../cache.js')
 const ethers = require('ethers')
 const DEP = require('../Registry.json')
 
 exports.Registry = class {
   constructor (provider) {
-    console.log(DEP)
     const address = null
     this.contract = new ethers.Contract(DEP.networks[5777].address, DEP.abi, provider)
     this.cache = new Cache()

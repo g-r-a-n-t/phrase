@@ -30,26 +30,26 @@ exports.Cache = class {
 
   /** Set a cached value for some id. */
   set (id, val, lifetime = ONE_YEAR) {
-    cache[id] = { val: val, expiration: now() + lifetime }
+    this.cache[id] = { val: val, expiration: now() + lifetime }
   }
 
   /** Get a cached value with an id. */
   get (id, force = false) {
-    if (cache[id] === undefined || cache[id] === null) return null
+    if (this.cache[id] === undefined || this.cache[id] === null) return null
 
-    const expired = now() > cache[id].expiration
+    const expired = now() > this.cache[id].expiration
 
     if (expired && !force) return null
 
     return {
-      val: cache[id].val,
+      val: this.cache[id].val,
       expired: expired
     }
   }
 
   /** Evict some cached item. */
   evict (id) {
-    cache[id] = null
+    this.cache[id] = null
   }
 
   /**
@@ -57,25 +57,25 @@ exports.Cache = class {
     * This prevents multiple requests for the same resource being made.
     */
   promise (id, getPromise, lifetime = ONE_YEAR) {
-    return new Promise(function(resolve, reject) {
-      if (get(id) !== null) {
+    return new Promise((resolve, reject) => {
+      if (this.get(id) !== null) {
         // cache is already set
-        resolve(get(id).val)
-      } else if (pending[id] === null || pending[id] === undefined) {
+        resolve(this.get(id).val)
+      } else if (this.pending[id] === null || this.pending[id] === undefined) {
         // cache not set or pending
-        pending[id] = [{ resolve: resolve, reject: reject }]
+        this.pending[id] = [{ resolve: resolve, reject: reject }]
 
         getPromise().then(val => {
-          pending[id].forEach(p => p.resolve(val))
-          set(id, val, lifetime)
-          pending[id] = null
+          this.pending[id].forEach(p => p.resolve(val))
+          this.set(id, val, lifetime)
+          this.pending[id] = null
         }, err => {
-          pending[id].forEach(p => p.reject(err))
-          pending[id] = null
+          this.pending[id].forEach(p => p.reject(err))
+          this.pending[id] = null
         })
       } else {
         // cache is pending
-        pending[id].push({ resolve: resolve, reject: reject })
+        this.pending[id].push({ resolve: resolve, reject: reject })
       }
     })
   }
